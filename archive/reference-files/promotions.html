@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>โปรโมชั่น - Baomue Dental Clinic</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; }
+.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }
+</style></head>
+<body class="antialiased text-slate-600 bg-slate-100 selection:bg-cyan-200 selection:text-cyan-900">
+    <!-- Header -->
+    <header class="sticky z-50 bg-white/80 border-slate-100 border-b top-0 backdrop-blur-md">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex gap-3 items-center">
+                <div class="flex flex-col leading-none">
+                    <div class="flex transition-all duration-300 hover:scale-105 hover:rotate-1 hover:shadow-lg cursor-pointer group bg-white/40 border-white/40 border rounded-2xl pt-1.5 pr-4 pb-1.5 pl-1.5 shadow-md backdrop-blur-xl gap-x-3 items-center">
+                        <div class="relative w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-inner overflow-hidden group-hover:rotate-12 transition-transform duration-500">
+                            <div class="bg-white/20 absolute top-0 right-0 bottom-0 left-0"></div>
+                            <i data-lucide="box" class="w-5 h-5 text-white drop-shadow-sm"></i>
+                        </div>
+                        <div class="flex flex-col leading-none justify-center">
+                            <span class="group-hover:text-blue-600 transition-colors text-base font-semibold text-slate-800 tracking-tight">BAOMUE</span>
+                            <span class="text-[0.6rem] font-normal tracking-wide text-slate-500 uppercase">Dental Clinic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-2xl rounded-full border border-white/40 shadow-sm ring-1 ring-black/5">
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">หน้าแรก</a>
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">บริการ</a>
+                <button class="group flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-slate-900 bg-white shadow-sm rounded-full transition-all duration-200">
+                    โปรโมชั่น
+                </button>
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">ผลงานของเรา</a>
+                <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">บทความ</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:inline-flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 transition-all text-base font-medium text-slate-900 h-11 border-slate-300 border rounded-xl pr-6 pl-6">ติดต่อเลย</a>
+                <button class="lg:hidden text-slate-600 p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+        <!-- Page Header -->
+        <div class="text-center mb-8">
+            <h2 class="md:text-6xl lg:text-7xl uppercase transform text-4xl sm:text-5xl font-black text-[#1DAEE0] tracking-tighter font-bricolage mb-4 -rotate-1">PROMOTIONS!</h2>
+            <p class="text-lg md:text-xl font-medium text-slate-700">รวมโปรโมชั่นพิเศษประจำเดือน</p>
+        </div>
+
+        <!-- Main Card Container -->
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/60">
+            <!-- Hero Banner -->
+            <div class="relative bg-gradient-to-br from-[#1DAEE0] via-cyan-500 to-blue-600 px-6 md:px-10 py-10 md:py-14 overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-10 right-10 w-48 h-48 bg-white rounded-full blur-3xl"></div>
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 mb-4">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                            </span>
+                            <span class="text-white text-sm font-medium">โปรโมชั่นพิเศษ มิถุนายน 2567</span>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-white tracking-tight mb-3">รวมโปรโมชั่นประจำเดือน</h1>
+                        <p class="text-white/80 text-base md:text-lg max-w-lg">ดีลสุดพิเศษสำหรับคุณ รีบจองก่อนหมดเขต!</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/20 backdrop-blur-xl rounded-2xl p-5 border border-white/30 text-center">
+                            <div class="text-white/70 text-sm mb-1">หมดเขตใน</div>
+                            <div class="flex items-center gap-2">
+                                <div class="bg-white rounded-xl px-3 py-2">
+                                    <span class="text-2xl font-bold text-[#1DAEE0]" id="days">15</span>
+                                </div>
+                                <span class="text-white text-xl">:</span>
+                                <div class="bg-white rounded-xl px-3 py-2">
+                                    <span class="text-2xl font-bold text-[#1DAEE0]" id="hours">08</span>
+                                </div>
+                                <span class="text-white text-xl">:</span>
+                                <div class="bg-white rounded-xl px-3 py-2">
+                                    <span class="text-2xl font-bold text-[#1DAEE0]" id="minutes">42</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between text-white/60 text-xs mt-2 px-1">
+                                <span>วัน</span>
+                                <span>ชั่วโมง</span>
+                                <span>นาที</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="px-4 md:px-6 py-4 border-b border-slate-200 bg-slate-50/80 backdrop-blur-xl overflow-x-auto">
+                <div class="flex gap-2 min-w-max" id="filter-tabs">
+                    <button class="filter-btn active px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-slate-900 text-white shadow-sm" data-filter="all">
+                        ทั้งหมด
+                    </button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-filter="braces">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="smile" class="w-4 h-4"></i>
+                            จัดฟัน
+                        </span>
+                    </button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-filter="whitening">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="sun" class="w-4 h-4"></i>
+                            ฟอกสีฟัน
+                        </span>
+                    </button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-filter="veneers">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="layers" class="w-4 h-4"></i>
+                            วีเนียร์
+                        </span>
+                    </button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-filter="implant">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="anchor" class="w-4 h-4"></i>
+                            รากฟันเทียม
+                        </span>
+                    </button>
+                    <button class="filter-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" data-filter="scaling">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            ขูดหินปูน
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promotions Grid -->
+            <div class="p-4 md:p-6 lg:p-8">
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" id="promotions-grid">
+                    
+                    <!-- Promo Card 1 - Hot Deal -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="braces">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=600&amp;q=80" alt="Invisalign" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full flex items-center gap-1">
+                                    <i data-lucide="flame" class="w-3 h-3"></i>
+                                    HOT
+                                </span>
+                                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">-40%</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-cyan-50 text-[#1DAEE0] text-xs font-medium rounded-lg">จัดฟัน</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    เหลือ 15 วัน
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">จัดฟันใส Invisalign</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">จัดฟันแบบใสไร้ลวด สวมสบาย ถอดได้ พร้อมรับรีเทนเนอร์ฟรี</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿99,000</span>
+                                    <div class="text-2xl font-bold text-[#1DAEE0]">฿59,000</div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded-lg">ประหยัด ฿40,000</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>ผ่อน 0% นานสูงสุด 10 เดือน</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>ฟรีรีเทนเนอร์ มูลค่า ฿5,000</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-[#1DAEE0] hover:bg-cyan-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2 group-hover:shadow-lg">
+                                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                จองโปรนี้เลย
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card 2 -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="whitening">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&amp;q=80" alt="Whitening" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-purple-500 text-white text-xs font-semibold rounded-full">POPULAR</span>
+                                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">-30%</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-amber-50 text-amber-600 text-xs font-medium rounded-lg">ฟอกสีฟัน</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    เหลือ 20 วัน
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">ฟอกสีฟัน Zoom</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">ฟอกฟันขาวด้วยเทคโนโลยี Zoom เห็นผลทันทีขาวขึ้น 8 ระดับ</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿12,000</span>
+                                    <div class="text-2xl font-bold text-[#1DAEE0]">฿8,400</div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded-lg">ประหยัด ฿3,600</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>รวมถาดฟอกฟันที่บ้าน</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>รับประกันผลลัพธ์ 1 ปี</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-[#1DAEE0] hover:bg-cyan-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                จองโปรนี้เลย
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card 3 -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="veneers">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&amp;q=80" alt="Veneers" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-blue-500 text-white text-xs font-semibold rounded-full">PREMIUM</span>
+                                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">-25%</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-purple-50 text-purple-600 text-xs font-medium rounded-lg">วีเนียร์</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    เหลือ 10 วัน
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">วีเนียร์เซรามิก</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">เคลือบหน้าฟันด้วยเซรามิกคุณภาพสูง สวยเป็นธรรมชาติ</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿15,000/ซี่</span>
+                                    <div class="text-2xl font-bold text-[#1DAEE0]">฿11,250<span class="text-sm font-normal text-slate-500">/ซี่</span></div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>ทำตั้งแต่ 6 ซี่ขึ้นไป</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>รับประกัน 5 ปี</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-[#1DAEE0] hover:bg-cyan-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                จองโปรนี้เลย
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card 4 -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="implant">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=600&amp;q=80" alt="Implant" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-emerald-500 text-white text-xs font-semibold rounded-full">BEST SELLER</span>
+                                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">-35%</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-emerald-50 text-emerald-600 text-xs font-medium rounded-lg">รากฟันเทียม</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    เหลือ 25 วัน
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">รากฟันเทียม Premium</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">รากฟันเทียมนำเข้าจากสวิตเซอร์แลนด์ รับประกัน 10 ปี</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿65,000</span>
+                                    <div class="text-2xl font-bold text-[#1DAEE0]">฿42,250</div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded-lg">ประหยัด ฿22,750</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>รวมครอบฟันเซรามิก</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>ผ่อน 0% สูงสุด 24 เดือน</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-[#1DAEE0] hover:bg-cyan-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                จองโปรนี้เลย
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card 5 -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="scaling">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&amp;q=80" alt="Scaling" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">NEW CUSTOMER</span>
+                                <span class="px-3 py-1 bg-red-500 text-white text-xs font-semibold rounded-full">FREE</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-teal-50 text-teal-600 text-xs font-medium rounded-lg">ขูดหินปูน</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    ไม่จำกัดเวลา
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">ตรวจฟัน + ขูดหินปูน ฟรี!</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">สำหรับลูกค้าใหม่ ตรวจสุขภาพช่องปากพร้อมขูดหินปูนฟรี</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿1,500</span>
+                                    <div class="text-2xl font-bold text-green-600">ฟรี!</div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded-lg">มูลค่า ฿1,500</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>เฉพาะลูกค้าใหม่เท่านั้น</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>จำกัด 50 สิทธิ์/เดือน</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="gift" class="w-5 h-5"></i>
+                                รับสิทธิ์ฟรี
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Promo Card 6 -->
+                    <div class="promo-card bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl hover:border-[#1DAEE0]/50 transition-all duration-300 group" data-category="braces">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&amp;q=80" alt="Metal Braces" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3 flex gap-2">
+                                <span class="px-3 py-1 bg-orange-500 text-white text-xs font-semibold rounded-full">LIMITED</span>
+                                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-semibold rounded-full">-20%</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <button class="w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shadow-sm">
+                                    <i data-lucide="heart" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-1 bg-cyan-50 text-[#1DAEE0] text-xs font-medium rounded-lg">จัดฟัน</span>
+                                <span class="text-slate-400 text-xs flex items-center gap-1">
+                                    <i data-lucide="clock" class="w-3 h-3"></i>
+                                    เหลือ 5 วัน
+                                </span>
+                            </div>
+                            <h3 class="text-lg font-semibold text-slate-900 mb-2 tracking-tight">จัดฟันโลหะ Damon</h3>
+                            <p class="text-slate-500 text-sm mb-4 line-clamp-2">จัดฟันแบบโลหะระบบ Damon เคลื่อนตัวเร็ว ลดเจ็บ</p>
+                            
+                            <div class="flex items-end gap-3 mb-4">
+                                <div>
+                                    <span class="text-slate-400 text-sm line-through">฿45,000</span>
+                                    <div class="text-2xl font-bold text-[#1DAEE0]">฿36,000</div>
+                                </div>
+                                <span class="text-green-600 text-sm font-medium bg-green-50 px-2 py-1 rounded-lg">ประหยัด ฿9,000</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-xl p-3 mb-4">
+                                <div class="text-xs text-slate-500 mb-2 font-medium">เงื่อนไข:</div>
+                                <ul class="text-xs text-slate-600 space-y-1">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>จำกัด 20 สิทธิ์เท่านั้น</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3 h-3 text-green-500 mt-0.5 shrink-0"></i>
+                                        <span>ฟรีค่านัดตรวจตลอดคอร์ส</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <button class="w-full h-12 bg-[#1DAEE0] hover:bg-cyan-600 text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                                จองโปรนี้เลย
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="px-6 pb-8 text-center">
+                <button class="inline-flex items-center gap-2 px-8 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-colors">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    ดูโปรโมชั่นเพิ่มเติม
+                </button>
+            </div>
+
+            <!-- Quick Contact Banner -->
+            <div class="mx-4 md:mx-6 mb-6">
+                <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-4 text-center md:text-left">
+                        <div class="w-14 h-14 rounded-2xl bg-[#1DAEE0] flex items-center justify-center shrink-0">
+                            <i data-lucide="headphones" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-semibold text-lg">สอบถามเพิ่มเติม?</h4>
+                            <p class="text-slate-400 text-sm">ติดต่อทีมงานได้ตลอด 24 ชั่วโมง</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="tel:0969159391" class="px-6 py-3 bg-white hover:bg-slate-100 text-slate-900 font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                            096 915 9391
+                        </a>
+                        <a href="#" class="px-6 py-3 bg-[#06c755] hover:bg-[#05b04c] text-white font-medium rounded-xl transition-colors flex items-center justify-center gap-2">
+                            <span class="text-xs font-bold">LINE</span>
+                            @BAOMUE
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-2 text-slate-500 text-sm">
+                    <i data-lucide="info" class="w-4 h-4"></i>
+                    <span>* ราคาและเงื่อนไขอาจเปลี่ยนแปลงได้โดยไม่ต้องแจ้งล่วงหน้า</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="text-slate-400 hover:text-[#1DAEE0] transition-colors">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-[#1DAEE0] transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-[#1DAEE0] transition-colors">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div class="lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
+                            <i data-lucide="box" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <span class="text-xl font-semibold text-white tracking-tight">BAOMUE</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-5">สร้างรอยยิ้มที่มั่นใจ ด้วยบริการที่ใส่ใจทุกรายละเอียด</p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] transition-colors">
+                            <i data-lucide="facebook" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] transition-colors">
+                            <i data-lucide="instagram" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] transition-colors">
+                            <i data-lucide="youtube" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-5">บริการ</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">จัดฟัน</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">รากเทียม</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">ฟอกสีฟัน</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">วีเนียร์</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-5">ข้อมูล</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">เกี่ยวกับเรา</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">ทีมทันตแพทย์</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">สาขา</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">โปรโมชั่น</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-5">ติดต่อ</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4 text-[#1DAEE0]"></i>
+                            <span>096 915 9391</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-[#1DAEE0]"></i>
+                            <span>contact@baomue.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="w-4 h-4 bg-[#06c755] rounded flex items-center justify-center text-white text-[6px] font-bold">LINE</span>
+                            <span>@BAOMUE</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row gap-4 border-slate-900 border-t pt-8 items-center justify-between text-sm">
+                <p>© 2024 Baomue Dental Clinic. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const promoCards = document.querySelectorAll('.promo-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                // Update button styles
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-slate-900', 'text-white', 'shadow-sm');
+                    btn.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+                button.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                button.classList.add('bg-slate-900', 'text-white', 'shadow-sm');
+
+                // Filter cards
+                promoCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        // Countdown timer
+        function updateCountdown() {
+            const now = new Date();
+            const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+            const diff = endOfMonth - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+    </script>
+
+</body></html>
