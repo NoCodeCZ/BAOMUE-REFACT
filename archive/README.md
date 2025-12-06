@@ -28,8 +28,13 @@ This folder contains **historical reference files** that are no longer actively 
 
 ### `plans/` - Planning Documents
 - `blog-page-conversion.md` - Blog page conversion plan (completed)
+- `directus-data-sync.md` - Directus data sync planning (completed)
+- `migrate-to-directus-templates.md` - Template migration planning (completed)
+- `migration-phase2-schema-alignment.md` - Phase 2 schema alignment (completed)
+- `migration-phase3-template-adoption.md` - Phase 3 template adoption (completed)
+- `template-adoption-next-steps.md` - Template adoption next steps (completed)
 
-**Status**: Historical planning documents from earlier development phases.
+**Status**: Historical planning documents from earlier development phases. All migration plans are complete.
 
 ### `reference-files/` - Original HTML Designs
 - `blog.html` - Original blog page HTML
