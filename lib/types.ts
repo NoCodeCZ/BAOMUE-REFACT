@@ -47,9 +47,59 @@ export interface Block {
 export interface PageBlock {
   id: number;
   page: number;
-  collection: string;
+  collection: string; // Keep as string for Directus compatibility, use BlockType when possible
   item: string;
   sort: number;
+  hide_block?: boolean; // Add hide_block support
+}
+
+// Block type union - all valid block collection names
+export type BlockType = 
+  | 'block_hero'
+  | 'block_text'
+  | 'block_about_us'
+  | 'block_why_choose_us'
+  | 'block_team'
+  | 'block_signature_treatment'
+  | 'block_safety_banner'
+  | 'block_services'
+  | 'block_locations'
+  | 'block_booking'
+  | 'block_contact'
+  | 'block_form'
+  | 'block_footer'
+  | 'block_features'
+  | 'block_testimonials'
+  | 'block_pricing';
+
+// Block content union - all possible block content types
+export type BlockContent = 
+  | BlockHero
+  | BlockText
+  | BlockAboutUs
+  | BlockWhyChooseUs
+  | BlockTeam
+  | BlockSignatureTreatment
+  | BlockSafetyBanner
+  | BlockServices
+  | BlockLocations
+  | BlockBooking
+  | BlockContact
+  | BlockForm
+  | BlockFooter
+  | BlockFeatures
+  | BlockTestimonials
+  | BlockPricing;
+
+// Enhanced PageBlock with typed collection
+export interface PageBlockWithContent {
+  id: number;
+  page: number;
+  collection: BlockType;
+  item: string;
+  sort: number;
+  hide_block?: boolean;
+  content: BlockContent | null;
 }
 
 export interface BlockHero {
