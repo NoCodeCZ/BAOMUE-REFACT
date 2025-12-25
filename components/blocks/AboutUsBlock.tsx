@@ -9,39 +9,51 @@ export default function AboutUsBlock({ data }: AboutUsBlockProps) {
   if (!data) return null;
 
   const headline = data.headline ?? "ABOUT US!";
-  const subtitle = data.subtitle ?? "คลินิกทันตกรรมเบามือ";
-  const paragraph1 = data.paragraph_1 ?? "เพราะเรารู้ว่าหลายคนมีความทรงจำที่ไม่ดีเกี่ยวกับการทำฟัน เราจึงตั้งใจสร้าง คลินิกทันตกรรมเบามือ ให้เป็นสถานที่ที่ทำให้ คุณรู้สึก \"ปลอดภัย\" ตั้งแต่ก้าวแรกที่เข้ามา ด้วยบรรยากาศ ที่ผ่อนคลาย และทีมงานที่พร้อมจะรับฟังทุกความกังวลของคุณ";
-  const paragraph2 = data.paragraph_2 ?? "หัวใจสำคัญของเราคือเทคนิค \"Gentle Touch\" หรือการรักษา ที่เน้นความเบามือเป็นพิเศษ ทีมทันตแพทย์ของเราไม่เพียงแต่ เชี่ยวชาญด้านการรักษา แต่ยังผ่านการฝึกฝนมาเพื่อให้ความสำคัญ กับความรู้สึกของคนไข้ในทุกขั้นตอน เพื่อให้คุณรู้สึกผ่อนคลาย และลดความกังวลลงได้อย่างแท้จริง";
-  const paragraph3 = data.paragraph_3 ?? "เป้าหมายสูงสุดของเรา คือการดูแลสุขภาพช่องปากของคุณ ในระยะยาว เรามุ่งมั่นพัฒนาการบริการอย่างไม่หยุดยั้ง เพื่อให้ มั่นใจว่าทุกคนที่ก้าวออกจากคลินิกไป จะมีรอยยิ้มที่สมบูรณ์แบบ พร้อมความประทับใจในทุกสัมผัส เพราะเราเชื่อว่ารอยยิ้มที่สวยที่สุด คือรอยยิ้มที่มาจากความสุขของคุณ";
+  const subtitle = data.subtitle ?? "คลินิกทันตกรรมโซเดนท์";
+  const paragraph1 = data.paragraph_1 ?? "ก่อตั้งโดยทีมทันตแพทย์เฉพาะทาง ที่มีความตั้งใจจะสร้างคลินิกทันตกรรมที่อบอุ่น ผ่อนคลาย ให้ความรู้สึกเหมือนมาพักผ่อน ไม่ใช่การมาทำฟันที่น่ากลัว ด้วยความใส่ใจในทุกรายละเอียด ตั้งแต่การออกแบบสถานที่ บรรยากาศ กลิ่น และเสียงเพลง เพื่อให้คนไข้รู้สึกผ่อนคลายที่สุด";
+  const paragraph2 = data.paragraph_2 ?? "ที่โซเดนท์ เราให้ความสำคัญกับ \"คุณภาพ\" และ \"มาตรฐาน\" เป็นอันดับหนึ่ง เครื่องมือและอุปกรณ์ทุกชิ้นผ่านการคัดสรรอย่างดี ระบบปลอดเชื้อที่ได้มาตรฐานสากล เพื่อความปลอดภัยสูงสุดของคนไข้ ไม่ว่าจะเป็นงานทันตกรรมทั่วไป หรือการรักษาที่ซับซ้อน เราพร้อมดูแลด้วยความเชี่ยวชาญ";
+  const paragraph3 = data.paragraph_3 ?? "ไม่ว่าจะเป็นการจัดฟัน วีเนียร์ รากเทียม หรือการทำฟันเด็ก เรามีทีมแพทย์เฉพาะทางคอยดูแลอย่างใกล้ชิด เพื่อให้คุณมั่นใจว่าจะได้รับรอยยิ้มที่สวยงามและสุขภาพช่องปากที่ดีกลับไป";
   
   const imageUrl = data.image_url 
-    ? (getFileUrl(data.image_url as any) ?? "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b36a18b-3851-43e6-b02a-2446fe661f62_1600w.jpg")
-    : "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b36a18b-3851-43e6-b02a-2446fe661f62_1600w.jpg";
+    ? (getFileUrl(data.image_url as any) ?? "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop")
+    : "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop";
 
   return (
-    <section className="lg:py-32 bg-white pt-24 pb-24">
-      <div className="max-w-7xl mr-auto ml-auto pr-6 pl-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 gap-x-12 gap-y-12 items-center">
-          <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="transform text-5xl font-black tracking-tighter font-bricolage mb-6 -rotate-2 bg-gradient-to-t from-white/10 to-white/0 md:text-7xl md:text-blue-700">
-              {headline}
-            </h2>
-            <h3 className="md:text-3xl text-2xl font-bold text-slate-800 mt-2 mb-8" style={{ color: '#1A3897', fontSize: '30px', fontFamily: 'Prompt', fontWeight: 700, lineHeight: '36px', wordWrap: 'break-word' }}>
-              {subtitle}
-            </h3>
-            <div className="space-y-6 text-base md:text-lg text-slate-500 leading-relaxed max-w-xl text-justify lg:text-left font-medium">
+    <section className="py-24 bg-white relative overflow-hidden">
+      {/* Decorative element matching HTML */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Text Content */}
+          <div className="order-2 lg:order-1">
+            {/* Shadow headline effect matching HTML */}
+            <div className="relative mb-6">
+              <h2 className="text-6xl md:text-7xl font-black text-[#1a5fb4] font-bricolage tracking-tighter -rotate-2 transform origin-bottom-left leading-none opacity-20 absolute -top-12 left-0 select-none">
+                {headline}
+              </h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#003888] font-bricolage tracking-tight relative z-10">
+                {headline}
+              </h2>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-semibold text-slate-800 mb-8">{subtitle}</h3>
+            
+            <div className="space-y-6 text-base text-slate-500 leading-relaxed text-justify">
               <p>{paragraph1}</p>
               <p>{paragraph2}</p>
               <p>{paragraph3}</p>
             </div>
           </div>
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-md lg:max-w-full aspect-[3.5/4.5] rounded-t-full rounded-b-[3rem] overflow-hidden shadow-2xl bg-slate-100">
+
+          {/* Image Content - Arched Shape matching HTML */}
+          <div className="order-1 lg:order-2 flex justify-center">
+            <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[4rem] overflow-hidden shadow-2xl border-4 border-white">
               <img 
                 src={imageUrl}
-                alt="Baomue Dental Clinic" 
-                className="object-center w-full h-full object-cover bg-center"
+                alt="Clinic Atmosphere" 
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#003888]/30 to-transparent"></div>
             </div>
           </div>
         </div>

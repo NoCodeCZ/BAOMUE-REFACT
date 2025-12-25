@@ -299,6 +299,7 @@ export interface BlockTeam {
   note?: string;
   dentists?: Array<{
     name: string;
+    nickname?: string;
     specialty: string;
     photo_url?: string;
     linkedin_url?: string;
