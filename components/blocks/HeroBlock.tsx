@@ -19,7 +19,7 @@ export default function HeroBlock({ data }: HeroBlockProps) {
   const heroSecondaryCtaLink = data.secondary_cta_link ?? "#";
 
   return (
-    <section className="overflow-hidden min-h-[90vh] flex bg-gradient-to-br from-sky-400 to-sky-600 relative items-center">
+    <section className="overflow-hidden min-h-[90vh] flex bg-blue-700 relative items-center">
       <div className="z-10 w-full max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6 relative min-h-screen flex items-center" style={{background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)', backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)'}}>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
           <div className="flex flex-col text-left items-start">
@@ -33,12 +33,13 @@ export default function HeroBlock({ data }: HeroBlockProps) {
               </span>
             </div>
             
-            <h1 className="sm:text-6xl lg:text-7xl leading-[1.05] text-5xl font-semibold text-white tracking-tight mb-6">
-              {heroLine1}{" "}
-              <span className="text-white/60">{heroLine2}</span>
+            <h1 className="sm:text-6xl lg:text-7xl leading-[1.05] text-5xl font-bold text-white tracking-tight mb-6" style={{ lineHeight: '94px' }}>
+              <span style={{ color: '#FEDF45', fontSize: '70.30px', fontWeight: 700 }}>{heroLine1}</span>
+              {" "}
+              <span style={{ color: 'white', fontSize: '70.30px', fontWeight: 700 }}>{heroLine2}</span>
             </h1>
             
-            <p className="text-white/70 text-lg sm:text-xl font-normal leading-relaxed max-w-lg mb-10">
+            <p className="text-stone-50/70 text-lg sm:text-xl font-normal leading-relaxed max-w-lg mb-10">
               {heroDescription}
             </p>
             
@@ -123,7 +124,7 @@ export default function HeroBlock({ data }: HeroBlockProps) {
                 <img
                   src="https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=2160&q=80"
                   alt="Professional Dental Care"
-                  className="transform hover:scale-105 transition-transform duration-700 w-full h-full object-cover -rotate-3 scale-110"
+                  className="transform hover:scale-105 transition-transform duration-700 w-full h-full object-contain"
                 />
 
                 <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-2xl p-5 rounded-3xl flex items-center justify-between border border-white/50 -rotate-3" style={{boxShadow: '0 10px 40px rgba(0, 0, 0, 0.15)'}}>

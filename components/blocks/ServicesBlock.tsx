@@ -1,56 +1,66 @@
-import type { BlockServices } from "@/lib/types";
+import type { BlockServices, Service, ServiceCategory } from "@/lib/types";
+import { getServices, getServiceCategories } from "@/lib/data";
+import ServicesBlockClient from "./ServicesBlockClient";
 
 interface ServicesBlockProps {
   data?: BlockServices | null;
 }
 
-export default function ServicesBlock({ data }: ServicesBlockProps) {
+export default async function ServicesBlock({ data }: ServicesBlockProps) {
   if (!data) return null;
 
   const title = data.title ?? "OUR SERVICES!";
-  const subtitle = data.subtitle ?? "บริการทางทันตกรรมของ Tooth Box";
-  const services = data.services ?? [
-    { label: "อุดฟัน" },
-    { label: "ขูดหินปูน" },
-    { label: "ทันตกรรมจัดฟัน" },
-    { label: "รักษารากฟัน" },
-    { label: "รากฟันเทียม" },
-    { label: "ครอบฟัน" },
-    { label: "สะพานฟัน" },
-    { label: "ฟันปลอม" },
-    { label: "ผ่าฟันคุด" },
-    { label: "ฟอกสีฟัน" },
-    { label: "วีเนียร์" },
-    { label: "ทันตกรรมเด็ก" },
-  ];
+  const subtitle = data.subtitle ?? "บริการทางทันตกรรมของ Baomue";
+  
+  // Fetch services and categories
+  const [services, categories] = await Promise.all([
+    getServices(),
+    getServiceCategories(),
+  ]);
 
-  // Icon mapping would be too large, simplified version
+  // Group services by category
+  const servicesByCategory: Record<string, Service[]> = {};
+  categories.forEach((cat) => {
+    servicesByCategory[cat.slug] = services.filter(
+      (s) => s.category && (typeof s.category === 'object' ? s.category.slug : null) === cat.slug
+    );
+  });
+
   return (
-    <section className="lg:py-32 bg-white pt-24 pb-24">
-      <div className="max-w-7xl mr-auto ml-auto pt-12 pr-6 pb-12 pl-6">
-        <div className="text-center mb-16">
-          <h2 className="md:text-7xl uppercase transform text-5xl font-black text-[#5372ee] tracking-tighter font-bricolage mb-4 -rotate-2">
+    <section className="md:py-16 bg-white pt-12 pb-12">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Hero Title Section */}
+        <div className="text-center mb-10">
+          <h1 className="text-5xl md:text-6xl font-black text-[#0F3FA1] mb-2 tracking-tighter uppercase">
             {title}
-          </h2>
-          <p className="text-xl md:text-2xl font-bold text-slate-800">
-            {subtitle}
-          </p>
+          </h1>
+          <p className="text-[#1e3a8a] text-lg font-bold">{subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-12">
-          {services.map((service: any) => (
-            <div
-              key={service.label}
-              className="group flex flex-col items-center gap-5 cursor-pointer"
-            >
-              <div className="w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 text-xl transition-transform duration-300 group-hover:scale-110">
-                {service.label.slice(0, 1)}
-              </div>
-              <p className="text-center text-slate-700 font-medium text-sm">
-                {service.label}
-              </p>
+        {/* Main Card Container */}
+        <div className="bg-white rounded-[40px] shadow-xl shadow-blue-900/5 border border-slate-100 overflow-hidden relative">
+          {/* Background decoration */}
+          <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-slate-50/80 to-transparent pointer-events-none"></div>
+
+          {/* Card Header */}
+          <div className="text-center pt-12 px-6 pb-8 relative z-10">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FB9C2C] text-white shadow-sm mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+              <span className="text-xs font-bold tracking-wide">เปิดให้บริการทุกวัน</span>
             </div>
-          ))}
+            <h2 className="text-3xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight">
+              บริการทันตกรรมของ Baomue
+            </h2>
+            <p className="text-slate-400 text-sm md:text-base font-medium">
+              ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล
+            </p>
+          </div>
+
+          {/* Client Component for Tabs */}
+          <ServicesBlockClient 
+            categories={categories}
+            servicesByCategory={servicesByCategory}
+          />
         </div>
       </div>
     </section>

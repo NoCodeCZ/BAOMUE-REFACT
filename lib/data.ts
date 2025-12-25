@@ -28,6 +28,9 @@ import type {
   PageTestimonial,
   PagePricingPlan,
   GlobalSettings,
+  Promotion,
+  PromotionCategory,
+  BlockPromotions,
   PageBlock,
   Service,
   ServiceCategory,
@@ -758,6 +761,69 @@ export async function getFormBySlug(slug: string): Promise<Form | null> {
     return forms?.[0] as Form || null;
   } catch (error) {
     logDirectusError('getFormBySlug', error);
+    return null;
+  }
+}
+
+// Promotion functions
+export async function getPromotionCategories(): Promise<PromotionCategory[]> {
+  try {
+    const categories = await directus.request(
+      readItemsTyped('promotion_categories', {
+        fields: ['*'],
+        sort: ['sort', 'name'],
+      })
+    );
+    return (categories || []) as PromotionCategory[];
+  } catch (error) {
+    logDirectusError('getPromotionCategories', error);
+    return [];
+  }
+}
+
+export async function getPromotions(options?: {
+  category?: string;
+  featured?: boolean;
+  limit?: number;
+}): Promise<Promotion[]> {
+  try {
+    const filter: any = { status: { _eq: 'published' } };
+    
+    if (options?.category) {
+      filter.category = { slug: { _eq: options.category } };
+    }
+    
+    if (options?.featured !== undefined) {
+      filter.is_featured = { _eq: options.featured };
+    }
+
+    const promotions = await directus.request(
+      readItemsTyped('promotions', {
+        filter,
+        fields: ['*', 'category.*', 'featured_image.*'],
+        sort: ['sort', '-date_created'],
+        limit: options?.limit || 100,
+      })
+    );
+    return (promotions || []) as Promotion[];
+  } catch (error) {
+    logDirectusError('getPromotions', error);
+    return [];
+  }
+}
+
+export async function getPromotionsBlock(blockId: number): Promise<BlockPromotions | null> {
+  try {
+    const blocks = await directus.request(
+      readItemsTyped('block_promotions', {
+        filter: { id: { _eq: blockId } },
+        fields: ['*'],
+        limit: 1,
+      })
+    );
+    return blocks?.[0] as BlockPromotions || null;
+  } catch (error) {
+    logDirectusError('getPromotionsBlock', error);
     return null;
   }
 }

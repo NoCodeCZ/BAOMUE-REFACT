@@ -28,6 +28,9 @@ export interface Schema {
   navigation: NavigationItem[];
   blog_categories: BlogCategory[];
   blog_posts: BlogPost[];
+  promotions: Promotion[];
+  promotion_categories: PromotionCategory[];
+  block_promotions: BlockPromotions[];
 }
 
 export interface Page {
@@ -41,7 +44,7 @@ export interface Page {
 export interface Block {
   id: string;
   collection: string;
-  item: BlockHero | BlockFeatures | BlockTestimonials | BlockPricing | BlockFooter;
+  item: BlockHero | BlockFeatures | BlockTestimonials | BlockPricing | BlockFooter | BlockPromotions;
 }
 
 export interface PageBlock {
@@ -70,7 +73,8 @@ export type BlockType =
   | 'block_footer'
   | 'block_features'
   | 'block_testimonials'
-  | 'block_pricing';
+  | 'block_pricing'
+  | 'block_promotions';
 
 // Block content union - all possible block content types
 export type BlockContent = 
@@ -89,7 +93,8 @@ export type BlockContent =
   | BlockFooter
   | BlockFeatures
   | BlockTestimonials
-  | BlockPricing;
+  | BlockPricing
+  | BlockPromotions;
 
 // Enhanced PageBlock with typed collection
 export interface PageBlockWithContent {
@@ -428,6 +433,48 @@ export interface BlogPost {
   tags?: string[];
   seo_title?: string;
   seo_description?: string;
+}
+
+// Promotion interfaces
+export interface PromotionCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string;
+  sort?: number;
+}
+
+export interface Promotion {
+  id: number;
+  title: string;
+  slug: string;
+  status: 'published' | 'draft';
+  category?: PromotionCategory | number | null;
+  featured_image?: string;
+  short_description?: string;
+  description?: string;
+  discount_percentage?: number;
+  discount_amount?: string;
+  original_price?: string;
+  discounted_price?: string;
+  valid_from?: string;
+  valid_until?: string;
+  countdown_enabled?: boolean;
+  countdown_date?: string;
+  cta_text?: string;
+  cta_link?: string;
+  is_featured?: boolean;
+  sort?: number;
+}
+
+export interface BlockPromotions {
+  id: number;
+  headline?: string;
+  subtitle?: string;
+  show_countdown?: boolean;
+  countdown_date?: string;
+  countdown_label?: string;
+  show_category_filter?: boolean;
 }
 
 // Mutation types
