@@ -28,9 +28,15 @@ export interface Schema {
   navigation: NavigationItem[];
   blog_categories: BlogCategory[];
   blog_posts: BlogPost[];
+  block_blog_listing: BlockBlogListing[];
   promotions: Promotion[];
   promotion_categories: PromotionCategory[];
   block_promotions: BlockPromotions[];
+  portfolio_cases: PortfolioCase[];
+  portfolio_categories: PortfolioCategory[];
+  block_portfolio: BlockPortfolio[];
+  block_service_detail: BlockServiceDetail[];
+  block_stats: BlockStats[];
 }
 
 export interface Page {
@@ -74,7 +80,11 @@ export type BlockType =
   | 'block_features'
   | 'block_testimonials'
   | 'block_pricing'
-  | 'block_promotions';
+  | 'block_promotions'
+  | 'block_portfolio'
+  | 'block_blog_listing'
+  | 'block_service_detail'
+  | 'block_stats';
 
 // Block content union - all possible block content types
 export type BlockContent = 
@@ -94,7 +104,11 @@ export type BlockContent =
   | BlockFeatures
   | BlockTestimonials
   | BlockPricing
-  | BlockPromotions;
+  | BlockPromotions
+  | BlockPortfolio
+  | BlockBlogListing
+  | BlockServiceDetail
+  | BlockStats;
 
 // Enhanced PageBlock with typed collection
 export interface PageBlockWithContent {
@@ -231,10 +245,24 @@ export interface Service {
   long_description?: string;
   duration_label?: string;
   price_from?: string;
+  price_starting_from?: string; // Alternative price field for service detail
+  price_installment?: string;
+  price_installment_months?: number;
   hero_image?: string;
   seo_title?: string;
   seo_description?: string;
   highlights?: ServiceHighlight[];
+  features?: ServiceFeature[] | any; // JSON field
+  process_steps?: ServiceProcessStep[] | any; // JSON field
+  results?: ServiceResult[] | any; // JSON field
+  care_instructions?: ServiceCareItem[] | any; // JSON field
+  suitability?: ServiceSuitability | any; // JSON field
+  stats_cases?: string; // e.g., "5,000+"
+  stats_rating?: number; // e.g., 4.9
+  cta_booking_text?: string;
+  cta_booking_link?: string;
+  cta_line_text?: string;
+  cta_line_link?: string;
 }
 
 export interface BlockAboutUs {
@@ -433,6 +461,111 @@ export interface BlogPost {
   tags?: string[];
   seo_title?: string;
   seo_description?: string;
+}
+
+// Stats block interfaces
+export interface StatItem {
+  value: string; // e.g., "500+", "4.9", "98%", "15+"
+  label: string; // e.g., "เคสสำเร็จ", "คะแนนรีวิว"
+  icon?: string; // Optional icon name (e.g., "star")
+  icon_color?: string; // Optional icon color (e.g., "amber")
+}
+
+export interface BlockStats {
+  id: number;
+  stats?: StatItem[] | any; // JSON field - array of stat items
+  columns?: number; // Number of columns (2, 3, or 4), default: 4
+  show_icons?: boolean; // Whether to show icons, default: true
+}
+
+// Service detail interfaces
+export interface ServiceFeature {
+  icon?: string; // Icon name (e.g., "eye-off", "smile", "zap", "clock")
+  icon_color?: string; // Color class (e.g., "blue", "green", "purple", "amber")
+  title: string;
+  description: string;
+}
+
+export interface ServiceProcessStep {
+  number: number;
+  title: string;
+  description: string;
+  duration?: string;
+  color?: string; // Color for step badge (e.g., "blue", "cyan", "teal", "green")
+}
+
+export interface ServiceResult {
+  title: string;
+  description: string;
+}
+
+export interface ServiceCareItem {
+  number?: number;
+  title: string;
+  description: string;
+}
+
+export interface ServiceSuitability {
+  items: string[]; // List of suitability criteria
+}
+
+export interface BlockServiceDetail {
+  id: number;
+  service?: Service | number | null; // M2O to services
+  show_hero?: boolean;
+  show_features?: boolean;
+  show_process?: boolean;
+  show_results_care?: boolean;
+}
+
+// Blog listing block interface
+export interface BlockBlogListing {
+  id: number;
+  headline?: string;
+  subtitle?: string;
+  description?: string;
+  show_search?: boolean;
+  show_category_filter?: boolean;
+  show_featured_article?: boolean;
+  articles_per_page?: number;
+}
+
+// Portfolio interfaces
+export interface PortfolioCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description?: string;
+  sort?: number;
+}
+
+export interface PortfolioCase {
+  id: number;
+  title: string;
+  slug: string;
+  status: 'published' | 'draft';
+  category?: PortfolioCategory | number | null;
+  image_before?: string;
+  image_after?: string;
+  description?: string;
+  rating?: number;
+  duration?: string;
+  treatment_type?: string;
+  client_name?: string;
+  client_age?: number;
+  client_gender?: string;
+  is_featured?: boolean;
+  sort?: number;
+  date_created?: string;
+}
+
+export interface BlockPortfolio {
+  id: number;
+  headline?: string;
+  subtitle?: string;
+  description?: string;
+  show_category_filter?: boolean;
+  cases_per_page?: number;
 }
 
 // Promotion interfaces

@@ -36,7 +36,12 @@ import type {
   ServiceCategory,
   NavigationItem,
   BlogPost,
-  BlogCategory
+  BlogCategory,
+  BlockBlogListing,
+  PortfolioCase,
+  PortfolioCategory,
+  BlockPortfolio,
+  BlockStats
 } from './types';
 
 export async function getPageBySlug(slug: string): Promise<Page | null> {
@@ -79,10 +84,17 @@ export async function getPageBlocks(pageId: number) {
 
 export async function getBlockContent(collection: string, itemId: string) {
   try {
+    // Special handling for blocks with relations
+    let fields: any = ['*'];
+    
+    if (collection === 'block_service_detail') {
+      fields = ['*', 'service.*', 'service.hero_image.*'];
+    }
+    
     const result = await directus.request(
       readItemsTyped(collection as string, {
         filter: { id: { _eq: parseInt(itemId) } },
-        fields: ['*'],
+        fields,
         limit: 1,
       })
     );
@@ -669,7 +681,7 @@ export async function getBlogPosts(options?: {
     const posts = await directus.request(
       readItemsTyped('blog_posts', {
         filter,
-        fields: ['*', 'category.*'],
+        fields: ['*', 'category.*', 'featured_image.*', 'author_avatar.*'],
         sort: ['-published_date'],
         limit: options?.limit || 100,
       })
@@ -765,6 +777,57 @@ export async function getFormBySlug(slug: string): Promise<Form | null> {
   }
 }
 
+// Stats block function
+export async function getStatsBlock(blockId: number): Promise<BlockStats | null> {
+  try {
+    const blocks = await directus.request(
+      readItemsTyped('block_stats', {
+        filter: { id: { _eq: blockId } },
+        fields: ['*'],
+        limit: 1,
+      })
+    );
+    return blocks?.[0] as BlockStats || null;
+  } catch (error) {
+    logDirectusError('getStatsBlock', error);
+    return null;
+  }
+}
+
+// Service detail block function
+export async function getServiceDetailBlock(blockId: number): Promise<import('./types').BlockServiceDetail | null> {
+  try {
+    const blocks = await directus.request(
+      readItemsTyped('block_service_detail', {
+        filter: { id: { _eq: blockId } },
+        fields: ['*', 'service.*', 'service.hero_image.*'],
+        limit: 1,
+      })
+    );
+    return blocks?.[0] as import('./types').BlockServiceDetail || null;
+  } catch (error) {
+    logDirectusError('getServiceDetailBlock', error);
+    return null;
+  }
+}
+
+// Blog listing block function
+export async function getBlogListingBlock(blockId: number): Promise<BlockBlogListing | null> {
+  try {
+    const blocks = await directus.request(
+      readItemsTyped('block_blog_listing', {
+        filter: { id: { _eq: blockId } },
+        fields: ['*'],
+        limit: 1,
+      })
+    );
+    return blocks?.[0] as BlockBlogListing || null;
+  } catch (error) {
+    logDirectusError('getBlogListingBlock', error);
+    return null;
+  }
+}
+
 // Promotion functions
 export async function getPromotionCategories(): Promise<PromotionCategory[]> {
   try {
@@ -824,6 +887,69 @@ export async function getPromotionsBlock(blockId: number): Promise<BlockPromotio
     return blocks?.[0] as BlockPromotions || null;
   } catch (error) {
     logDirectusError('getPromotionsBlock', error);
+    return null;
+  }
+}
+
+// Portfolio functions
+export async function getPortfolioCategories(): Promise<PortfolioCategory[]> {
+  try {
+    const categories = await directus.request(
+      readItemsTyped('portfolio_categories', {
+        fields: ['*'],
+        sort: ['sort', 'name'],
+      })
+    );
+    return (categories || []) as PortfolioCategory[];
+  } catch (error) {
+    logDirectusError('getPortfolioCategories', error);
+    return [];
+  }
+}
+
+export async function getPortfolioCases(options?: {
+  category?: string;
+  featured?: boolean;
+  limit?: number;
+}): Promise<PortfolioCase[]> {
+  try {
+    const filter: any = { status: { _eq: 'published' } };
+    
+    if (options?.category) {
+      filter.category = { slug: { _eq: options.category } };
+    }
+    
+    if (options?.featured !== undefined) {
+      filter.is_featured = { _eq: options.featured };
+    }
+
+    const cases = await directus.request(
+      readItemsTyped('portfolio_cases', {
+        filter,
+        fields: ['*', 'category.*', 'image_before.*', 'image_after.*'],
+        sort: ['sort', '-date_created'],
+        limit: options?.limit || 100,
+      })
+    );
+    return (cases || []) as PortfolioCase[];
+  } catch (error) {
+    logDirectusError('getPortfolioCases', error);
+    return [];
+  }
+}
+
+export async function getPortfolioBlock(blockId: number): Promise<BlockPortfolio | null> {
+  try {
+    const blocks = await directus.request(
+      readItemsTyped('block_portfolio', {
+        filter: { id: { _eq: blockId } },
+        fields: ['*'],
+        limit: 1,
+      })
+    );
+    return blocks?.[0] as BlockPortfolio || null;
+  } catch (error) {
+    logDirectusError('getPortfolioBlock', error);
     return null;
   }
 }

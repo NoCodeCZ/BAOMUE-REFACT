@@ -10,6 +10,11 @@ import LocationsBlock from "@/components/blocks/LocationsBlock";
 import BookingBlock from "@/components/blocks/BookingBlock";
 import ContactBlock from "@/components/blocks/ContactBlock";
 import FormBlock from "@/components/blocks/FormBlock";
+import PromotionsBlock from "@/components/blocks/PromotionsBlock";
+import PortfolioBlock from "@/components/blocks/PortfolioBlock";
+import BlogListingBlock from "@/components/blocks/BlogListingBlock";
+import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
+import StatsBlock from "@/components/blocks/StatsBlock";
 import Footer from "@/components/Footer";
 import type { PageBlockWithContent, BlockType, BlockLocations, Form } from "@/lib/types";
 import { ComponentType } from "react";
@@ -32,6 +37,11 @@ const componentMap: Record<BlockType, ComponentType<{ data: any; formData?: Form
   block_features: () => null, // Placeholder - create component if needed
   block_testimonials: () => null, // Placeholder - create component if needed
   block_pricing: () => null, // Placeholder - create component if needed
+  block_promotions: PromotionsBlock,
+  block_portfolio: PortfolioBlock,
+  block_blog_listing: BlogListingBlock,
+  block_service_detail: ServiceDetailBlock,
+  block_stats: StatsBlock,
 };
 
 interface PageBuilderProps {
