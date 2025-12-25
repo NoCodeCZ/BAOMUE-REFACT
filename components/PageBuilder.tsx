@@ -60,7 +60,20 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
 
   // Filter out hidden blocks and sort by sort order
   const visibleBlocks = blocks
-    .filter(block => !block.hide_block && block.content !== null)
+    .filter(block => {
+      // Skip hidden blocks
+      if (block.hide_block || block.content === null) return false;
+      
+      // Exclude the welcome TextBlock that was removed in browser preview
+      if (block.collection === 'block_text' && block.content) {
+        const textContent = block.content as any;
+        if (textContent.title === "ยินดีต้อนรับสู่ Tooth Box Dental") {
+          return false;
+        }
+      }
+      
+      return true;
+    })
     .sort((a, b) => (a.sort || 0) - (b.sort || 0));
 
   return (

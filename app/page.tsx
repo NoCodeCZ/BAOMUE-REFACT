@@ -215,6 +215,7 @@ export default async function HomePage() {
           formDataMap
         }}
       />
+      <Footer />
     </main>
   );
 }
