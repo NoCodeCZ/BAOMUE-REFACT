@@ -1,5 +1,6 @@
 import type { BlockPromotions, Promotion, PromotionCategory } from "@/lib/types";
 import { getPromotions, getPromotionCategories } from "@/lib/data";
+import { getFileUrl } from "@/lib/directus";
 import PromotionsBlockClient from "./PromotionsBlockClient";
 
 interface PromotionsBlockProps {
@@ -21,6 +22,12 @@ export default async function PromotionsBlock({ data }: PromotionsBlockProps) {
     getPromotions(),
     getPromotionCategories(),
   ]);
+
+  // Transform promotions to include resolved image URLs
+  const promotionsWithImageUrls = promotions.map((promo) => ({
+    ...promo,
+    imageUrl: getFileUrl(promo.featured_image as any) || null,
+  }));
 
   return (
     <div className="max-w-[1160px] mx-auto px-4 sm:px-6 py-8 space-y-8">
@@ -79,7 +86,7 @@ export default async function PromotionsBlock({ data }: PromotionsBlockProps) {
 
       {/* Client Component for Filters and Grid */}
       <PromotionsBlockClient
-        promotions={promotions}
+        promotions={promotionsWithImageUrls}
         categories={categories}
         showCategoryFilter={showCategoryFilter}
       />

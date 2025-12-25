@@ -864,7 +864,7 @@ export async function getPromotions(options?: {
       readItemsTyped('promotions', {
         filter,
         fields: ['*', 'category.*', 'featured_image.*'],
-        sort: ['sort', '-date_created'],
+        sort: ['sort'],
         limit: options?.limit || 100,
       })
     );
