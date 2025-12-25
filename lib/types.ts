@@ -144,6 +144,9 @@ export interface BlockTestimonials {
   id: number;
   section_title?: string;
   section_description?: string;
+  title?: string;
+  subtitle?: string;
+  testimonials?: any[];
 }
 
 export interface BlockPricing {

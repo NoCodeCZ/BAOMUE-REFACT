@@ -22,24 +22,24 @@ export default function ArticleCard({ post }: ArticleCardProps) {
   const gradientClass = categoryColorMap[categorySlug] || 'from-cyan-500 to-blue-500';
 
   return (
-    <article className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl overflow-hidden group">
-      <Link href={`/blog/${post.slug}`} className="block">
-        <div className="relative aspect-[16/10] overflow-hidden">
+    <article className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group">
+      <Link href={`/blog/${post.slug}`} className="block h-full flex flex-col">
+        <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
           {post.featured_image && (
             <img
               src={getFileUrl(post.featured_image) || ''}
               alt={post.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           )}
           {category && (
-            <div className={`absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r ${gradientClass} rounded-full text-xs font-semibold text-white shadow-lg`}>
+            <div className={`absolute top-4 left-4 px-3 py-1.5 bg-gradient-to-r ${gradientClass} rounded-full text-xs font-semibold text-white shadow-lg backdrop-blur-sm`}>
               {categoryName}
             </div>
           )}
         </div>
-        <div className="p-6">
-          <div className="flex items-center gap-2 text-sm text-slate-400 mb-3">
+        <div className="p-6 flex-1 flex flex-col">
+          <div className="flex items-center gap-2 text-xs text-slate-500 mb-3">
             {post.published_date && (
               <span>{new Date(post.published_date).toLocaleDateString('th-TH', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
             )}
@@ -50,31 +50,31 @@ export default function ArticleCard({ post }: ArticleCardProps) {
               </>
             )}
           </div>
-          <h3 className="font-semibold text-slate-900 text-lg mb-2 group-hover:text-cyan-600 transition-colors line-clamp-2 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+          <h3 className="font-bold text-slate-900 text-xl mb-3 group-hover:text-blue-600 transition-colors line-clamp-2" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
             {post.title}
           </h3>
           {post.excerpt && (
-            <p className="text-sm text-slate-500 mb-4 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
+            <p className="text-sm text-slate-600 mb-4 flex-1 line-clamp-3" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
               {post.excerpt}
             </p>
           )}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pt-4 border-t border-slate-100">
             {post.author_name && (
               <div className="flex items-center gap-2">
                 {post.author_avatar && (
                   <img
                     src={getFileUrl(post.author_avatar) || ''}
                     alt={post.author_name}
-                    className="w-8 h-8 rounded-full object-cover"
+                    className="w-8 h-8 rounded-full object-cover border-2 border-slate-200"
                   />
                 )}
-                <span className="text-sm text-slate-600">{post.author_name}</span>
+                <span className="text-sm font-medium text-slate-700">{post.author_name}</span>
               </div>
             )}
             {post.views !== undefined && (
-              <div className="flex items-center gap-1 text-slate-400">
+              <div className="flex items-center gap-1.5 text-slate-400">
                 <Eye className="w-4 h-4" />
-                <span className="text-sm">{post.views >= 1000 ? `${(post.views / 1000).toFixed(1)}k` : post.views}</span>
+                <span className="text-xs">{post.views >= 1000 ? `${(post.views / 1000).toFixed(1)}k` : post.views}</span>
               </div>
             )}
           </div>

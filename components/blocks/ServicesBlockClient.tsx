@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Service, ServiceCategory } from "@/lib/types";
 import Link from "next/link";
+import { getFileUrl } from "@/lib/directus";
 
 interface ServicesBlockClientProps {
   categories: ServiceCategory[];
@@ -22,17 +23,18 @@ export default function ServicesBlockClient({
   return (
     <>
       {/* Navigation Tabs */}
-      <div className="px-6 md:px-10 py-2 mb-4 relative z-10">
-        <div className="flex flex-wrap gap-2 justify-center md:justify-start overflow-x-auto pb-2 md:pb-0">
+      <div className="px-6 md:px-10 py-6 border-b border-slate-100">
+        <div className="flex flex-wrap gap-2 justify-center overflow-x-auto pb-2 md:pb-0">
           {categories.map((category) => (
             <button
               key={category.slug}
               onClick={() => setActiveTab(category.slug)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap min-w-[80px] ${
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
                 activeTab === category.slug
-                  ? "bg-[#0F2942] text-white shadow-sm"
-                  : "bg-white text-slate-400 hover:text-slate-700 hover:bg-slate-50 shadow-sm border border-slate-100"
+                  ? "text-white shadow-md"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
+              style={activeTab === category.slug ? { background: 'linear-gradient(135deg, #1a3a8a 0%, #2563eb 100%)' } : {}}
             >
               {category.name}
             </button>
@@ -41,57 +43,59 @@ export default function ServicesBlockClient({
       </div>
 
       {/* Services Grid Content */}
-      <div className="p-6 md:px-10 md:pb-10 relative z-10">
-        <div className="grid md:grid-cols-2 gap-5">
-          {activeServices.map((service) => (
-            <Link
-              key={service.id}
-              href={`/services/${service.slug}`}
-              className="bg-[#E6F4FF] rounded-2xl p-6 flex flex-col items-start hover:shadow-md transition-all cursor-pointer group h-full border border-blue-50/50"
-            >
-              {/* Icon placeholder - can be enhanced with actual icon from service */}
-              <div className="w-12 h-12 rounded-xl bg-[#FB9C2C] flex items-center justify-center text-white mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-[#1e3a8a] mb-1">
-                {service.name}
-              </h3>
-              <p className="text-[#1e3a8a]/70 text-xs mb-6 leading-relaxed">
-                {service.short_description || "บริการทันตกรรมคุณภาพ"}
-              </p>
-              <div className="mt-auto text-[#0099FF] text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
-                อ่านเพิ่มเติม
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="m9 18 6-6-6-6"></path>
-                </svg>
-              </div>
-            </Link>
-          ))}
+      <div className="p-6 md:p-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {activeServices.map((service) => {
+            const serviceAny = service as any;
+            const imageUrl = serviceAny.featured_image 
+              ? (getFileUrl(serviceAny.featured_image) ?? "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80")
+              : "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80";
+            
+            return (
+              <Link
+                key={service.id}
+                href={`/services/${service.slug}`}
+                className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={imageUrl}
+                    alt={service.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-[#003888] mb-2 group-hover:text-[#1DAEE0] transition-colors">
+                    {service.name}
+                  </h3>
+                  <p className="text-slate-500 text-sm mb-4 line-clamp-2">
+                    {service.short_description || "บริการทันตกรรมคุณภาพสูง"}
+                  </p>
+                  <div className="flex items-center gap-2 text-[#1DAEE0] text-sm font-medium group-hover:gap-3 transition-all">
+                    ดูรายละเอียด
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* View All Button */}
+        <div className="text-center mt-10">
+          <Link href="/services" className="inline-flex items-center gap-2 hover:bg-slate-800 transition-colors font-medium text-white bg-[#003888] h-12 rounded-xl pr-8 pl-8">
+            ดูบริการทั้งหมด
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </Link>
         </div>
       </div>
     </>
   );
 }
-

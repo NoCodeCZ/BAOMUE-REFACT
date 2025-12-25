@@ -15,6 +15,7 @@ import PortfolioBlock from "@/components/blocks/PortfolioBlock";
 import BlogListingBlock from "@/components/blocks/BlogListingBlock";
 import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
 import StatsBlock from "@/components/blocks/StatsBlock";
+import TestimonialsBlock from "@/components/blocks/TestimonialsBlock";
 import Footer from "@/components/Footer";
 import type { PageBlockWithContent, BlockType, BlockLocations, Form } from "@/lib/types";
 import { ComponentType } from "react";
@@ -35,7 +36,7 @@ const componentMap: Record<BlockType, ComponentType<{ data: any; formData?: Form
   block_form: FormBlock,
   block_footer: Footer as ComponentType<{ data: any; formData?: Form | null; locations?: BlockLocations | null; block?: any }>,
   block_features: () => null, // Placeholder - create component if needed
-  block_testimonials: () => null, // Placeholder - create component if needed
+  block_testimonials: TestimonialsBlock,
   block_pricing: () => null, // Placeholder - create component if needed
   block_promotions: PromotionsBlock,
   block_portfolio: PortfolioBlock,

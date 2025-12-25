@@ -9,8 +9,8 @@ interface ServicesBlockProps {
 export default async function ServicesBlock({ data }: ServicesBlockProps) {
   if (!data) return null;
 
-  const title = data.title ?? "OUR SERVICES!";
-  const subtitle = data.subtitle ?? "บริการทางทันตกรรมของ Baomue";
+  const title = data.title ?? "บริการทางทันตกรรมของเรา";
+  const subtitle = data.subtitle ?? "ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล";
   
   // Fetch services and categories
   const [services, categories] = await Promise.all([
@@ -27,35 +27,27 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
   });
 
   return (
-    <section className="md:py-16 bg-white pt-12 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Hero Title Section */}
-        <div className="text-center mb-10">
-          <h1 className="text-5xl md:text-6xl font-black text-[#0F3FA1] mb-2 tracking-tighter uppercase">
+    <section className="lg:py-32 bg-slate-50 pt-24 pb-24">
+      <div className="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex text-sm font-semibold text-slate-50 bg-[#3B82F6] rounded-full mb-6 px-4 py-2 gap-x-2 gap-y-2 items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+              <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path>
+              <path d="M20 2v4"></path>
+              <path d="M22 4h-4"></path>
+              <circle cx="4" cy="20" r="2"></circle>
+            </svg>
+            บริการของเรา
+          </div>
+          <h2 className="md:text-5xl text-4xl font-semibold tracking-tight mb-6" style={{ color: '#003888' }}>
             {title}
-          </h1>
-          <p className="text-[#1e3a8a] text-lg font-bold">{subtitle}</p>
+          </h2>
+          <p className="text-xl" style={{ color: '#1DAEE0' }}>{subtitle}</p>
         </div>
 
         {/* Main Card Container */}
-        <div className="bg-white rounded-[40px] shadow-xl shadow-blue-900/5 border border-slate-100 overflow-hidden relative">
-          {/* Background decoration */}
-          <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-slate-50/80 to-transparent pointer-events-none"></div>
-
-          {/* Card Header */}
-          <div className="text-center pt-12 px-6 pb-8 relative z-10">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FB9C2C] text-white shadow-sm mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-              <span className="text-xs font-bold tracking-wide">เปิดให้บริการทุกวัน</span>
-            </div>
-            <h2 className="text-3xl md:text-3xl font-bold text-[#1e3a8a] mb-2 tracking-tight">
-              บริการทันตกรรมของ Baomue
-            </h2>
-            <p className="text-slate-400 text-sm md:text-base font-medium">
-              ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล
-            </p>
-          </div>
-
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           {/* Client Component for Tabs */}
           <ServicesBlockClient 
             categories={categories}
@@ -66,4 +58,3 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
     </section>
   );
 }
-

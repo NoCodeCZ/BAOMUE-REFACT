@@ -26,20 +26,17 @@ export default async function BlogPage() {
     : allPosts;
 
   return (
-    <main className="antialiased bg-slate-50 text-slate-600">
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50">
       <Header />
 
       {/* Hero Section */}
-      <section className="pt-16 pb-8 bg-gradient-to-b from-white to-slate-50">
+      <section className="pt-24 pb-12 bg-gradient-to-b from-white via-blue-50/30 to-transparent">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-6xl md:text-7xl font-semibold tracking-tight text-[#00347a] mb-4">
-              Blog
-            </h1>
-            <p className="text-xl md:text-2xl font-medium text-[#2d5284] mb-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6">
               บทความสุขภาพช่องปาก
-            </p>
-            <p className="text-sm md:text-base text-[#577399] max-w-lg mx-auto leading-relaxed">
+            </h1>
+            <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
               เรียนรู้วิธีดูแลสุขภาพฟันและเหงือกอย่างถูกวิธี
               พร้อมเคล็ดลับจากทันตแพทย์ผู้เชี่ยวชาญ
             </p>
@@ -57,11 +54,11 @@ export default async function BlogPage() {
       {featuredPost && <FeaturedArticle post={featuredPost} />}
 
       {/* Articles Grid */}
-      <section className="py-12">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           {regularPosts.length > 0 ? (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {regularPosts.map((post) => (
                   <ArticleCard key={post.id} post={post} />
                 ))}
@@ -69,8 +66,8 @@ export default async function BlogPage() {
 
               {/* Load More Button - Placeholder for pagination */}
               {regularPosts.length >= 6 && (
-                <div className="text-center mt-12">
-                  <button className="inline-flex items-center gap-2 h-14 px-8 bg-white border-2 border-slate-200 text-slate-700 font-semibold rounded-2xl hover:border-cyan-300 hover:text-cyan-600 transition-all shadow-lg">
+                <div className="text-center mt-16">
+                  <button className="inline-flex items-center gap-2 h-12 px-8 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl">
                     <span>+</span>
                     โหลดบทความเพิ่มเติม
                   </button>
@@ -78,8 +75,13 @@ export default async function BlogPage() {
               )}
             </>
           ) : (
-            <div className="text-center py-16">
-              <p className="text-slate-400">ยังไม่มีบทความ</p>
+            <div className="text-center py-20">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-100 mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-slate-400">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+                </svg>
+              </div>
+              <p className="text-slate-500 text-lg">ยังไม่มีบทความ</p>
             </div>
           )}
         </div>

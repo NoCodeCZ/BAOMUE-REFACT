@@ -10,51 +10,38 @@ export default function AboutUsBlock({ data }: AboutUsBlockProps) {
 
   const headline = data.headline ?? "ABOUT US!";
   const subtitle = data.subtitle ?? "คลินิกทันตกรรมเบามือ";
-  const paragraphs = [
-    data.paragraph_1,
-    data.paragraph_2,
-    data.paragraph_3,
-  ].filter(Boolean);
+  const paragraph1 = data.paragraph_1 ?? "เพราะเรารู้ว่าหลายคนมีความทรงจำที่ไม่ดีเกี่ยวกับการทำฟัน เราจึงตั้งใจสร้าง คลินิกทันตกรรมเบามือ ให้เป็นสถานที่ที่ทำให้ คุณรู้สึก \"ปลอดภัย\" ตั้งแต่ก้าวแรกที่เข้ามา ด้วยบรรยากาศ ที่ผ่อนคลาย และทีมงานที่พร้อมจะรับฟังทุกความกังวลของคุณ";
+  const paragraph2 = data.paragraph_2 ?? "หัวใจสำคัญของเราคือเทคนิค \"Gentle Touch\" หรือการรักษา ที่เน้นความเบามือเป็นพิเศษ ทีมทันตแพทย์ของเราไม่เพียงแต่ เชี่ยวชาญด้านการรักษา แต่ยังผ่านการฝึกฝนมาเพื่อให้ความสำคัญ กับความรู้สึกของคนไข้ในทุกขั้นตอน เพื่อให้คุณรู้สึกผ่อนคลาย และลดความกังวลลงได้อย่างแท้จริง";
+  const paragraph3 = data.paragraph_3 ?? "เป้าหมายสูงสุดของเรา คือการดูแลสุขภาพช่องปากของคุณ ในระยะยาว เรามุ่งมั่นพัฒนาการบริการอย่างไม่หยุดยั้ง เพื่อให้ มั่นใจว่าทุกคนที่ก้าวออกจากคลินิกไป จะมีรอยยิ้มที่สมบูรณ์แบบ พร้อมความประทับใจในทุกสัมผัส เพราะเราเชื่อว่ารอยยิ้มที่สวยที่สุด คือรอยยิ้มที่มาจากความสุขของคุณ";
+  
+  const imageUrl = data.image_url 
+    ? (getFileUrl(data.image_url as any) ?? "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b36a18b-3851-43e6-b02a-2446fe661f62_1600w.jpg")
+    : "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b36a18b-3851-43e6-b02a-2446fe661f62_1600w.jpg";
 
   return (
-    <section className="lg:py-32 bg-white pt-24 pb-24 relative overflow-hidden">
-      {/* Decorative background element */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-blue-50/50 rounded-full blur-3xl -z-10"></div>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <div className="order-2 lg:order-1">
-            <div className="relative mb-6">
-              {/* Watermark headline */}
-              <h2 className="text-6xl md:text-7xl font-black text-[#1a5fb4] font-bricolage tracking-tighter -rotate-2 transform origin-bottom-left leading-none opacity-20 absolute -top-12 left-0 select-none">
-                {headline}
-              </h2>
-              {/* Main headline */}
-              <h2 className="text-4xl md:text-5xl font-bold text-[#003888] font-bricolage tracking-tight relative z-10">
-                {headline}
-              </h2>
-            </div>
-            <h3 className="text-2xl md:text-3xl font-semibold text-slate-800 mb-8">
+    <section className="lg:py-32 bg-white pt-24 pb-24">
+      <div className="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 gap-x-12 gap-y-12 items-center">
+          <div className="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h2 className="transform text-5xl font-black tracking-tighter font-bricolage mb-6 -rotate-2 bg-gradient-to-t from-white/10 to-white/0 md:text-7xl md:text-blue-700">
+              {headline}
+            </h2>
+            <h3 className="md:text-3xl text-2xl font-bold text-slate-800 mt-2 mb-8" style={{ color: '#1A3897', fontSize: '30px', fontFamily: 'Prompt', fontWeight: 700, lineHeight: '36px', wordWrap: 'break-word' }}>
               {subtitle}
             </h3>
-            <div className="space-y-6 text-base text-slate-500 leading-relaxed text-justify">
-              {paragraphs.map((para, idx) => (
-                <p key={idx}>{para}</p>
-              ))}
+            <div className="space-y-6 text-base md:text-lg text-slate-500 leading-relaxed max-w-xl text-justify lg:text-left font-medium">
+              <p>{paragraph1}</p>
+              <p>{paragraph2}</p>
+              <p>{paragraph3}</p>
             </div>
           </div>
-
-          <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative w-full max-w-md aspect-[3/4] rounded-t-full rounded-b-[4rem] overflow-hidden shadow-2xl border-4 border-white">
-              <img
-                src={
-                  getFileUrl(data.image_url as any) ??
-                  "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop"
-                }
-                alt="Sodent Dental Clinic"
-                className="w-full h-full object-cover"
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md lg:max-w-full aspect-[3.5/4.5] rounded-t-full rounded-b-[3rem] overflow-hidden shadow-2xl bg-slate-100">
+              <img 
+                src={imageUrl}
+                alt="Baomue Dental Clinic" 
+                className="object-center w-full h-full object-cover bg-center"
               />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#003888]/30 to-transparent"></div>
             </div>
           </div>
         </div>
@@ -62,4 +49,3 @@ export default function AboutUsBlock({ data }: AboutUsBlockProps) {
     </section>
   );
 }
-
