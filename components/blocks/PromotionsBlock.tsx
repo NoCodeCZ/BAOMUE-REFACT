@@ -23,7 +23,7 @@ export default async function PromotionsBlock({ data }: PromotionsBlockProps) {
   ]);
 
   return (
-    <main className="max-w-[1160px] mx-auto px-4 sm:px-6 py-8 space-y-8">
+    <div className="max-w-[1160px] mx-auto px-4 sm:px-6 py-8 space-y-8">
       {/* Header Title */}
       <div className="text-center space-y-2 py-4">
         <h1 className="text-4xl md:text-5xl font-black text-blue-900 tracking-tighter uppercase">
@@ -83,7 +83,7 @@ export default async function PromotionsBlock({ data }: PromotionsBlockProps) {
         categories={categories}
         showCategoryFilter={showCategoryFilter}
       />
-    </main>
+    </div>
   );
 }
 

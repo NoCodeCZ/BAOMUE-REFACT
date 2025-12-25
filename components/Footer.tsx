@@ -1,12 +1,25 @@
 import type { BlockFooter } from '@/lib/types';
 
 interface FooterProps {
-  block: BlockFooter;
+  block?: BlockFooter;
 }
 
 export default function Footer({ block }: FooterProps) {
-  const content = block.content;
-  if (!content) return null;
+  const content = block?.content;
+  if (!content) {
+    // Return a default footer if no block provided
+    return (
+      <footer className="bg-slate-950 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="border-t border-white/10 pt-8">
+            <p className="text-white/50 text-sm text-center">
+              © 2024 คลินิกทันตกรรมเบามือ. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer className="bg-slate-950 pt-16 pb-8">

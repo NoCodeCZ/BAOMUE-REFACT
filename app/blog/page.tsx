@@ -1,10 +1,10 @@
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import BlogNavigation from "@/components/BlogNavigation";
 import FeaturedArticle from "@/components/FeaturedArticle";
 import ArticleCard from "@/components/ArticleCard";
 import { getBlogPosts, getFeaturedBlogPost, getBlogCategories } from "@/lib/data";
 import type { Metadata } from "next";
-import { BookOpen } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -33,15 +33,13 @@ export default async function BlogPage() {
       <section className="pt-16 pb-8 bg-gradient-to-b from-white to-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
-              <BookOpen className="w-4 h-4" />
-              ความรู้ทันตกรรม
-            </div>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-slate-900 mb-6">
+            <h1 className="text-6xl md:text-7xl font-semibold tracking-tight text-[#00347a] mb-4">
               Blog
             </h1>
-            <p className="text-xl text-slate-500 mb-4">บทความสุขภาพช่องปาก</p>
-            <p className="text-base text-slate-400 max-w-xl mx-auto">
+            <p className="text-xl md:text-2xl font-medium text-[#2d5284] mb-4">
+              บทความสุขภาพช่องปาก
+            </p>
+            <p className="text-sm md:text-base text-[#577399] max-w-lg mx-auto leading-relaxed">
               เรียนรู้วิธีดูแลสุขภาพฟันและเหงือกอย่างถูกวิธี
               พร้อมเคล็ดลับจากทันตแพทย์ผู้เชี่ยวชาญ
             </p>
@@ -86,6 +84,8 @@ export default async function BlogPage() {
           )}
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }

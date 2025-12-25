@@ -370,6 +370,20 @@ export interface BlockContact {
   id: number;
   title?: string;
   subtitle?: string;
+  // Contact channels (for card display)
+  phone_number?: string;
+  phone_hours?: string;
+  line_handle?: string;
+  line_response_time?: string;
+  facebook_page?: string;
+  facebook_description?: string;
+  email_address?: string;
+  email_response_time?: string;
+  // Map
+  map_embed_url?: string;
+  map_address?: string;
+  map_link_text?: string;
+  // Legacy fields (keep for backward compatibility)
   hq_title?: string;
   hq_address?: string;
   phone_title?: string;
