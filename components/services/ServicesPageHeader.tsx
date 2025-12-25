@@ -1,23 +1,20 @@
 interface ServicesPageHeaderProps {
   title?: string;
-  description?: string;
+  subtitle?: string;
 }
 
 export default function ServicesPageHeader({
-  title = "Our Services",
-  description = "Comprehensive dental care for the whole family"
+  title = "Our Services!",
+  subtitle = "บริการทางทันตกรรมของ Baomue"
 }: ServicesPageHeaderProps) {
   return (
-    <div className="pt-10 md:pt-20 text-center max-w-3xl mx-auto px-4">
-      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-slate-900 font-medium tracking-tight">
+    <div className="text-center pt-12 md:pt-16 pb-10">
+      <h1 className="text-5xl md:text-6xl font-black text-[#0F3FA1] mb-2 tracking-tighter uppercase font-sans">
         {title}
       </h1>
-      {description && (
-        <p className="text-lg md:text-xl text-slate-600 mt-4 max-w-2xl mx-auto">
-          {description}
-        </p>
-      )}
+      <p className="text-[#1e3a8a] text-lg font-bold">
+        {subtitle}
+      </p>
     </div>
   );
 }
-

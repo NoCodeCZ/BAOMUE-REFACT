@@ -8,11 +8,11 @@ import { getServices, getServiceCategories } from "@/lib/data";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Our Services | Baomue",
-  description: "Explore our comprehensive range of dental services including general, cosmetic, and specialized treatments.",
+  title: "บริการทันตกรรม | Baomue Dental",
+  description: "บริการทันตกรรมครบวงจรของ Baomue ทั้งจัดฟัน ความงาม ฟันปลอม รักษาราก และทันตกรรมทั่วไป",
   openGraph: {
-    title: "Our Services | Baomue",
-    description: "Comprehensive dental care for the whole family",
+    title: "บริการทันตกรรม | Baomue Dental",
+    description: "ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล",
     type: "website",
   },
 };
@@ -24,13 +24,13 @@ export default async function ServicesPage() {
   ]);
 
   return (
-    <main className="antialiased text-slate-600 bg-slate-50 min-h-screen">
+    <main className="antialiased selection:bg-cyan-200 selection:text-cyan-900 text-slate-600 bg-white min-h-screen">
       <Header />
       
-      <div className="max-w-7xl mx-auto pb-20">
+      <div className="md:py-16 max-w-7xl mx-auto pt-12 px-6 pb-12">
         <ServicesPageHeader 
-          title="Our Services"
-          description="Comprehensive dental care for the whole family"
+          title="Our Services!"
+          subtitle="บริการทางทันตกรรมของ Baomue"
         />
         
         <ServiceCategoryTabs 
@@ -43,5 +43,3 @@ export default async function ServicesPage() {
     </main>
   );
 }
-
-
