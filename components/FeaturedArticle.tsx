@@ -13,7 +13,7 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="bg-white/80 backdrop-blur-xl rounded-3xl border border-white/50 shadow-xl overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-20 rounded-3xl border border-white/50 shadow-xl overflow-hidden" style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
           <div className="grid lg:grid-cols-2 gap-0">
             <div className="relative aspect-[16/10] lg:aspect-auto">
               {post.featured_image && (
@@ -43,11 +43,11 @@ export default function FeaturedArticle({ post }: FeaturedArticleProps) {
                   <span className="text-sm text-slate-400">• {post.reading_time} นาทีอ่าน</span>
                 )}
               </div>
-              <h2 className="text-2xl lg:text-3xl font-semibold text-slate-900 tracking-tight mb-4">
+              <h2 className="lg:text-3xl text-2xl font-semibold text-slate-900 tracking-tight mb-4">
                 {post.title}
               </h2>
               {post.excerpt && (
-                <p className="text-slate-500 mb-6 overflow-hidden text-ellipsis" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
+                <p className="text-slate-500 mb-6 line-clamp-3" style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
                   {post.excerpt}
                 </p>
               )}
