@@ -295,19 +295,23 @@ export interface BlockWhyChooseUs {
   point_4_text?: string;
 }
 
+export interface Dentist {
+  id: string; // UUID
+  name: string;
+  nickname?: string;
+  specialty: string;
+  photo?: string | { id: string }; // Directus file (UUID or file object)
+  photo_url?: string; // External URL fallback
+  linkedin_url?: string;
+  sort?: number;
+}
+
 export interface BlockTeam {
   id: number;
   title?: string;
   subtitle?: string;
   note?: string;
-  dentists?: Array<{
-    name: string;
-    nickname?: string;
-    specialty: string;
-    photo?: string; // Directus file ID (UUID)
-    photo_url?: string; // External URL fallback
-    linkedin_url?: string;
-  }>;
+  dentists?: Dentist[]; // Now a proper M2M relation, not JSON array
 }
 
 export interface BlockSignatureTreatment {
@@ -628,6 +632,7 @@ export interface Promotion {
   cta_text?: string;
   cta_link?: string;
   is_featured?: boolean;
+  features?: string[] | null;
   sort?: number;
 }
 

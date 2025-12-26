@@ -89,6 +89,24 @@ export async function getBlockContent(collection: string, itemId: string) {
     
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
+    } else if (collection === 'block_team') {
+      // Include M2M dentists relation with all fields
+      // M2M returns junction records, need to expand dentist_id to get actual dentist data
+      fields = [
+        'id',
+        'title',
+        'subtitle',
+        'note',
+        'dentists.dentist_id.id',
+        'dentists.dentist_id.name',
+        'dentists.dentist_id.nickname',
+        'dentists.dentist_id.specialty',
+        'dentists.dentist_id.photo',
+        'dentists.dentist_id.photo_url',
+        'dentists.dentist_id.linkedin_url',
+        'dentists.dentist_id.status',
+        'dentists.sort',
+      ];
     }
     
     const result = await directus.request(
@@ -409,7 +427,21 @@ export async function getTeamBlock(blockId: number): Promise<BlockTeam | null> {
     const blocks = await directus.request(
       readItemsTyped('block_team', {
         filter: { id: { _eq: blockId } },
-        fields: ['*'],
+        fields: [
+          'id',
+          'title',
+          'subtitle',
+          'note',
+          'dentists.dentist_id.id',
+          'dentists.dentist_id.name',
+          'dentists.dentist_id.nickname',
+          'dentists.dentist_id.specialty',
+          'dentists.dentist_id.photo',
+          'dentists.dentist_id.photo_url',
+          'dentists.dentist_id.linkedin_url',
+          'dentists.dentist_id.status',
+          'dentists.sort',
+        ],
         limit: 1,
       })
     );

@@ -1,13 +1,5 @@
-import type { BlockTeam } from "@/lib/types";
-import { getFileUrl } from "@/lib/directus";
-
-interface Dentist {
-  name: string;
-  nickname?: string;
-  specialty: string;
-  photo?: string; // Directus file ID (UUID)
-  photo_url?: string; // External URL fallback
-}
+import type { BlockTeam, Dentist } from "@/lib/types";
+import { getFileUrl, getPlaceholderUrl } from "@/lib/directus";
 
 interface TeamBlockProps {
   data?: BlockTeam | null;
@@ -18,19 +10,75 @@ export default function TeamBlock({ data }: TeamBlockProps) {
 
   const title = data.title ?? "Sodent Dentists";
   const subtitle = data.subtitle ?? "ทันตแพทย์ของเรา";
-  const dentists = (data.dentists as Dentist[]) ?? [];
+  
+  // Handle M2M relation - dentists comes through junction table
+  // Structure: dentists[] contains junction records with dentist_id nested
+  let dentists: Dentist[] = [];
+  
+  if (data.dentists && Array.isArray(data.dentists)) {
+    dentists = data.dentists
+      .map((junction: any) => {
+        // M2M junction structure: junction.dentist_id contains the actual dentist
+        const dentist = junction.dentist_id || junction;
+        
+        // Debug logging
+        if (process.env.NODE_ENV === 'development') {
+          if (!dentist || !dentist.id) {
+            console.warn('[TeamBlock] Invalid dentist data:', { junction, dentist });
+          }
+        }
+        
+        // Only include published dentists
+        if (dentist && dentist.status && dentist.status !== 'published') {
+          return null;
+        }
+        
+        // Handle case where dentist might be null or undefined
+        if (!dentist || !dentist.id || !dentist.name) {
+          return null;
+        }
+        
+        return {
+          id: dentist.id,
+          name: dentist.name,
+          nickname: dentist.nickname,
+          specialty: dentist.specialty,
+          photo: dentist.photo,
+          photo_url: dentist.photo_url,
+          linkedin_url: dentist.linkedin_url,
+          sort: junction.sort || dentist.sort,
+        };
+      })
+      .filter((d: Dentist | null): d is Dentist => d !== null && !!d.id && !!d.name)
+      .sort((a, b) => (a.sort || 0) - (b.sort || 0)); // Sort by junction sort field
+  }
+  
+  // Debug logging
+  if (process.env.NODE_ENV === 'development') {
+    console.log('[TeamBlock] Data:', { 
+      title, 
+      subtitle, 
+      dentistsCount: dentists.length,
+      dentists: dentists.map(d => ({ id: d.id, name: d.name, photo: d.photo }))
+    });
+  }
+
+  // Generate placeholder URLs for fallback dentists
+  const getDentistPlaceholder = (name: string) => {
+    return getPlaceholderUrl(400, 600, name.split(' ').pop() || '') || null;
+  };
 
   const fallbackDentists: Dentist[] = [
-    { name: "ทพ. สมชาย ใจดี", nickname: "หมอเอ็ม", specialty: "เชี่ยวชาญด้านทันตกรรมจัดฟัน จบการศึกษาจากจุฬาลงกรณ์มหาวิทยาลัย ประสบการณ์กว่า 10 ปี", photo_url: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80" },
-    { name: "ทพญ. สุดา รักยิ้ม", nickname: "หมอมิ้นท์", specialty: "ทันตแพทย์เฉพาะทางเด็ก ใจดี มือเบา เด็กๆ รัก จบเฉพาะทางจากมหิดล", photo_url: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80" },
-    { name: "ทพญ. นิภา วงศ์ศิริ", nickname: "หมอนุ่น", specialty: "เชี่ยวชาญด้านวีเนียร์และการออกแบบรอยยิ้ม (Smile Design) ให้คุณสวยเป๊ะ", photo_url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80" },
-    { name: "ทพ. ประวิทย์ มั่นคง", nickname: "หมอวิทย์", specialty: "ศัลยกรรมช่องปาก ผ่าฟันคุด รากฟันเทียม มือเบา พักฟื้นไว", photo_url: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80" },
-    { name: "ทพ. เคน ธีรเดช", nickname: "หมอเคน", specialty: "ทันตกรรมทั่วไปและทันตกรรมบดเคี้ยว แก้ปัญหาปวดกราม นอนกัดฟัน", photo_url: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80" },
-    { name: "ทพญ. อัมพวา สุขใจ", nickname: "หมอแอม", specialty: "รักษารากฟันด้วยกล้องจุลทรรศน์ ความละเอียดสูง เก็บฟันไว้ได้นาน", photo_url: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" },
-    { name: "ทพญ. โบว์ เมลดา", nickname: "หมอโบว์", specialty: "ทันตกรรมประดิษฐ์ ครอบฟัน สะพานฟัน ฟันปลอมถอดได้", photo_url: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=400&q=80" },
-    { name: "ทพญ. บี น้ำทิพย์", nickname: "หมอบี", specialty: "ทันตกรรมจัดฟันใส Invisalign ระดับ Platinum Provider", photo_url: "https://images.unsplash.com/photo-1629909615184-74f495363b67?w=400&q=80" },
-    { name: "ทพ. กาย รัชชานนท์", nickname: "หมอกาย", specialty: "โรคเหงือกและปริทันต์วิทยา รักษาเหงือกอักเสบ ปลูกเหงือก", photo_url: "https://images.unsplash.com/photo-1618498082410-b4aa22193b38?w=400&q=80" },
-    { name: "ทพญ. เมย์ เฟื่องอารมย์", nickname: "หมอเมย์", specialty: "ทันตกรรมทั่วไป ขูดหินปูน อุดฟัน มือเบา ใจเย็น", photo_url: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80" },
+    { name: "ทพ. สมชาย ใจดี", nickname: "หมอเอ็ม", specialty: "เชี่ยวชาญด้านทันตกรรมจัดฟัน จบการศึกษาจากจุฬาลงกรณ์มหาวิทยาลัย ประสบการณ์กว่า 10 ปี", photo_url: getDentistPlaceholder("ทพ. สมชาย ใจดี") || undefined },
+    { name: "ทพญ. สุดา รักยิ้ม", nickname: "หมอมิ้นท์", specialty: "ทันตแพทย์เฉพาะทางเด็ก ใจดี มือเบา เด็กๆ รัก จบเฉพาะทางจากมหิดล", photo_url: getDentistPlaceholder("ทพญ. สุดา รักยิ้ม") || undefined },
+    { name: "ทพญ. นิภา วงศ์ศิริ", nickname: "หมอนุ่น", specialty: "เชี่ยวชาญด้านวีเนียร์และการออกแบบรอยยิ้ม (Smile Design) ให้คุณสวยเป๊ะ", photo_url: getDentistPlaceholder("ทพญ. นิภา วงศ์ศิริ") || undefined },
+    { name: "ทพ. ประวิทย์ มั่นคง", nickname: "หมอวิทย์", specialty: "ศัลยกรรมช่องปาก ผ่าฟันคุด รากฟันเทียม มือเบา พักฟื้นไว", photo_url: getDentistPlaceholder("ทพ. ประวิทย์ มั่นคง") || undefined },
+    { name: "ทพ. เคน ธีรเดช", nickname: "หมอเคน", specialty: "ทันตกรรมทั่วไปและทันตกรรมบดเคี้ยว แก้ปัญหาปวดกราม นอนกัดฟัน", photo_url: getDentistPlaceholder("ทพ. เคน ธีรเดช") || undefined },
+    { name: "ทพญ. อัมพวา สุขใจ", nickname: "หมอแอม", specialty: "รักษารากฟันด้วยกล้องจุลทรรศน์ ความละเอียดสูง เก็บฟันไว้ได้นาน", photo_url: getDentistPlaceholder("ทพญ. อัมพวา สุขใจ") || undefined },
+    { name: "ทพญ. โบว์ เมลดา", nickname: "หมอโบว์", specialty: "ทันตกรรมประดิษฐ์ ครอบฟัน สะพานฟัน ฟันปลอมถอดได้", photo_url: getDentistPlaceholder("ทพญ. โบว์ เมลดา") || undefined },
+    { name: "ทพญ. บี น้ำทิพย์", nickname: "หมอบี", specialty: "ทันตกรรมจัดฟันใส Invisalign ระดับ Platinum Provider", photo_url: getDentistPlaceholder("ทพญ. บี น้ำทิพย์") || undefined },
+    { name: "ทพ. กาย รัชชานนท์", nickname: "หมอกาย", specialty: "โรคเหงือกและปริทันต์วิทยา รักษาเหงือกอักเสบ ปลูกเหงือก", photo_url: getDentistPlaceholder("ทพ. กาย รัชชานนท์") || undefined },
+    { name: "ทพญ. เมย์ เฟื่องอารมย์", nickname: "หมอเมย์", specialty: "ทันตกรรมทั่วไป ขูดหินปูน อุดฟัน มือเบา ใจเย็น", photo_url: getDentistPlaceholder("ทพญ. เมย์ เฟื่องอารมย์") || undefined },
   ];
 
   const displayDentists = dentists.length > 0 ? dentists : fallbackDentists;
@@ -49,10 +97,49 @@ export default function TeamBlock({ data }: TeamBlockProps) {
         {/* Dentist Grid - 5 columns on large screens matching HTML */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
           {displayDentists.map((d, index) => {
-            // Prioritize photo (Directus file) over photo_url (external URL)
-            const img = d.photo 
-              ? getFileUrl(d.photo as any) 
-              : (d.photo_url ? (getFileUrl(d.photo_url as any) || d.photo_url) : null);
+            // Get image URL - prioritize "photo" field (Directus file) over "photo_url" (fallback/external)
+            // The "photo" field in Directus is the file field, "photo_url" is for external URLs
+            let img: string | null = null;
+            
+            // First try the "photo" field (Directus file UUID)
+            const photoField = d.photo || d.photo_url;
+            
+            if (photoField) {
+              // Check if it's already a URL string
+              if (typeof photoField === 'string' && (photoField.startsWith('http') || photoField.startsWith('/') || photoField.startsWith('data:'))) {
+                // Already a URL (from placeholder, external, or data URI)
+                img = photoField;
+              } else {
+                // Extract UUID from photo field (could be string UUID or file object)
+                let fileId: string | null = null;
+                
+                if (typeof photoField === 'string') {
+                  // It's a UUID string
+                  fileId = photoField;
+                } else if (typeof photoField === 'object' && photoField !== null) {
+                  // It's a file object - extract the id
+                  fileId = (photoField as any).id || null;
+                }
+                
+                if (fileId) {
+                  // Convert UUID to Directus asset URL
+                  img = getFileUrl(fileId);
+                  
+                  // Debug logging in development
+                  if (process.env.NODE_ENV === 'development') {
+                    if (!img) {
+                      console.warn(`[TeamBlock] Failed to generate image URL for "${d.name}"`, {
+                        fileId,
+                        hasDirectusUrl: !!process.env.NEXT_PUBLIC_DIRECTUS_URL,
+                        directusUrl: process.env.NEXT_PUBLIC_DIRECTUS_URL,
+                        photo: d.photo,
+                        photo_url: d.photo_url
+                      });
+                    }
+                  }
+                }
+              }
+            }
             
             return (
               <div 

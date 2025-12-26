@@ -595,12 +595,28 @@
                   }
                 },
                 {
-                  "field": "photo_url",
+                  "field": "photo",
                   "type": "uuid",
                   "meta": {
                     "interface": "file-image",
-                    "special": ["file"]
+                    "special": ["file"],
+                    "options": {
+                      "crop": false
+                    },
+                    "width": "full",
+                    "required": false
                   }
+                },
+                {
+                  "field": "photo_url",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input",
+                    "width": "full",
+                    "required": false,
+                    "note": "External URL fallback if photo not uploaded"
+                  },
+                  "schema": {}
                 },
                 {
                   "field": "linkedin_url",
