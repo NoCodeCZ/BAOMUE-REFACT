@@ -5,7 +5,8 @@ interface Dentist {
   name: string;
   nickname?: string;
   specialty: string;
-  photo_url: string;
+  photo?: string; // Directus file ID (UUID)
+  photo_url?: string; // External URL fallback
 }
 
 interface TeamBlockProps {
@@ -48,18 +49,30 @@ export default function TeamBlock({ data }: TeamBlockProps) {
         {/* Dentist Grid - 5 columns on large screens matching HTML */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
           {displayDentists.map((d, index) => {
-            const img = getFileUrl(d.photo_url as any) || d.photo_url;
+            // Prioritize photo (Directus file) over photo_url (external URL)
+            const img = d.photo 
+              ? getFileUrl(d.photo as any) 
+              : (d.photo_url ? (getFileUrl(d.photo_url as any) || d.photo_url) : null);
+            
             return (
               <div 
                 key={`${d.name}-${index}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-slate-100"
               >
                 <div className="aspect-[3/4] overflow-hidden bg-slate-100 relative">
-                  <img 
-                    src={img}
-                    alt={d.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                  {img ? (
+                    <img 
+                      src={img}
+                      alt={d.name} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-slate-200">
+                      <svg className="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold text-slate-900 text-sm mb-1">{d.name}</h3>

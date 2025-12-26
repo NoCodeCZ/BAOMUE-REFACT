@@ -37,6 +37,7 @@ export interface Schema {
   block_portfolio: BlockPortfolio[];
   block_service_detail: BlockServiceDetail[];
   block_stats: BlockStats[];
+  block_page_header: BlockPageHeader[];
 }
 
 export interface Page {
@@ -84,7 +85,8 @@ export type BlockType =
   | 'block_portfolio'
   | 'block_blog_listing'
   | 'block_service_detail'
-  | 'block_stats';
+  | 'block_stats'
+  | 'block_page_header';
 
 // Block content union - all possible block content types
 export type BlockContent = 
@@ -108,7 +110,8 @@ export type BlockContent =
   | BlockPortfolio
   | BlockBlogListing
   | BlockServiceDetail
-  | BlockStats;
+  | BlockStats
+  | BlockPageHeader;
 
 // Enhanced PageBlock with typed collection
 export interface PageBlockWithContent {
@@ -301,7 +304,8 @@ export interface BlockTeam {
     name: string;
     nickname?: string;
     specialty: string;
-    photo_url?: string;
+    photo?: string; // Directus file ID (UUID)
+    photo_url?: string; // External URL fallback
     linkedin_url?: string;
   }>;
 }
@@ -494,6 +498,15 @@ export interface BlockStats {
   stats?: StatItem[] | any; // JSON field - array of stat items
   columns?: number; // Number of columns (2, 3, or 4), default: 4
   show_icons?: boolean; // Whether to show icons, default: true
+}
+
+// Page header block for inner pages (simpler than hero)
+export interface BlockPageHeader {
+  id: number;
+  badge_text?: string; // Small badge text above title
+  title: string; // Main page title
+  subtitle?: string; // Subtitle below the title
+  description?: string; // Longer description paragraph
 }
 
 // Service detail interfaces
