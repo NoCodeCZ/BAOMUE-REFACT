@@ -584,10 +584,24 @@ export async function getNavigationItems(): Promise<NavigationItem[]> {
     const items = await directus.request(
       readItemsTyped('navigation', {
         fields: ['*', 'page.slug', 'page.id', 'children.*', 'children.page.slug', 'children.page.id'],
-        sort: ['sort'],
+        sort: ['sort', 'id'], // Secondary sort by ID ensures consistent ordering when sort values are duplicate
         filter: { parent: { _null: true } }, // Only get top-level items
       })
     ) as NavigationItem[];
+
+    // Validate for duplicate sort values (development warning)
+    if (process.env.NODE_ENV === 'development') {
+      const sortValues = items.map(item => item.sort).filter((sort): sort is number => sort !== null && sort !== undefined);
+      const duplicates = sortValues.filter((value, index) => sortValues.indexOf(value) !== index);
+      if (duplicates.length > 0) {
+        const uniqueDuplicates = Array.from(new Set(duplicates));
+        console.warn(
+          '⚠️ Navigation: Duplicate sort values detected:',
+          uniqueDuplicates,
+          '. This may cause unpredictable ordering. Please ensure unique sort values in Directus.'
+        );
+      }
+    }
 
     // Process navigation items to build proper structure
     const processedItems = items.map((item) => {
@@ -611,6 +625,19 @@ export async function getNavigationItems(): Promise<NavigationItem[]> {
         })) : [],
       };
       return navItem;
+    });
+
+    // Additional client-side sorting as fallback to ensure correct order
+    // This handles cases where sort values might be null or database sorting is inconsistent
+    processedItems.sort((a, b) => {
+      // First sort by sort value (null/undefined treated as Infinity)
+      const sortA = a.sort ?? Infinity;
+      const sortB = b.sort ?? Infinity;
+      if (sortA !== sortB) {
+        return sortA - sortB;
+      }
+      // If sort values are equal (or both null), sort by ID for consistency
+      return a.id - b.id;
     });
 
     return processedItems;
@@ -927,7 +954,7 @@ export async function getPortfolioCases(options?: {
       readItemsTyped('portfolio_cases', {
         filter,
         fields: ['*', 'category.*', 'image_before.*', 'image_after.*'],
-        sort: ['sort', '-date_created'],
+        sort: ['sort'],
         limit: options?.limit || 100,
       })
     );
