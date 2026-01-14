@@ -10,13 +10,12 @@ interface ServicesBlockClientProps {
   servicesByCategory: Record<string, Service[]>;
 }
 
-export default function ServicesBlockClient({ 
-  categories, 
-  servicesByCategory 
+export default function ServicesBlockClient({
+  categories,
+  servicesByCategory
 }: ServicesBlockClientProps) {
-  const [activeTab, setActiveTab] = useState<string>(
-    categories[0]?.slug || ""
-  );
+  // Start with 'all' tab to show all services by default
+  const [activeTab, setActiveTab] = useState<string>("all");
 
   const activeServices = servicesByCategory[activeTab] || [];
 
@@ -25,15 +24,26 @@ export default function ServicesBlockClient({
       {/* Navigation Tabs */}
       <div className="px-6 md:px-10 py-6 border-b border-slate-100">
         <div className="flex flex-wrap gap-2 justify-center overflow-x-auto pb-2 md:pb-0">
+          {/* All Services Tab */}
+          <button
+            key="all"
+            onClick={() => setActiveTab("all")}
+            className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === "all"
+              ? "text-white shadow-md"
+              : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            style={activeTab === "all" ? { background: 'linear-gradient(135deg, #1a3a8a 0%, #2563eb 100%)' } : {}}
+          >
+            ทั้งหมด
+          </button>
           {categories.map((category) => (
             <button
               key={category.slug}
               onClick={() => setActiveTab(category.slug)}
-              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${
-                activeTab === category.slug
-                  ? "text-white shadow-md"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-              }`}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap ${activeTab === category.slug
+                ? "text-white shadow-md"
+                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                }`}
               style={activeTab === category.slug ? { background: 'linear-gradient(135deg, #1a3a8a 0%, #2563eb 100%)' } : {}}
             >
               {category.name}
@@ -47,10 +57,10 @@ export default function ServicesBlockClient({
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {activeServices.map((service) => {
             const serviceAny = service as any;
-            const imageUrl = serviceAny.featured_image 
-              ? (getFileUrl(serviceAny.featured_image) ?? "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80")
+            const imageUrl = serviceAny.hero_image
+              ? (getFileUrl(serviceAny.hero_image) ?? "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80")
               : "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80";
-            
+
             return (
               <Link
                 key={service.id}
@@ -58,9 +68,9 @@ export default function ServicesBlockClient({
                 className="group bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img 
+                  <img
                     src={imageUrl}
-                    alt={service.name} 
+                    alt={service.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>

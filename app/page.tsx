@@ -163,27 +163,8 @@ export default async function HomePage() {
     result = await getPageWithBlocksBatched("home");
   }
   
-  // Final fallback to original pattern (backward compatibility)
-  if (!result) {
-    const page = await getPageBySlug("home");
-    if (!page) {
-      // Show beautiful fallback homepage instead of error
-      return <FallbackHomePage />;
-    }
-    
-    const pageBlocks = await getPageBlocks(page.id);
-    const blocksWithContent = await Promise.all(
-      pageBlocks.map(async (block: { id: number; page: number; collection: string; item: string; sort: number; hide_block?: boolean }) => ({
-        ...block,
-        collection: block.collection as BlockType,
-        content: await getBlockContent(block.collection, block.item),
-      }))
-    ) as PageBlockWithContent[];
-    
-    result = { page, blocks: blocksWithContent };
-  }
-
-  // If still no result, show fallback
+  // If no result after all attempts, show fallback homepage
+  // This handles cases where Directus is unavailable or page doesn't exist
   if (!result || !result.page) {
     return <FallbackHomePage />;
   }

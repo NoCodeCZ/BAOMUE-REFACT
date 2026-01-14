@@ -64,7 +64,7 @@ export interface PageBlock {
 }
 
 // Block type union - all valid block collection names
-export type BlockType = 
+export type BlockType =
   | 'block_hero'
   | 'block_text'
   | 'block_about_us'
@@ -89,7 +89,7 @@ export type BlockType =
   | 'block_page_header';
 
 // Block content union - all possible block content types
-export type BlockContent = 
+export type BlockContent =
   | BlockHero
   | BlockText
   | BlockAboutUs
@@ -120,7 +120,6 @@ export interface PageBlockWithContent {
   collection: BlockType;
   item: string;
   sort: number;
-  hide_block?: boolean;
   content: BlockContent | null;
 }
 

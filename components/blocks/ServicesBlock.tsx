@@ -11,7 +11,7 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
 
   const title = data.title ?? "บริการทางทันตกรรมของเรา";
   const subtitle = data.subtitle ?? "ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล";
-  
+
   // Fetch services and categories
   const [services, categories] = await Promise.all([
     getServices(),
@@ -20,11 +20,21 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
 
   // Group services by category
   const servicesByCategory: Record<string, Service[]> = {};
+
+  // Add 'all' category with all services
+  servicesByCategory['all'] = services;
+
   categories.forEach((cat) => {
+    // Note: s.category could be UUID string or number ID, cat.id could be number or string
+    // We convert both to string for comparison
     servicesByCategory[cat.slug] = services.filter(
-      (s) => s.category && (typeof s.category === 'object' ? s.category.slug : null) === cat.slug
+      (s) => {
+        const serviceCategory = typeof s.category === 'object' ? (s.category as any)?.id : s.category;
+        return String(serviceCategory) === String(cat.id);
+      }
     );
   });
+
 
   return (
     <section className="lg:py-32 bg-slate-50 pt-24 pb-24">
@@ -49,7 +59,7 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
         {/* Main Card Container */}
         <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
           {/* Client Component for Tabs */}
-          <ServicesBlockClient 
+          <ServicesBlockClient
             categories={categories}
             servicesByCategory={servicesByCategory}
           />

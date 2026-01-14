@@ -43,6 +43,7 @@ const componentMap: Record<BlockType, ComponentType<{ data: any; formData?: Form
   block_blog_listing: BlogListingBlock,
   block_service_detail: ServiceDetailBlock,
   block_stats: StatsBlock,
+  block_page_header: () => null, // Placeholder - create component if needed
 };
 
 interface PageBuilderProps {
@@ -58,12 +59,12 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
     return null;
   }
 
-  // Filter out hidden blocks and sort by sort order
+  // Filter out blocks without content and sort by sort order
   const visibleBlocks = blocks
     .filter(block => {
-      // Skip hidden blocks
-      if (block.hide_block || block.content === null) return false;
-      
+      // Skip blocks with no content
+      if (block.content === null) return false;
+
       // Exclude the welcome TextBlock that was removed in browser preview
       if (block.collection === 'block_text' && block.content) {
         const textContent = block.content as any;
@@ -71,7 +72,7 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
           return false;
         }
       }
-      
+
       return true;
     })
     .sort((a, b) => (a.sort || 0) - (b.sort || 0));
@@ -80,7 +81,7 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
     <>
       {visibleBlocks.map((block) => {
         const Component = componentMap[block.collection];
-        
+
         // Skip if component not found
         if (!Component) {
           console.warn(`[PageBuilder] Component not found for block type: ${block.collection}`);
@@ -91,9 +92,9 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
         if (block.collection === 'block_form' && additionalProps.formDataMap) {
           const formData = additionalProps.formDataMap[block.id];
           return (
-            <Component 
-              key={block.id} 
-              data={block.content} 
+            <Component
+              key={block.id}
+              data={block.content}
               formData={formData}
             />
           );
@@ -102,9 +103,9 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
         // Handle ContactBlock special case - needs locations prop
         if (block.collection === 'block_contact' && additionalProps.locations) {
           return (
-            <Component 
-              key={block.id} 
-              data={block.content} 
+            <Component
+              key={block.id}
+              data={block.content}
               locations={additionalProps.locations}
             />
           );

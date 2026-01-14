@@ -5,12 +5,12 @@ import { logDirectusError } from './errors';
 // Type-safe wrappers to handle collections that may not exist yet
 const readItemsTyped = readItems as any;
 const readSingletonTyped = readSingleton as any;
-import type { 
-  Page, 
-  BlockHero, 
-  BlockFeatures, 
-  BlockTestimonials, 
-  BlockPricing, 
+import type {
+  Page,
+  BlockHero,
+  BlockFeatures,
+  BlockTestimonials,
+  BlockPricing,
   BlockFooter,
   BlockAboutUs,
   BlockWhyChooseUs,
@@ -53,11 +53,11 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
         limit: 1,
       })
     );
-    
+
     if (!pages || pages.length === 0) {
       return null;
     }
-    
+
     return pages[0] as Page;
   } catch (error) {
     logDirectusError('getPageBySlug', error);
@@ -70,11 +70,11 @@ export async function getPageBlocks(pageId: number) {
     const blocks = await directus.request(
       readItemsTyped('page_blocks', {
         filter: { page: { _eq: pageId } },
-        fields: ['*'],
+        fields: ['id', 'page', 'collection', 'item', 'sort'], // Optimized: only fetch needed fields
         sort: ['sort'],
       })
     );
-    
+
     return blocks || [];
   } catch (error) {
     logDirectusError('getPageBlocks', error);
@@ -85,8 +85,9 @@ export async function getPageBlocks(pageId: number) {
 export async function getBlockContent(collection: string, itemId: string) {
   try {
     // Special handling for blocks with relations
-    let fields: any = ['*'];
-    
+    // Note: Directus field selection can be string array or nested object
+    let fields: string[] | any = ['*'];
+
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
     } else if (collection === 'block_team') {
@@ -108,7 +109,7 @@ export async function getBlockContent(collection: string, itemId: string) {
         'dentists.sort',
       ];
     }
-    
+
     const result = await directus.request(
       readItemsTyped(collection as string, {
         filter: { id: { _eq: parseInt(itemId) } },
@@ -116,7 +117,7 @@ export async function getBlockContent(collection: string, itemId: string) {
         limit: 1,
       })
     );
-    
+
     return result?.[0] || null;
   } catch (error) {
     logDirectusError(`getBlockContent(${collection})`, error);
@@ -148,7 +149,6 @@ export async function getPageWithBlocks(slug: string): Promise<{ page: Page; blo
               'collection',
               'item',
               'sort',
-              'hide_block',
               // Note: Directus M2A nested queries may have limitations
               // If this doesn't work, we'll use batch query approach instead
             ],
@@ -180,7 +180,6 @@ export async function getPageWithBlocks(slug: string): Promise<{ page: Page; blo
           collection: block.collection as BlockType,
           item: block.item,
           sort: block.sort || 0,
-          hide_block: block.hide_block || false,
           content: null, // Will be fetched separately if nested query doesn't provide it
         };
       });
@@ -229,7 +228,7 @@ export async function getPageWithBlocksBatched(slug: string): Promise<{ page: Pa
     }
 
     const allBlocks: PageBlockWithContent[] = [];
-    
+
     for (const batch of batches) {
       const batchResults = await Promise.all(
         batch.map(async (block: PageBlock) => ({
@@ -380,7 +379,7 @@ export async function getGlobalSettings(): Promise<GlobalSettings | null> {
   try {
     const settings = await directus.request(
       readSingletonTyped('global_settings', {
-        fields: ['*', 'logo.*'],
+        fields: ['id', 'site_name', 'site_description', 'logo', 'favicon'],
       })
     );
     return settings as GlobalSettings || null;
@@ -568,7 +567,7 @@ export async function getServiceCategories(): Promise<ServiceCategory[]> {
   try {
     const categories = await directus.request(
       readItemsTyped('service_categories', {
-        fields: ['*'],
+        fields: ['id', 'name', 'slug', 'description', 'icon_name', 'sort'],
         sort: ['sort', 'name'],
       })
     );
@@ -584,7 +583,11 @@ export async function getServices(): Promise<Service[]> {
     const services = await directus.request(
       readItemsTyped('services', {
         filter: { status: { _eq: 'published' } },
-        fields: ['*', 'category.*', 'hero_image.*'],
+        fields: [
+          'id', 'name', 'slug', 'status', 'short_description', 'long_description',
+          'duration_label', 'price_from', 'hero_image', 'seo_title', 'seo_description',
+          'highlights', 'category'
+        ],
         sort: ['name'],
       })
     );
@@ -685,14 +688,14 @@ export function getNavigationUrl(item: NavigationItem): string {
   if (item.url) {
     return item.url;
   }
-  
+
   // If linked to a page, use the page slug
   if (item.page) {
     if (typeof item.page === 'object' && item.page.slug) {
       return `/${item.page.slug === 'home' ? '' : item.page.slug}`;
     }
   }
-  
+
   // Fallback to #
   return '#';
 }
@@ -701,7 +704,7 @@ export async function getBlogCategories(): Promise<BlogCategory[]> {
   try {
     const categories = await directus.request(
       readItemsTyped('blog_categories', {
-        fields: ['*'],
+        fields: ['id', 'name', 'slug', 'description', 'color', 'sort'],
         sort: ['sort'],
       })
     );
@@ -720,15 +723,15 @@ export async function getBlogPosts(options?: {
 }): Promise<BlogPost[]> {
   try {
     const filter: any = { status: { _eq: 'published' } };
-    
+
     if (options?.category) {
       filter.category = { slug: { _eq: options.category } };
     }
-    
+
     if (options?.featured !== undefined) {
       filter.is_featured = { _eq: options.featured };
     }
-    
+
     if (options?.search) {
       filter._or = [
         { title: { _icontains: options.search } },
@@ -740,7 +743,12 @@ export async function getBlogPosts(options?: {
     const posts = await directus.request(
       readItemsTyped('blog_posts', {
         filter,
-        fields: ['*', 'category.*', 'featured_image.*', 'author_avatar.*'],
+        fields: [
+          'id', 'title', 'slug', 'status', 'excerpt', 'content',
+          'author_name', 'author_role', 'author_avatar',
+          'published_date', 'reading_time', 'views', 'is_featured', 'tags',
+          'category', 'featured_image'
+        ],
         sort: ['-published_date'],
         limit: options?.limit || 100,
       })
@@ -754,10 +762,19 @@ export async function getBlogPosts(options?: {
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
+    // Decode URI-encoded slug to handle Thai characters
+    const decodedSlug = decodeURIComponent(slug);
+
     const posts = await directus.request(
       readItemsTyped('blog_posts', {
-        filter: { slug: { _eq: slug }, status: { _eq: 'published' } },
-        fields: ['*', 'category.*'],
+        filter: { slug: { _eq: decodedSlug }, status: { _eq: 'published' } },
+        fields: [
+          'id', 'title', 'slug', 'status', 'excerpt', 'content',
+          'author_name', 'author_role', 'author_avatar',
+          'published_date', 'reading_time', 'views', 'is_featured', 'tags',
+          'seo_title', 'seo_description',
+          'category', 'featured_image'
+        ],
         limit: 1,
       })
     );
@@ -772,11 +789,16 @@ export async function getFeaturedBlogPost(): Promise<BlogPost | null> {
   try {
     const posts = await directus.request(
       readItemsTyped('blog_posts', {
-        filter: { 
+        filter: {
           is_featured: { _eq: true },
           status: { _eq: 'published' }
         },
-        fields: ['*', 'category.*'],
+        fields: [
+          'id', 'title', 'slug', 'status', 'excerpt', 'content',
+          'author_name', 'author_role', 'author_avatar',
+          'published_date', 'reading_time', 'views', 'is_featured',
+          'category', 'featured_image'
+        ],
         sort: ['-published_date'],
         limit: 1,
       })
@@ -910,11 +932,11 @@ export async function getPromotions(options?: {
 }): Promise<Promotion[]> {
   try {
     const filter: any = { status: { _eq: 'published' } };
-    
+
     if (options?.category) {
       filter.category = { slug: { _eq: options.category } };
     }
-    
+
     if (options?.featured !== undefined) {
       filter.is_featured = { _eq: options.featured };
     }
@@ -973,11 +995,11 @@ export async function getPortfolioCases(options?: {
 }): Promise<PortfolioCase[]> {
   try {
     const filter: any = { status: { _eq: 'published' } };
-    
+
     if (options?.category) {
       filter.category = { slug: { _eq: options.category } };
     }
-    
+
     if (options?.featured !== undefined) {
       filter.is_featured = { _eq: options.featured };
     }
