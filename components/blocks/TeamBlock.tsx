@@ -10,34 +10,34 @@ export default function TeamBlock({ data }: TeamBlockProps) {
 
   const title = data.title ?? "Sodent Dentists";
   const subtitle = data.subtitle ?? "ทันตแพทย์ของเรา";
-  
+
   // Handle M2M relation - dentists comes through junction table
   // Structure: dentists[] contains junction records with dentist_id nested
   let dentists: Dentist[] = [];
-  
+
   if (data.dentists && Array.isArray(data.dentists)) {
-    dentists = data.dentists
+    const mapped = data.dentists
       .map((junction: any) => {
         // M2M junction structure: junction.dentist_id contains the actual dentist
         const dentist = junction.dentist_id || junction;
-        
+
         // Debug logging
         if (process.env.NODE_ENV === 'development') {
           if (!dentist || !dentist.id) {
             console.warn('[TeamBlock] Invalid dentist data:', { junction, dentist });
           }
         }
-        
+
         // Only include published dentists
         if (dentist && dentist.status && dentist.status !== 'published') {
           return null;
         }
-        
+
         // Handle case where dentist might be null or undefined
         if (!dentist || !dentist.id || !dentist.name) {
           return null;
         }
-        
+
         return {
           id: dentist.id,
           name: dentist.name,
@@ -47,17 +47,19 @@ export default function TeamBlock({ data }: TeamBlockProps) {
           photo_url: dentist.photo_url,
           linkedin_url: dentist.linkedin_url,
           sort: junction.sort || dentist.sort,
-        };
-      })
-      .filter((d: Dentist | null): d is Dentist => d !== null && !!d.id && !!d.name)
+        } as Dentist;
+      });
+
+    dentists = mapped
+      .filter((d): d is Dentist => d !== null && !!d.id && !!d.name)
       .sort((a, b) => (a.sort || 0) - (b.sort || 0)); // Sort by junction sort field
   }
-  
+
   // Debug logging
   if (process.env.NODE_ENV === 'development') {
-    console.log('[TeamBlock] Data:', { 
-      title, 
-      subtitle, 
+    console.log('[TeamBlock] Data:', {
+      title,
+      subtitle,
       dentistsCount: dentists.length,
       dentists: dentists.map(d => ({ id: d.id, name: d.name, photo: d.photo }))
     });
@@ -69,16 +71,16 @@ export default function TeamBlock({ data }: TeamBlockProps) {
   };
 
   const fallbackDentists: Dentist[] = [
-    { name: "ทพ. สมชาย ใจดี", nickname: "หมอเอ็ม", specialty: "เชี่ยวชาญด้านทันตกรรมจัดฟัน จบการศึกษาจากจุฬาลงกรณ์มหาวิทยาลัย ประสบการณ์กว่า 10 ปี", photo_url: getDentistPlaceholder("ทพ. สมชาย ใจดี") || undefined },
-    { name: "ทพญ. สุดา รักยิ้ม", nickname: "หมอมิ้นท์", specialty: "ทันตแพทย์เฉพาะทางเด็ก ใจดี มือเบา เด็กๆ รัก จบเฉพาะทางจากมหิดล", photo_url: getDentistPlaceholder("ทพญ. สุดา รักยิ้ม") || undefined },
-    { name: "ทพญ. นิภา วงศ์ศิริ", nickname: "หมอนุ่น", specialty: "เชี่ยวชาญด้านวีเนียร์และการออกแบบรอยยิ้ม (Smile Design) ให้คุณสวยเป๊ะ", photo_url: getDentistPlaceholder("ทพญ. นิภา วงศ์ศิริ") || undefined },
-    { name: "ทพ. ประวิทย์ มั่นคง", nickname: "หมอวิทย์", specialty: "ศัลยกรรมช่องปาก ผ่าฟันคุด รากฟันเทียม มือเบา พักฟื้นไว", photo_url: getDentistPlaceholder("ทพ. ประวิทย์ มั่นคง") || undefined },
-    { name: "ทพ. เคน ธีรเดช", nickname: "หมอเคน", specialty: "ทันตกรรมทั่วไปและทันตกรรมบดเคี้ยว แก้ปัญหาปวดกราม นอนกัดฟัน", photo_url: getDentistPlaceholder("ทพ. เคน ธีรเดช") || undefined },
-    { name: "ทพญ. อัมพวา สุขใจ", nickname: "หมอแอม", specialty: "รักษารากฟันด้วยกล้องจุลทรรศน์ ความละเอียดสูง เก็บฟันไว้ได้นาน", photo_url: getDentistPlaceholder("ทพญ. อัมพวา สุขใจ") || undefined },
-    { name: "ทพญ. โบว์ เมลดา", nickname: "หมอโบว์", specialty: "ทันตกรรมประดิษฐ์ ครอบฟัน สะพานฟัน ฟันปลอมถอดได้", photo_url: getDentistPlaceholder("ทพญ. โบว์ เมลดา") || undefined },
-    { name: "ทพญ. บี น้ำทิพย์", nickname: "หมอบี", specialty: "ทันตกรรมจัดฟันใส Invisalign ระดับ Platinum Provider", photo_url: getDentistPlaceholder("ทพญ. บี น้ำทิพย์") || undefined },
-    { name: "ทพ. กาย รัชชานนท์", nickname: "หมอกาย", specialty: "โรคเหงือกและปริทันต์วิทยา รักษาเหงือกอักเสบ ปลูกเหงือก", photo_url: getDentistPlaceholder("ทพ. กาย รัชชานนท์") || undefined },
-    { name: "ทพญ. เมย์ เฟื่องอารมย์", nickname: "หมอเมย์", specialty: "ทันตกรรมทั่วไป ขูดหินปูน อุดฟัน มือเบา ใจเย็น", photo_url: getDentistPlaceholder("ทพญ. เมย์ เฟื่องอารมย์") || undefined },
+    { id: "fallback-1", name: "ทพ. สมชาย ใจดี", nickname: "หมอเอ็ม", specialty: "เชี่ยวชาญด้านทันตกรรมจัดฟัน จบการศึกษาจากจุฬาลงกรณ์มหาวิทยาลัย ประสบการณ์กว่า 10 ปี", photo_url: getDentistPlaceholder("ทพ. สมชาย ใจดี") || undefined },
+    { id: "fallback-2", name: "ทพญ. สุดา รักยิ้ม", nickname: "หมอมิ้นท์", specialty: "ทันตแพทย์เฉพาะทางเด็ก ใจดี มือเบา เด็กๆ รัก จบเฉพาะทางจากมหิดล", photo_url: getDentistPlaceholder("ทพญ. สุดา รักยิ้ม") || undefined },
+    { id: "fallback-3", name: "ทพญ. นิภา วงศ์ศิริ", nickname: "หมอนุ่น", specialty: "เชี่ยวชาญด้านวีเนียร์และการออกแบบรอยยิ้ม (Smile Design) ให้คุณสวยเป๊ะ", photo_url: getDentistPlaceholder("ทพญ. นิภา วงศ์ศิริ") || undefined },
+    { id: "fallback-4", name: "ทพ. ประวิทย์ มั่นคง", nickname: "หมอวิทย์", specialty: "ศัลยกรรมช่องปาก ผ่าฟันคุด รากฟันเทียม มือเบา พักฟื้นไว", photo_url: getDentistPlaceholder("ทพ. ประวิทย์ มั่นคง") || undefined },
+    { id: "fallback-5", name: "ทพ. เคน ธีรเดช", nickname: "หมอเคน", specialty: "ทันตกรรมทั่วไปและทันตกรรมบดเคี้ยว แก้ปัญหาปวดกราม นอนกัดฟัน", photo_url: getDentistPlaceholder("ทพ. เคน ธีรเดช") || undefined },
+    { id: "fallback-6", name: "ทพญ. อัมพวา สุขใจ", nickname: "หมอแอม", specialty: "รักษารากฟันด้วยกล้องจุลทรรศน์ ความละเอียดสูง เก็บฟันไว้ได้นาน", photo_url: getDentistPlaceholder("ทพญ. อัมพวา สุขใจ") || undefined },
+    { id: "fallback-7", name: "ทพญ. โบว์ เมลดา", nickname: "หมอโบว์", specialty: "ทันตกรรมประดิษฐ์ ครอบฟัน สะพานฟัน ฟันปลอมถอดได้", photo_url: getDentistPlaceholder("ทพญ. โบว์ เมลดา") || undefined },
+    { id: "fallback-8", name: "ทพญ. บี น้ำทิพย์", nickname: "หมอบี", specialty: "ทันตกรรมจัดฟันใส Invisalign ระดับ Platinum Provider", photo_url: getDentistPlaceholder("ทพญ. บี น้ำทิพย์") || undefined },
+    { id: "fallback-9", name: "ทพ. กาย รัชชานนท์", nickname: "หมอกาย", specialty: "โรคเหงือกและปริทันต์วิทยา รักษาเหงือกอักเสบ ปลูกเหงือก", photo_url: getDentistPlaceholder("ทพ. กาย รัชชานนท์") || undefined },
+    { id: "fallback-10", name: "ทพญ. เมย์ เฟื่องอารมย์", nickname: "หมอเมย์", specialty: "ทันตกรรมทั่วไป ขูดหินปูน อุดฟัน มือเบา ใจเย็น", photo_url: getDentistPlaceholder("ทพญ. เมย์ เฟื่องอารมย์") || undefined },
   ];
 
   const displayDentists = dentists.length > 0 ? dentists : fallbackDentists;
@@ -100,10 +102,10 @@ export default function TeamBlock({ data }: TeamBlockProps) {
             // Get image URL - prioritize "photo" field (Directus file) over "photo_url" (fallback/external)
             // The "photo" field in Directus is the file field, "photo_url" is for external URLs
             let img: string | null = null;
-            
+
             // First try the "photo" field (Directus file UUID)
             const photoField = d.photo || d.photo_url;
-            
+
             if (photoField) {
               // Check if it's already a URL string
               if (typeof photoField === 'string' && (photoField.startsWith('http') || photoField.startsWith('/') || photoField.startsWith('data:'))) {
@@ -112,7 +114,7 @@ export default function TeamBlock({ data }: TeamBlockProps) {
               } else {
                 // Extract UUID from photo field (could be string UUID or file object)
                 let fileId: string | null = null;
-                
+
                 if (typeof photoField === 'string') {
                   // It's a UUID string
                   fileId = photoField;
@@ -120,11 +122,11 @@ export default function TeamBlock({ data }: TeamBlockProps) {
                   // It's a file object - extract the id
                   fileId = (photoField as any).id || null;
                 }
-                
+
                 if (fileId) {
                   // Convert UUID to Directus asset URL
                   img = getFileUrl(fileId);
-                  
+
                   // Debug logging in development
                   if (process.env.NODE_ENV === 'development') {
                     if (!img) {
@@ -140,17 +142,17 @@ export default function TeamBlock({ data }: TeamBlockProps) {
                 }
               }
             }
-            
+
             return (
-              <div 
+              <div
                 key={`${d.name}-${index}`}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group border border-slate-100"
               >
                 <div className="aspect-[3/4] overflow-hidden bg-slate-100 relative">
                   {img ? (
-                    <img 
+                    <img
                       src={img}
-                      alt={d.name} 
+                      alt={d.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
