@@ -1,16 +1,25 @@
-import type { BlockServiceDetail, Service, ServiceFeature, ServiceProcessStep, ServiceResult, ServiceCareItem, ServiceSuitability } from "@/lib/types";
+import type { BlockServiceDetail, Service, ServiceFeature, ServiceProcessStep, ServiceResult, ServiceCareItem, ServiceSuitability, ServicePricingPlan, ServiceFAQ, ServicePortfolioCase } from "@/lib/types";
 import { getFileUrl } from "@/lib/directus";
 import Link from "next/link";
-import { 
-  EyeOff, 
-  Smile, 
-  Zap, 
-  Clock, 
-  CheckCircle2, 
-  Sparkles, 
+import {
+  EyeOff,
+  Smile,
+  Zap,
+  Clock,
+  CheckCircle2,
+  Sparkles,
   AlertCircle,
   CalendarCheck,
-  Star
+  Star,
+  ChevronDown,
+  Phone,
+  MessageCircle,
+  Send,
+  ShieldCheck,
+  Lock,
+  Percent,
+  Check,
+  ArrowRight
 } from "lucide-react";
 
 interface ServiceDetailBlockProps {
@@ -64,10 +73,14 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
   const showFeatures = data.show_features ?? true;
   const showProcess = data.show_process ?? true;
   const showResultsCare = data.show_results_care ?? true;
+  const showPricing = data.show_pricing ?? true;
+  const showFaq = data.show_faq ?? true;
+  const showPortfolio = data.show_portfolio ?? false;
+  const showBooking = data.show_booking ?? true;
 
   // Get service data
-  const service = data.service && typeof data.service === "object" 
-    ? data.service 
+  const service = data.service && typeof data.service === "object"
+    ? data.service
     : null;
 
   if (!service) {
@@ -76,12 +89,12 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
   }
 
   // Parse JSON fields
-  const features: ServiceFeature[] = Array.isArray(service.features) 
-    ? service.features 
-    : typeof service.features === "string" 
+  const features: ServiceFeature[] = Array.isArray(service.features)
+    ? service.features
+    : typeof service.features === "string"
       ? JSON.parse(service.features || "[]")
       : [];
-  
+
   const processSteps: ServiceProcessStep[] = Array.isArray(service.process_steps)
     ? service.process_steps
     : typeof service.process_steps === "string"
@@ -105,6 +118,24 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
     : typeof service.suitability === "string"
       ? JSON.parse(service.suitability || '{"items":[]}')
       : { items: [] };
+
+  const pricingPlans: ServicePricingPlan[] = Array.isArray(service.pricing_plans)
+    ? service.pricing_plans
+    : typeof service.pricing_plans === "string"
+      ? JSON.parse(service.pricing_plans || "[]")
+      : [];
+
+  const faqs: ServiceFAQ[] = Array.isArray(service.faqs)
+    ? service.faqs
+    : typeof service.faqs === "string"
+      ? JSON.parse(service.faqs || "[]")
+      : [];
+
+  const portfolioCases: ServicePortfolioCase[] = Array.isArray(service.portfolio_cases)
+    ? service.portfolio_cases
+    : typeof service.portfolio_cases === "string"
+      ? JSON.parse(service.portfolio_cases || "[]")
+      : [];
 
   // Use price_starting_from if available, otherwise fall back to price_from
   const priceDisplay = service.price_starting_from || service.price_from;
@@ -186,16 +217,21 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
 
             {/* Right Image */}
             <div className="relative min-h-[400px] lg:h-auto bg-slate-50">
-              {service.hero_image && (
-                <>
-                  <img
-                    src={getFileUrl(service.hero_image as any) || ""}
-                    alt={service.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-white/40 lg:via-transparent lg:to-transparent"></div>
-                </>
-              )}
+              {(() => {
+                const imageUrl = getFileUrl(service.hero_image as any);
+                const fallbackUrl = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80";
+                const finalUrl = imageUrl || fallbackUrl;
+                return (
+                  <>
+                    <img
+                      src={finalUrl}
+                      alt={service.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-white/40 lg:via-transparent lg:to-transparent"></div>
+                  </>
+                );
+              })()}
 
               {/* Floating Stats */}
               {(service.stats_cases || service.stats_rating) && (
@@ -428,6 +464,270 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
             </section>
           )}
         </div>
+      )}
+
+      {/* Portfolio Section */}
+      {showPortfolio && portfolioCases.length > 0 && (
+        <section className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-8 lg:p-12">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-semibold text-blue-900 tracking-tight mb-3">ผลงานจัดฟันใส</h2>
+            <p className="text-slate-500 font-normal">ตัวอย่างเคสจริงจากคนไข้ของเรา</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {portfolioCases.map((caseItem, idx) => (
+              <div key={idx} className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-lg transition-all duration-300">
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={caseItem.image}
+                    alt={caseItem.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3 flex gap-2">
+                    <span className="px-2 py-0.5 bg-slate-900/60 backdrop-blur-sm text-white text-[10px] font-medium rounded">Before</span>
+                    <span className="px-2 py-0.5 bg-green-500/90 text-white text-[10px] font-medium rounded">After</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex justify-between items-center mb-2">
+                    <h3 className="font-medium text-blue-900">{caseItem.title}</h3>
+                    <span className="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-500">{caseItem.duration}</span>
+                  </div>
+                  <p className="text-xs text-slate-500 font-light">{caseItem.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link
+              href="/our-work"
+              className="inline-flex items-center gap-1.5 text-blue-600 font-medium hover:text-blue-700 transition-colors text-sm"
+            >
+              ดูผลงานทั้งหมด <ArrowRight className="w-4 h-4 stroke-[2]" />
+            </Link>
+          </div>
+        </section>
+      )}
+
+      {/* Pricing Section */}
+      {showPricing && pricingPlans.length > 0 && (
+        <section className="rounded-[32px] overflow-hidden bg-gradient-to-br from-blue-500 to-sky-500 p-8 lg:p-12 text-white relative shadow-lg shadow-blue-500/20">
+          {/* Background Decor */}
+          <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+
+          <div className="relative z-10 text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 text-xs font-medium mb-4 text-amber-100">
+              <Percent className="w-3 h-3 stroke-[2]" />
+              โปรโมชั่นพิเศษ เดือนนี้เท่านั้น!
+            </div>
+            <h2 className="text-3xl font-bold tracking-tight">ราคา{service.name}</h2>
+          </div>
+
+          <div className="relative z-10 grid md:grid-cols-3 gap-6 items-center">
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={
+                  plan.is_popular
+                    ? "bg-white rounded-2xl p-6 text-slate-900 shadow-xl scale-105 relative border border-white/50"
+                    : "bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+                }
+              >
+                {plan.is_popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                    ยอดนิยม
+                  </div>
+                )}
+                <h3 className={`text-sm font-medium mb-2 ${plan.is_popular ? "text-blue-500" : "text-blue-100"}`}>
+                  {plan.tier}
+                </h3>
+                <div className={`text-3xl font-bold mb-1 ${plan.is_popular ? "text-4xl tracking-tight" : ""}`}>
+                  {plan.price}
+                </div>
+                <p className={`text-xs mb-6 ${plan.is_popular ? "text-slate-400" : "text-blue-200"}`}>
+                  {plan.description}
+                </p>
+                <ul className={`space-y-3 text-sm ${plan.is_popular ? "" : "font-light"}`}>
+                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
+                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
+                    {plan.aligner_count} Aligner
+                  </li>
+                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
+                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
+                    {plan.duration}
+                  </li>
+                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
+                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
+                    รีเทนเนอร์ {plan.retainer_count}
+                  </li>
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center relative z-10">
+            <p className="text-xs text-blue-100 opacity-80">
+              * ราคารวมค่าสแกนฟัน 3D, วางแผนการรักษา, นัดติดตามผล และรีเทนเนอร์แล้ว
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* FAQ Section */}
+      {showFaq && faqs.length > 0 && (
+        <section className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-8 lg:p-12">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-semibold text-blue-900 tracking-tight mb-3">
+              คำถามที่พบบ่อย
+            </h2>
+            <p className="text-slate-500 font-normal">ข้อสงสัยเกี่ยวกับ{service.name}</p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-3">
+            {faqs.map((faq, index) => (
+              <details
+                key={index}
+                className="group bg-slate-50 rounded-xl border border-slate-100 open:bg-white open:shadow-md transition-all duration-300"
+              >
+                <summary className="flex items-center justify-between p-4 cursor-pointer list-none font-medium text-blue-900">
+                  {faq.question}
+                  <ChevronDown className="w-4 h-4 text-slate-400 transition-transform group-open:rotate-180" />
+                </summary>
+                <div className="px-4 pb-4 text-sm text-slate-500 font-light leading-relaxed">
+                  {faq.answer}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Booking Section */}
+      {showBooking && (
+        <section id="booking" className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
+          <div className="grid lg:grid-cols-2">
+            {/* Form */}
+            <div className="p-8 lg:p-12">
+              <h2 className="text-2xl font-semibold text-blue-900 tracking-tight mb-2">
+                นัดปรึกษาฟรี
+              </h2>
+              <p className="text-slate-500 text-sm font-light mb-8">
+                กรอกข้อมูลเพื่อนัดหมาย ทีมงานจะติดต่อกลับภายใน 30 นาที
+              </p>
+
+              <form className="space-y-4">
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                    ชื่อ-นามสกุล <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="กรุณากรอกชื่อ"
+                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                    เบอร์โทรศัพท์ <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="08X-XXX-XXXX"
+                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                    ปัญหาที่ต้องการแก้ไข
+                  </label>
+                  <select className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800">
+                    <option value="">-- เลือก --</option>
+                    <option value="crowding">ฟันซ้อนเก</option>
+                    <option value="spacing">ฟันห่าง</option>
+                    <option value="protrusion">ฟันยื่น</option>
+                    <option value="other">อื่นๆ</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
+                    วัน-เวลาที่สะดวก
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="เช่น เสาร์-อาทิตย์ 10.00-12.00"
+                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition-all"
+                >
+                  <Send className="w-4 h-4 stroke-[2]" />
+                  ส่งข้อมูลนัดหมาย
+                </button>
+              </form>
+            </div>
+
+            {/* Contact Info */}
+            <div className="bg-slate-50 p-8 lg:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-slate-100">
+              <h3 className="font-medium text-blue-900 mb-6">หรือติดต่อช่องทางอื่น</h3>
+              <div className="space-y-3">
+                <a
+                  href="tel:0969159391"
+                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-600">
+                    <Phone className="w-5 h-5 stroke-[1.5]" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs text-slate-500 mb-0.5">โทรหาเรา</div>
+                    <div className="font-semibold text-slate-900 leading-none">096-915-9391</div>
+                  </div>
+                </a>
+
+                <a
+                  href="https://line.me/ti/p/@baomue"
+                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-green-300 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[#06c755]/10 flex items-center justify-center shrink-0">
+                    <span className="text-[#06c755] font-bold text-xs">LINE</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs text-slate-500 mb-0.5">แชท LINE</div>
+                    <div className="font-semibold text-slate-900 leading-none">@BAOMUE</div>
+                  </div>
+                </a>
+
+                <a
+                  href="#"
+                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-500">
+                    <MessageCircle className="w-5 h-5 stroke-[1.5]" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-xs text-slate-500 mb-0.5">Facebook Messenger</div>
+                    <div className="font-semibold text-slate-900 leading-none">Baomue Dental</div>
+                  </div>
+                </a>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-slate-200 flex gap-6">
+                <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <ShieldCheck className="w-4 h-4 text-green-500 stroke-[1.5]" />
+                  ปลอดภัย 100%
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                  <Lock className="w-4 h-4 text-green-500 stroke-[1.5]" />
+                  ข้อมูลเป็นความลับ
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       )}
     </div>
   );

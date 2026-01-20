@@ -268,6 +268,9 @@ export interface Service {
   cta_booking_link?: string;
   cta_line_text?: string;
   cta_line_link?: string;
+  pricing_plans?: ServicePricingPlan[] | any; // JSON field for pricing tiers
+  faqs?: ServiceFAQ[] | any; // JSON field for FAQs
+  portfolio_cases?: ServicePortfolioCase[] | any; // JSON field for portfolio cases
 }
 
 export interface BlockAboutUs {
@@ -543,6 +546,29 @@ export interface ServiceSuitability {
   items: string[]; // List of suitability criteria
 }
 
+export interface ServicePricingPlan {
+  tier: string;          // "LITE", "STANDARD", "COMPREHENSIVE"
+  price: string;         // "฿39,000"
+  description: string;   // "เหมาะกับเคสง่าย"
+  aligner_count: string; // "14 ชุด" or "ไม่จำกัด"
+  duration: string;      // "3-6 เดือน"
+  retainer_count: string;// "1 คู่"
+  is_popular?: boolean;  // highlight badge
+}
+
+export interface ServiceFAQ {
+  question: string;
+  answer: string;
+  sort?: number;
+}
+
+export interface ServicePortfolioCase {
+  title: string;
+  duration: string;
+  description: string;
+  image: string;
+}
+
 export interface BlockServiceDetail {
   id: number;
   service?: Service | number | null; // M2O to services
@@ -550,6 +576,10 @@ export interface BlockServiceDetail {
   show_features?: boolean;
   show_process?: boolean;
   show_results_care?: boolean;
+  show_pricing?: boolean;
+  show_faq?: boolean;
+  show_portfolio?: boolean;
+  show_booking?: boolean;
 }
 
 // Blog listing block interface
