@@ -1,155 +1,234 @@
-# Website - Next.js + Directus CMS
+# Baomue Dental Clinic Website
 
-A modern, block-based website built with Next.js 14 and Directus CMS.
+> 🦷 Modern, premium dental clinic website built with **Next.js 14** + **Directus CMS**
 
-## Features
+A complete, production-ready website framework featuring a block-based page builder, dynamic content management, and beautiful responsive design.
 
-- 🚀 Next.js 14 with App Router
-- 💾 Directus CMS integration
-- 🎨 Tailwind CSS for styling
-- 📱 Fully responsive design
-- 🔄 Server Components for optimal performance
-- 🧩 Block-based page builder structure
+---
 
-## Quick Start
+## ✨ Features
+
+### Core Technology
+- 🚀 **Next.js 14** with App Router & Server Components
+- 💾 **Directus CMS** for headless content management
+- 🎨 **Tailwind CSS** with custom design system
+- 📱 **Fully responsive** - mobile-first design
+- ⚡ **Optimized performance** - Server Components & lazy loading
+- 🔒 **Secure API** - Token-based authentication
+
+### Content Management
+- 🧩 **Block-based Page Builder** - 22+ reusable content blocks
+- 📝 **Blog System** - Categories, Thai slug support, featured images
+- 🏥 **Services Management** - Categories, detailed pages, image galleries
+- 🎁 **Promotions** - Carousel display with active/expired status
+- 📍 **Multi-location** - Branch information with maps
+- 👨‍⚕️ **Team Profiles** - Staff and dentist profiles
+- 📊 **Portfolio/Our Work** - Before/after galleries with categories
+
+### SEO & Performance
+- 🔍 **Auto-generated Sitemap** - next-sitemap integration
+- 📃 **Dynamic Meta Tags** - Per-page SEO
+- 🖼️ **Optimized Images** - Directus asset proxy with authentication
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ installed
-- Directus instance running
+- Node.js 18+
+- Directus instance (hosted or self-hosted)
 - Environment variables configured
 
 ### Installation
 
-1. Install dependencies:
 ```bash
+# Clone the repository
+git clone https://github.com/taciosoftdev/baomue-refactor.git
+cd baomue-refactor
+
+# Install dependencies
 npm install
-```
 
-2. Set up environment variables:
-Create `.env.local`:
-```env
-NEXT_PUBLIC_DIRECTUS_URL=http://localhost:8055
-DIRECTUS_STATIC_TOKEN=your-static-token-here
-```
+# Set up environment variables
+cp env.example .env.local
+# Edit .env.local with your Directus credentials
 
-3. Run the development server:
-```bash
+# Run development server
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-├── app/                    # Next.js app directory
-│   ├── blog/              # Blog pages
-│   ├── services/          # Service pages
-│   └── ...
-├── components/            # React components
-│   └── README.md          # Component documentation
-├── lib/                   # Utilities and Directus client
-├── config/                # Configuration files
-│   ├── ALL_COLLECTIONS_COMPLETE.json  # Complete collection config
-│   ├── COLLECTIONS_USER_FRIENDLY.json  # UI enhancement config
-│   └── README.md          # Config documentation
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes (asset proxy)
+│   ├── blog/              # Blog listing & detail pages
+│   ├── services/          # Service listing & detail pages
+│   ├── our-work/          # Portfolio page
+│   ├── promotions/        # Promotions page
+│   ├── contact/           # Contact page
+│   └── [...slug]/         # Dynamic page builder
+├── components/
+│   ├── blocks/            # 22 reusable content blocks
+│   ├── services/          # Service-specific components
+│   └── skeletons/         # Loading states
+├── lib/
+│   ├── directus.ts        # Directus client & auth
+│   ├── data.ts            # Data fetching functions
+│   └── types.ts           # TypeScript interfaces
+├── config/                # Directus collection configs
 ├── docs/                  # Documentation
-│   ├── USER_GUIDE.md
-│   ├── QUICK_REFERENCE.md
-│   ├── COLLECTION_GUIDES/
-│   └── ...
-├── reference/             # Developer reference guides
+├── reference/             # Developer guides
 ├── scripts/               # Utility scripts
-│   └── apply-collection-configs.js
-├── archive/               # Archived/unused files (for reference)
-│   ├── old-configs/       # Outdated configuration files
-│   ├── working-files/     # Temporary working documents
-│   ├── plans/             # Planning documents
-│   └── reference-files/   # Original HTML reference files
-└── package.json
+└── public/                # Static assets
 ```
 
-## Documentation
+---
 
-All documentation is organized in the `docs/` directory:
+## 🧩 Available Content Blocks
 
-- **[docs/USER_GUIDE.md](docs/USER_GUIDE.md)** - Complete user manual for content managers
-- **[docs/QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md)** - Quick reference card
-- **[docs/DOCUMENTATION_INDEX.md](docs/DOCUMENTATION_INDEX.md)** - Complete documentation index
-- **[docs/COLLECTION_GUIDES/](docs/COLLECTION_GUIDES/)** - Collection-specific guides
+| Block | Description |
+|-------|-------------|
+| `HeroBlock` | Main hero section with background image |
+| `AboutUsBlock` | About section with images |
+| `ServicesBlock` | Service categories & cards |
+| `WhyChooseUsBlock` | Features & benefits |
+| `TeamBlock` | Dentist/staff profiles |
+| `SignatureTreatmentBlock` | Featured treatments |
+| `SafetyBannerBlock` | Safety & trust indicators |
+| `LocationsBlock` | Branch locations with maps |
+| `BookingBlock` | Appointment booking CTA |
+| `ContactBlock` | Contact form & info |
+| `TestimonialsBlock` | Customer reviews |
+| `StatsBlock` | Statistics & numbers |
+| `PromotionsBlock` | Promotional carousel |
+| `PortfolioBlock` | Before/after gallery |
+| `BlogListingBlock` | Blog posts grid |
+| `ServiceDetailBlock` | Full service detail page |
+| `FormBlock` | Dynamic forms |
+| `TextBlock` | Rich text content |
 
-### For Content Managers
+---
 
-Start with the [User Guide](docs/USER_GUIDE.md) to learn how to:
-- Edit homepage content
-- Add and manage services
-- Create blog posts
-- Update navigation menus
-- Change site settings
-- Use the page builder
+## 🔧 Configuration
 
-### For Developers
+### Environment Variables
 
-- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - System architecture
-- [docs/SETUP.md](docs/SETUP.md) - Setup instructions
-- [docs/INTEGRATION_PLAN.md](docs/INTEGRATION_PLAN.md) - Integration plan
+Create `.env.local`:
 
-## Directus Collections
+```env
+# Directus Configuration
+NEXT_PUBLIC_DIRECTUS_URL=https://your-directus.example.com
+DIRECTUS_EMAIL=admin@example.com
+DIRECTUS_PASSWORD=your-password
 
-The website uses the following Directus collections:
-
-- **pages** - Main pages
-- **page_blocks** - Junction table for blocks (M2A)
-- **block_*** - Content blocks (hero, about_us, why_choose_us, team, signature_treatment, safety_banner, services, locations, booking, contact, features, testimonials, pricing, footer)
-- **services** - Service offerings
-- **service_categories** - Service organization
-- **blog_posts** - Blog posts and articles
-- **blog_categories** - Blog post categories
-- **global_settings** - Site-wide settings
-- **navigation** - Menu items
-
-See [docs/COLLECTION_SETUP_GUIDE.md](docs/COLLECTION_SETUP_GUIDE.md) for complete collection setup information.
-
-## Configuration
-
-### Applying Collection Configurations
-
-To apply user-friendly collection configurations to Directus:
-
-```bash
-npm run apply-configs
+# Optional: Static token (if not using email/password)
+# DIRECTUS_STATIC_TOKEN=your-static-token
 ```
 
-This updates collection metadata (notes, translations, display templates) in Directus. See [config/README.md](config/README.md) for details.
+### Directus Collections
 
-## Development
+Required collections in Directus:
 
-### Build for Production
+| Collection | Purpose |
+|------------|---------|
+| `pages` | Main pages |
+| `page_blocks` | Junction table (M2A) |
+| `block_*` | Content blocks |
+| `services` | Service items |
+| `service_categories` | Service grouping |
+| `blog_posts` | Blog articles |
+| `blog_categories` | Blog grouping |
+| `promotions` | Promotional content |
+| `portfolio_items` | Before/after cases |
+| `team_members` | Staff profiles |
+| `locations` | Branch info |
+| `global_settings` | Site-wide settings |
+| `navigation` | Menu items |
 
-```bash
-npm run build
-npm start
-```
+See [docs/DIRECTUS_SCHEMA_REQUIREMENTS.md](docs/DIRECTUS_SCHEMA_REQUIREMENTS.md) for complete schema.
 
-### Linting
+---
 
-```bash
-npm run lint
-```
+## 📜 Available Scripts
 
-## Environment Variables
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
+| `npm run apply-configs` | Apply Directus collection configs |
+| `npm run organize-collections` | Organize Directus collections |
 
-- `NEXT_PUBLIC_DIRECTUS_URL` - Your Directus instance URL
-- `DIRECTUS_STATIC_TOKEN` - Static token for API access
+---
 
-## License
+## 📚 Documentation
+
+| Document | Description |
+|----------|-------------|
+| [docs/USER_GUIDE.md](docs/USER_GUIDE.md) | Content manager guide |
+| [docs/QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) | Quick reference card |
+| [docs/DIRECTUS_SCHEMA_REQUIREMENTS.md](docs/DIRECTUS_SCHEMA_REQUIREMENTS.md) | Database schema |
+| [CLAUDE.md](CLAUDE.md) | AI development rules |
+
+### Developer Reference Guides
+
+Located in `reference/` directory:
+- Creating Directus blocks
+- Adding new pages
+- Data fetching patterns
+- Analytics integration
+- SEO metadata
+- Image handling
+- And more...
+
+---
+
+## 🔄 Recent Updates (January 2025)
+
+- ✅ Fixed Directus API authentication (lazy login)
+- ✅ Fixed blog page with Thai slug support
+- ✅ Fixed services category filtering
+- ✅ Added "All" tab for services section
+- ✅ Improved error handling & loading states
+- ✅ Cleaned up old documentation files
+- ✅ Added service detail seed data
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 14.2.18 |
+| CMS | Directus (via @directus/sdk) |
+| Styling | Tailwind CSS 3.4 |
+| Icons | Lucide React |
+| Language | TypeScript 5.6 |
+| SEO | next-sitemap |
+
+---
+
+## 📄 License
 
 MIT
 
+---
 
+## 👥 Contributing
 
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
+---
 
-
-
+**Built with ❤️ for Baomue Dental Clinic**
