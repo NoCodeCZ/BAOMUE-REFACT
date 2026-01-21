@@ -1,9 +1,8 @@
-import { createDirectus, rest, authentication } from '@directus/sdk';
+import { createDirectus, rest, staticToken } from '@directus/sdk';
 import type { Schema } from './types';
 
 const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
-const directusEmail = process.env.DIRECTUS_EMAIL;
-const directusPassword = process.env.DIRECTUS_PASSWORD;
+const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
 
 // Instead of throwing when config is missing, we create a safe fallback client
 // so the app can still run without Directus configured.
@@ -13,84 +12,37 @@ if (!directusUrl) {
   );
 }
 
-if (!directusEmail || !directusPassword) {
+if (!directusToken) {
   // Only warn in development, not in production
   if (process.env.NODE_ENV === 'development') {
-    console.warn('[Directus] DIRECTUS_EMAIL or DIRECTUS_PASSWORD is not set');
+    console.warn('[Directus] DIRECTUS_STATIC_TOKEN is not set');
   }
 }
 
 // Remove trailing slash from URL when defined
 const cleanUrl = directusUrl ? directusUrl.replace(/\/$/, '') : null;
 
-// Track authentication state
-let isAuthenticated = false;
-let authPromise: Promise<void> | null = null;
-
-// Create base Directus client with authentication
-const baseClient = cleanUrl && directusEmail && directusPassword
+// Create base Directus client with static token authentication
+// Static token is better for production/public apps than email/password
+const directus = (cleanUrl && directusToken
   ? createDirectus<Schema>(cleanUrl)
     .with(rest())
-    .with(authentication('json'))
-  : null;
+    .with(staticToken(directusToken))
+  : null) as any;
 
-// Ensure authentication before making requests
-async function ensureAuthenticated(): Promise<void> {
-  if (!baseClient || !directusEmail || !directusPassword) {
-    throw new Error(
-      '[Directus] Client is not configured. Please set NEXT_PUBLIC_DIRECTUS_URL, DIRECTUS_EMAIL, and DIRECTUS_PASSWORD.'
-    );
-  }
-
-  if (isAuthenticated) {
-    return;
-  }
-
-  // Prevent multiple concurrent login attempts
-  if (authPromise) {
-    return authPromise;
-  }
-
-  authPromise = (async () => {
-    try {
-      await baseClient.login(directusEmail!, directusPassword!);
-      isAuthenticated = true;
-      console.log('[Directus] Successfully authenticated');
-    } catch (error) {
-      isAuthenticated = false;
-      authPromise = null;
-      console.error('[Directus] Authentication failed:', error);
-      throw error;
-    }
-  })();
-
-  return authPromise;
+// Add request wrapper that handles missing client gracefully
+if (directus === null) {
+  // Create a mock client that returns empty data instead of throwing
+  const mockClient = {
+    async request<T>(operation: any): Promise<T> {
+      console.warn('[Directus] Client not configured. Returning empty result.');
+      return [] as unknown as T;
+    },
+  };
+  (globalThis as any).__directusMock = mockClient;
 }
 
-// Wrapper that ensures authentication before every request
-const directus = (baseClient
-  ? {
-    async request<T>(operation: any): Promise<T> {
-      await ensureAuthenticated();
-      return baseClient.request(operation);
-    },
-    // Expose login for direct use if needed
-    login: async (email: string, password: string) => {
-      if (baseClient) {
-        await baseClient.login(email, password);
-        isAuthenticated = true;
-      }
-    },
-  }
-  : {
-    request: async () => {
-      throw new Error(
-        '[Directus] Client is not configured. Please set NEXT_PUBLIC_DIRECTUS_URL, DIRECTUS_EMAIL, and DIRECTUS_PASSWORD.'
-      );
-    },
-  }) as any;
-
-export default directus;
+export default directus || (globalThis as any).__directusMock;
 
 
 // Helper function to get file URL
