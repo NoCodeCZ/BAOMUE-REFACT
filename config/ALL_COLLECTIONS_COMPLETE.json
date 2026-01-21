@@ -1,0 +1,2243 @@
+{
+  "collections": {
+    "pages": {
+      "collection": "pages",
+      "meta": {
+        "collection": "pages",
+        "icon": "article",
+        "note": "Manage all pages on your website. Each page can contain multiple content blocks that you can arrange and customize.",
+        "display_template": "{{title}} ({{status}})",
+        "singleton": false,
+        "archive_app_filter": true,
+        "archive_field": "status",
+        "archive_value": "archived",
+        "unarchive_value": "published"
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half"
+          },
+          "schema": {
+            "is_nullable": false,
+            "is_unique": true
+          }
+        },
+        {
+          "field": "status",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "options": {
+              "choices": [
+                {"text": "Draft", "value": "draft"},
+                {"text": "Published", "value": "published"},
+                {"text": "Archived", "value": "archived"}
+              ]
+            }
+          },
+          "schema": {
+            "default_value": "draft",
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "seo_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "seo_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "hidden": true
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_created",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-created"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_created",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-created"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_updated",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-updated"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_updated",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-updated"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "page_blocks": {
+      "collection": "page_blocks",
+      "meta": {
+        "collection": "page_blocks",
+        "icon": "view_quilt",
+        "note": "Junction table connecting pages to content blocks. This is used for the Many-to-Any (M2A) relationship between pages and blocks.",
+        "display_template": "{{page.title}} → {{collection}}",
+        "singleton": false,
+        "hidden": true
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "page",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "special": ["m2o"],
+            "width": "half"
+          },
+          "schema": {
+            "foreign_key_table": "pages",
+            "foreign_key_column": "id"
+          }
+        },
+        {
+          "field": "collection",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "item",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_hero": {
+      "collection": "block_hero",
+      "meta": {
+        "collection": "block_hero",
+        "icon": "image",
+        "note": "Hero section with headline, description, and call-to-action buttons. Used at the top of pages.",
+        "display_template": "Hero: {{headline_line1}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "badge_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "headline_line1",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "headline_line2",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "primary_cta_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "primary_cta_link",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "secondary_cta_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "secondary_cta_link",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "background_image",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_about_us": {
+      "collection": "block_about_us",
+      "meta": {
+        "collection": "block_about_us",
+        "icon": "info",
+        "note": "About Us section with headline, subtitle, paragraphs, and image.",
+        "display_template": "About Us: {{headline}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "headline",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "paragraph_1",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "paragraph_2",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "paragraph_3",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_why_choose_us": {
+      "collection": "block_why_choose_us",
+      "meta": {
+        "collection": "block_why_choose_us",
+        "icon": "star",
+        "note": "Why Choose Us section with title, subtitle, and 4 key points.",
+        "display_template": "Why Choose Us: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_1_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_1_text",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_2_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_2_text",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_3_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_3_text",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_4_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "point_4_text",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_team": {
+      "collection": "block_team",
+      "meta": {
+        "collection": "block_team",
+        "icon": "people",
+        "note": "Team section displaying dentists with photos, names, and specialties.",
+        "display_template": "Team: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "note",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "dentists",
+          "type": "json",
+          "meta": {
+            "interface": "list",
+            "width": "full",
+            "options": {
+              "fields": [
+                {
+                  "field": "name",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "specialty",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "photo",
+                  "type": "uuid",
+                  "meta": {
+                    "interface": "file-image",
+                    "special": ["file"],
+                    "options": {
+                      "crop": false
+                    },
+                    "width": "full",
+                    "required": false
+                  }
+                },
+                {
+                  "field": "photo_url",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input",
+                    "width": "full",
+                    "required": false,
+                    "note": "External URL fallback if photo not uploaded"
+                  },
+                  "schema": {}
+                },
+                {
+                  "field": "linkedin_url",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                }
+              ]
+            }
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_signature_treatment": {
+      "collection": "block_signature_treatment",
+      "meta": {
+        "collection": "block_signature_treatment",
+        "icon": "medical_services",
+        "note": "Signature treatment section with steps, stats, price, and before/after images.",
+        "display_template": "Signature Treatment: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "steps",
+          "type": "json",
+          "meta": {
+            "interface": "list",
+            "width": "full",
+            "options": {
+              "fields": [
+                {
+                  "field": "number",
+                  "type": "integer",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "title",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "description",
+                  "type": "text",
+                  "meta": {
+                    "interface": "input-multiline"
+                  }
+                }
+              ]
+            }
+          },
+          "schema": {}
+        },
+        {
+          "field": "stat_1_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "stat_1_value",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "stat_2_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "stat_2_value",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "price_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "before_image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "month3_image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "month6_image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "after_image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_safety_banner": {
+      "collection": "block_safety_banner",
+      "meta": {
+        "collection": "block_safety_banner",
+        "icon": "shield",
+        "note": "Safety protocols banner with title, subtitle, and safety points.",
+        "display_template": "Safety: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "points",
+          "type": "json",
+          "meta": {
+            "interface": "list",
+            "width": "full",
+            "options": {
+              "fields": [
+                {
+                  "field": "label",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                }
+              ]
+            }
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_services": {
+      "collection": "block_services",
+      "meta": {
+        "collection": "block_services",
+        "icon": "apps",
+        "note": "Services grid section with title, subtitle, and list of services with icons.",
+        "display_template": "Services: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "services",
+          "type": "json",
+          "meta": {
+            "interface": "list",
+            "width": "full",
+            "options": {
+              "fields": [
+                {
+                  "field": "label",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "icon_name",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                }
+              ]
+            }
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_locations": {
+      "collection": "block_locations",
+      "meta": {
+        "collection": "block_locations",
+        "icon": "place",
+        "note": "Locations section with branch information, address, hours, phone, and map.",
+        "display_template": "Locations: {{branch_name}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "section_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "section_subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_tag",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_address",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_hours",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_phone",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "branch_image_url",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "map_embed_url",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_booking": {
+      "collection": "block_booking",
+      "meta": {
+        "collection": "block_booking",
+        "icon": "event",
+        "note": "Booking section with contact information and appointment form details.",
+        "display_template": "Booking: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "phone_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "phone_number",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "line_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "line_handle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hours_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hours_value",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_contact": {
+      "collection": "block_contact",
+      "meta": {
+        "collection": "block_contact",
+        "icon": "contact_mail",
+        "note": "Contact section with HQ address, phone, hours, and email information.",
+        "display_template": "Contact: {{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "subtitle",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hq_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hq_address",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "phone_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "phone_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hours_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hours_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "email_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "email_text",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_features": {
+      "collection": "block_features",
+      "meta": {
+        "collection": "block_features",
+        "icon": "star",
+        "note": "Features section with title and description.",
+        "display_template": "Features: {{section_title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "section_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "section_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_testimonials": {
+      "collection": "block_testimonials",
+      "meta": {
+        "collection": "block_testimonials",
+        "icon": "format_quote",
+        "note": "Testimonials section with title and description.",
+        "display_template": "Testimonials: {{section_title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "section_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "section_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_pricing": {
+      "collection": "block_pricing",
+      "meta": {
+        "collection": "block_pricing",
+        "icon": "attach_money",
+        "note": "Pricing section with title and description.",
+        "display_template": "Pricing: {{section_title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "section_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "section_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "block_footer": {
+      "collection": "block_footer",
+      "meta": {
+        "collection": "block_footer",
+        "icon": "web",
+        "note": "Footer content with links, social media, and copyright information.",
+        "display_template": "Footer",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "content",
+          "type": "json",
+          "meta": {
+            "interface": "input-code",
+            "width": "full"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "navigation": {
+      "collection": "navigation",
+      "meta": {
+        "collection": "navigation",
+        "icon": "menu",
+        "note": "Site navigation menu items with hierarchical structure.",
+        "display_template": "{{title}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "url",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "page",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "special": ["m2o"],
+            "width": "half"
+          },
+          "schema": {
+            "foreign_key_table": "pages",
+            "foreign_key_column": "id"
+          }
+        },
+        {
+          "field": "parent",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "special": ["m2o"],
+            "width": "half"
+          },
+          "schema": {
+            "foreign_key_table": "navigation",
+            "foreign_key_column": "id"
+          }
+        },
+        {
+          "field": "target",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "options": {
+              "choices": [
+                {"text": "Same Window", "value": "_self"},
+                {"text": "New Window", "value": "_blank"}
+              ]
+            }
+          },
+          "schema": {
+            "default_value": "_self"
+          }
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "blog_categories": {
+      "collection": "blog_categories",
+      "meta": {
+        "collection": "blog_categories",
+        "icon": "category",
+        "note": "Blog post categories for organizing articles.",
+        "display_template": "{{name}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half"
+          },
+          "schema": {
+            "is_nullable": false,
+            "is_unique": true
+          }
+        },
+        {
+          "field": "description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "color",
+          "type": "string",
+          "meta": {
+            "interface": "select-color",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "blog_posts": {
+      "collection": "blog_posts",
+      "meta": {
+        "collection": "blog_posts",
+        "icon": "article",
+        "note": "Blog posts and articles. Write content to educate visitors and improve SEO.",
+        "display_template": "{{title}} ({{status}})",
+        "singleton": false,
+        "archive_app_filter": true,
+        "archive_field": "status",
+        "archive_value": "archived",
+        "unarchive_value": "published"
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half"
+          },
+          "schema": {
+            "is_nullable": false,
+            "is_unique": true
+          }
+        },
+        {
+          "field": "status",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "options": {
+              "choices": [
+                {"text": "Draft", "value": "draft"},
+                {"text": "Published", "value": "published"},
+                {"text": "Archived", "value": "archived"}
+              ]
+            }
+          },
+          "schema": {
+            "default_value": "draft",
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "category",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "special": ["m2o"],
+            "width": "half"
+          },
+          "schema": {
+            "foreign_key_table": "blog_categories",
+            "foreign_key_column": "id"
+          }
+        },
+        {
+          "field": "featured_image",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "excerpt",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "content",
+          "type": "text",
+          "meta": {
+            "interface": "input-rich-text-html",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "author_name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "author_role",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "author_avatar",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "published_date",
+          "type": "timestamp",
+          "meta": {
+            "interface": "datetime",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "reading_time",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "views",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "is_featured",
+          "type": "boolean",
+          "meta": {
+            "interface": "boolean",
+            "width": "half"
+          },
+          "schema": {
+            "default_value": false
+          }
+        },
+        {
+          "field": "tags",
+          "type": "csv",
+          "meta": {
+            "interface": "tags",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "seo_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "seo_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "hidden": true
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_created",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-created"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_created",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-created"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_updated",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-updated"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_updated",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-updated"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "services": {
+      "collection": "services",
+      "meta": {
+        "collection": "services",
+        "icon": "medical_services",
+        "note": "Manage your service offerings. Each service can be categorized and linked to locations and dentists.",
+        "display_template": "{{name}} - {{category.name}}",
+        "singleton": false,
+        "archive_app_filter": true,
+        "archive_field": "status",
+        "archive_value": "archived",
+        "unarchive_value": "published"
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half"
+          },
+          "schema": {
+            "is_nullable": false,
+            "is_unique": true
+          }
+        },
+        {
+          "field": "status",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "options": {
+              "choices": [
+                {"text": "Draft", "value": "draft"},
+                {"text": "Published", "value": "published"},
+                {"text": "Archived", "value": "archived"}
+              ]
+            }
+          },
+          "schema": {
+            "default_value": "draft",
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "category",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "special": ["m2o"],
+            "width": "half"
+          },
+          "schema": {
+            "foreign_key_table": "service_categories",
+            "foreign_key_column": "id"
+          }
+        },
+        {
+          "field": "short_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "long_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-rich-text-html",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "duration_label",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "price_from",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "hero_image",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "highlights",
+          "type": "json",
+          "meta": {
+            "interface": "list",
+            "width": "full",
+            "options": {
+              "fields": [
+                {
+                  "field": "title",
+                  "type": "string",
+                  "meta": {
+                    "interface": "input"
+                  }
+                },
+                {
+                  "field": "description",
+                  "type": "text",
+                  "meta": {
+                    "interface": "input-multiline"
+                  }
+                }
+              ]
+            }
+          },
+          "schema": {}
+        },
+        {
+          "field": "seo_title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "seo_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "hidden": true
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_created",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-created"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_created",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-created"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "user_updated",
+          "type": "uuid",
+          "meta": {
+            "special": ["user-updated"],
+            "interface": "select-dropdown-m2o",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "date_updated",
+          "type": "timestamp",
+          "meta": {
+            "special": ["date-updated"],
+            "interface": "datetime",
+            "readonly": true,
+            "hidden": true,
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "service_categories": {
+      "collection": "service_categories",
+      "meta": {
+        "collection": "service_categories",
+        "icon": "category",
+        "note": "Organize your services into categories. Categories help visitors find related services easily.",
+        "display_template": "{{name}}",
+        "singleton": false
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full"
+          },
+          "schema": {
+            "is_nullable": false
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half"
+          },
+          "schema": {
+            "is_nullable": false,
+            "is_unique": true
+          }
+        },
+        {
+          "field": "description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "icon_name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    },
+    "global_settings": {
+      "collection": "global_settings",
+      "meta": {
+        "collection": "global_settings",
+        "icon": "settings",
+        "note": "Site-wide settings that affect your entire website. This is a single record - edit it to update global information.",
+        "display_template": "Global Settings",
+        "singleton": true
+      },
+      "fields": [
+        {
+          "field": "id",
+          "type": "integer",
+          "meta": {
+            "special": ["id"],
+            "interface": "input",
+            "readonly": true,
+            "hidden": true
+          },
+          "schema": {
+            "is_primary_key": true,
+            "has_auto_increment": true
+          }
+        },
+        {
+          "field": "site_name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "site_description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full"
+          },
+          "schema": {}
+        },
+        {
+          "field": "logo",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        },
+        {
+          "field": "favicon",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half"
+          },
+          "schema": {}
+        }
+      ]
+    }
+  }
+}
+

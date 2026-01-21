@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "website-builder-directus": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@directus/mcp-server",
+        "--url",
+        "https://directus-toco0gwwossccs40swsocgoo.app.thit.io/",
+        "--token",
+        "Yx85kdLD4P63h09I1u421w2pw96mrAcj"
+      ]
+    }
+  }
+}
+
+
+
+

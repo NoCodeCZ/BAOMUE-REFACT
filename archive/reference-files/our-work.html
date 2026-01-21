@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ผลงานของเรา - BAOMUE Dental Clinic</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Prompt', -apple-system, BlinkMacSystemFont, sans-serif; }
+.glass-card {
+background: rgba(255, 255, 255, 0.8);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+}
+.filter-pill.active {
+background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+color: white;
+}
+.before-after-slider {
+position: relative;
+overflow: hidden;
+}
+.before-after-slider input[type="range"] {
+-webkit-appearance: none;
+appearance: none;
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+left: 0;
+cursor: ew-resize;
+opacity: 0;
+z-index: 10;
+}
+.before-after-slider input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+width: 2px;
+height: 100%;
+cursor: ew-resize;
+}
+.slider-handle {
+position: absolute;
+top: 0;
+bottom: 0;
+width: 4px;
+background: white;
+box-shadow: 0 0 10px rgba(0,0,0,0.3);
+z-index: 5;
+pointer-events: none;
+}
+.slider-handle::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 44px;
+height: 44px;
+background: white;
+border-radius: 50%;
+box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.slider-handle::after {
+content: '↔';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 18px;
+color: #0ea5e9;
+z-index: 1;
+}
+</style></head>
+<body class="antialiased bg-slate-50 text-slate-600">
+
+    <!-- Header -->
+    <header class="sticky z-50 bg-white/80 border-slate-100 border-b top-0 backdrop-blur-md">
+        <div class="flex h-20 max-w-7xl mx-auto px-6 items-center justify-between">
+            <div class="flex gap-3 items-center">
+                <a href="index.html" class="flex transition-all duration-300 hover:scale-105 cursor-pointer group bg-white/40 border-white/40 border rounded-2xl py-1.5 px-4 pl-1.5 shadow-md backdrop-blur-xl gap-3 items-center">
+                    <div class="relative w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-inner overflow-hidden">
+                        <i data-lucide="hexagon" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div class="flex flex-col leading-none justify-center">
+                        <span class="text-base font-semibold text-slate-800 tracking-tight">BAOMUE</span>
+                        <span class="text-[0.6rem] font-normal tracking-wide text-slate-500 uppercase">Dental Clinic</span>
+                    </div>
+                </a>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-2xl rounded-full border border-white/40 shadow-sm">
+                <a href="index.html" class="px-4 py-2 text-sm font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all">หน้าแรก</a>
+                <a href="#" class="px-4 py-2 text-sm font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all">บริการ</a>
+                <a href="#" class="px-4 py-2 text-sm font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all">โปรโมชั่น</a>
+                <a href="#" class="px-4 py-2 text-sm font-medium text-slate-900 bg-white rounded-full shadow-sm transition-all">ผลงานของเรา</a>
+                <a href="#" class="px-4 py-2 text-sm font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all">บทความ</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:inline-flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 transition-all text-base font-medium text-slate-900 h-11 border-slate-300 border rounded-xl px-6">ติดต่อเลย</a>
+                <button class="lg:hidden text-slate-600 p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-16 pb-8 bg-gradient-to-b from-white to-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    ผลงานที่ภาคภูมิใจ
+                </div>
+                <h1 class="text-4xl md:text-6xl font-semibold tracking-tight text-slate-900 mb-6" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;">
+                    Our Work
+                </h1>
+                <p class="text-xl text-slate-500 mb-4">ผลงานจริงจากคนไข้ของเรา</p>
+                <p class="text-base text-slate-400 max-w-xl mx-auto">ดูผลลัพธ์การรักษาจริงจากผู้ที่ไว้วางใจให้เราดูแลรอยยิ้ม พร้อมรายละเอียดขั้นตอนและระยะเวลาการรักษา</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-3xl border border-white/50 shadow-xl p-6 md:p-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">500+</div>
+                        <div class="text-sm text-slate-500 mt-1">เคสสำเร็จ</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">4.9</div>
+                        <div class="text-sm text-slate-500 mt-1 flex items-center justify-center gap-1">
+                            <i data-lucide="star" class="w-4 h-4 text-amber-400 fill-amber-400"></i>
+                            คะแนนรีวิว
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">98%</div>
+                        <div class="text-sm text-slate-500 mt-1">ความพึงพอใจ</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">15+</div>
+                        <div class="text-sm text-slate-500 mt-1">ปีประสบการณ์</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-8 sticky top-20 z-40 bg-slate-50/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="glass-card rounded-2xl border border-white/50 shadow-lg p-4">
+                <div class="flex flex-col md:flex-row md:items-center gap-4">
+                    <div class="flex items-center gap-2 text-sm font-medium text-slate-700 shrink-0">
+                        <i data-lucide="filter" class="w-4 h-4"></i>
+                        ประเภทเคส:
+                    </div>
+                    <div class="flex flex-wrap gap-2 flex-1">
+                        <button class="filter-pill active px-4 py-2 rounded-full text-sm font-medium transition-all" onclick="filterCases('all', this)">
+                            ทั้งหมด
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('invisalign', this)">
+                            จัดฟันใส
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('braces', this)">
+                            จัดฟันเหล็ก
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('veneer', this)">
+                            วีเนียร์
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('whitening', this)">
+                            ฟอกสีฟัน
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('implant', this)">
+                            รากเทียม
+                        </button>
+                        <button class="filter-pill px-4 py-2 rounded-full text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:border-cyan-300 hover:text-cyan-600 transition-all" onclick="filterCases('crown', this)">
+                            ครอบฟัน
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <span class="text-sm text-slate-500">แสดง:</span>
+                        <span id="case-count" class="text-sm font-semibold text-slate-900">12 เคส</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cases Grid -->
+    <section class="py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div id="cases-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Case 1 - Invisalign -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="invisalign">
+                    <div class="relative">
+                        <!-- Before/After Slider -->
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            
+                            <!-- Labels -->
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">
+                                Before
+                            </div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">
+                                After
+                            </div>
+                        </div>
+
+                        <!-- Category Badge -->
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-xs font-semibold text-white shadow-lg">
+                            จัดฟันใส Invisalign
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">แก้ไขฟันซ้อนเก</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">5.0</span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">ฟันหน้าซ้อนเก ไม่เรียงตัว ต้องการจัดฟันแบบไม่มีลวดให้สวยงาม</p>
+
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>18 เดือน</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>หญิง, 28 ปี</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('case1')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case 2 - Braces -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="braces">
+                    <div class="relative">
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-xs font-semibold text-white shadow-lg">
+                            จัดฟันเหล็ก
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">แก้ไขฟันยื่น</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">ฟันบนยื่นออกมามาก สบฟันไม่ดี ต้องการจัดให้ฟันเรียงสวย</p>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>24 เดือน</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>ชาย, 22 ปี</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('case2')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case 3 - Veneer -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="veneer">
+                    <div class="relative">
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full text-xs font-semibold text-white shadow-lg">
+                            วีเนียร์
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">เปลี่ยนรูปทรงฟัน</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">ฟันหน้าไม่สวย มีช่องห่าง ต้องการฟันขาวสวยรูปทรงสม่ำเสมอ</p>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>2 สัปดาห์</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>หญิง, 35 ปี</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('case3')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case 4 - Whitening -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="whitening">
+                    <div class="relative">
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-yellow-400 to-amber-400 rounded-full text-xs font-semibold text-slate-900 shadow-lg">
+                            ฟอกสีฟัน
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">ฟอกสีฟันขาวใส</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">4.8</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">ฟันเหลืองจากการดื่มกาแฟ ต้องการฟอกให้ขาวขึ้นหลายเฉด</p>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>1 ชั่วโมง</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>ชาย, 30 ปี</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('case4')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case 5 - Implant -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="implant">
+                    <div class="relative">
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full text-xs font-semibold text-white shadow-lg">
+                            รากเทียม
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">ปลูกรากฟันเทียม</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">5.0</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">สูญเสียฟันกรามจากฟันผุ ต้องการใส่รากเทียมเพื่อเคี้ยวอาหาร</p>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>4 เดือน</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>ชาย, 45 ปี</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('case5')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Case 6 - Crown -->
+                <div class="case-card glass-card rounded-3xl border border-white/50 shadow-xl overflow-hidden group" data-category="crown">
+                    <div class="relative">
+                        <div class="before-after-slider aspect-[4/3] relative">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=600&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="absolute bottom-4 left-4 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full text-xs font-semibold text-white shadow-lg">
+                            ครอบฟัน
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-3">
+                            <h3 class="font-semibold text-slate-900 text-lg">ครอบฟันเซรามิค</h3>
+                            <div class="flex items-center gap-1 text-amber-500">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <span class="text-sm font-medium">4.9</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mb-4 line-clamp-2">ฟันหน้าแตกร้าวจากอุบัติเหตุ ต้องการซ่อมแซมให้แข็งแรง</p>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="clock" class="w-4 h-4 text-cyan-500"></i>
+                                <span>1 สัปดาห์</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm text-slate-600">
+                                <i data-lucide="user" class="w-4 h-4 text-cyan-500"></i>
+                                <span>หญิง, 40 ปี</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal('case6')" class="w-full h-12 bg-slate-900 text-white font-medium rounded-xl hover:bg-slate-800 transition-all flex items-center justify-center gap-2 group-hover:bg-cyan-600">
+                            ดูรายละเอียด
+                            <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12">
+                <button class="inline-flex items-center gap-2 h-14 px-8 bg-white border-2 border-slate-200 text-slate-700 font-semibold rounded-2xl hover:border-cyan-300 hover:text-cyan-600 transition-all shadow-lg">
+                    <i data-lucide="plus" class="w-5 h-5"></i>
+                    โหลดเพิ่มเติม
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-cyan-500 to-blue-600">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
+                พร้อมเปลี่ยนรอยยิ้มของคุณหรือยัง?
+            </h2>
+            <p class="text-xl text-white/80 mb-8">
+                ปรึกษาทันตแพทย์ผู้เชี่ยวชาญของเราฟรี ไม่มีค่าใช้จ่าย
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="h-14 px-8 bg-white text-slate-900 font-semibold rounded-2xl hover:bg-slate-100 transition-all flex items-center gap-2 shadow-xl">
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    นัดหมายเลย
+                </button>
+                <button class="h-14 px-8 bg-white/10 backdrop-blur border border-white/20 text-white font-semibold rounded-2xl hover:bg-white/20 transition-all flex items-center gap-2">
+                    <i data-lucide="phone" class="w-5 h-5"></i>
+                    096 915 9391
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Detail Modal -->
+    <div id="case-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute inset-4 md:inset-10 lg:inset-20 bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-slate-100">
+                <div class="flex items-center gap-3">
+                    <div class="px-3 py-1.5 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-xs font-semibold text-white">
+                        จัดฟันใส Invisalign
+                    </div>
+                    <span class="text-sm text-slate-500">Case #001</span>
+                </div>
+                <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors">
+                    <i data-lucide="x" class="w-5 h-5 text-slate-600"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="flex-1 overflow-y-auto p-6">
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Images -->
+                    <div class="space-y-4">
+                        <div class="before-after-slider aspect-[4/3] rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&amp;q=80" alt="After" class="absolute inset-0 w-full h-full object-cover">
+                            <div class="absolute inset-0 overflow-hidden" style="clip-path: inset(0 50% 0 0);">
+                                <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=800&amp;q=80" alt="Before" class="w-full h-full object-cover">
+                            </div>
+                            <div class="slider-handle" style="left: 50%;"></div>
+                            <input type="range" min="0" max="100" value="50" class="slider-input" oninput="updateSlider(this)">
+                            <div class="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-white">Before</div>
+                            <div class="absolute top-4 right-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-slate-900">After</div>
+                        </div>
+                        <div class="grid grid-cols-4 gap-2">
+                            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=200&amp;q=80" alt="" class="aspect-square rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=200&amp;q=80" alt="" class="aspect-square rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=200&amp;q=80" alt="" class="aspect-square rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=200&amp;q=80" alt="" class="aspect-square rounded-xl object-cover cursor-pointer hover:opacity-80 transition-opacity">
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="space-y-6">
+                        <div>
+                            <h2 class="text-2xl font-semibold text-slate-900 mb-2">แก้ไขฟันซ้อนเก</h2>
+                            <div class="flex items-center gap-2 text-amber-500 mb-4">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                                <span class="text-slate-600 text-sm ml-1">5.0 (คะแนนจากคนไข้)</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 rounded-2xl p-4">
+                                <div class="text-sm text-slate-500 mb-1">ระยะเวลารักษา</div>
+                                <div class="text-lg font-semibold text-slate-900">18 เดือน</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl p-4">
+                                <div class="text-sm text-slate-500 mb-1">จำนวนครั้งที่มา</div>
+                                <div class="text-lg font-semibold text-slate-900">12 ครั้ง</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl p-4">
+                                <div class="text-sm text-slate-500 mb-1">ทันตแพทย์</div>
+                                <div class="text-lg font-semibold text-slate-900">ทพญ.นภัสสร</div>
+                            </div>
+                            <div class="bg-slate-50 rounded-2xl p-4">
+                                <div class="text-sm text-slate-500 mb-1">ข้อมูลคนไข้</div>
+                                <div class="text-lg font-semibold text-slate-900">หญิง, 28 ปี</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-slate-900 mb-2">ปัญหาเริ่มต้น</h3>
+                            <p class="text-slate-600 leading-relaxed">
+                                คนไข้มีปัญหาฟันหน้าซ้อนเก ฟันไม่เรียงตัว ทำให้ไม่มั่นใจในการยิ้ม ต้องการจัดฟันแบบที่มองไม่เห็นลวด เพื่อความสะดวกในการทำงานและใช้ชีวิตประจำวัน
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-slate-900 mb-2">แผนการรักษา</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="text-xs font-semibold">1</span>
+                                    </div>
+                                    <span class="text-slate-600">สแกนฟันด้วยระบบ 3D เพื่อวางแผนการจัดฟัน</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="text-xs font-semibold">2</span>
+                                    </div>
+                                    <span class="text-slate-600">รับอุปกรณ์จัดฟันใส Invisalign ทั้งหมด 24 ชุด</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="text-xs font-semibold">3</span>
+                                    </div>
+                                    <span class="text-slate-600">นัดตรวจทุก 6-8 สัปดาห์เพื่อติดตามผล</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <div class="w-6 h-6 rounded-full bg-cyan-100 text-cyan-600 flex items-center justify-center shrink-0 mt-0.5">
+                                        <span class="text-xs font-semibold">4</span>
+                                    </div>
+                                    <span class="text-slate-600">ใส่รีเทนเนอร์หลังจัดฟันเสร็จ</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100">
+                            <button class="w-full h-14 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-2xl hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="calendar" class="w-5 h-5"></i>
+                                นัดปรึกษาฟรี
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center">
+                        <i data-lucide="hexagon" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white tracking-tight">BAOMUE Dental</span>
+                </div>
+                <p class="text-sm">© 2024 BAOMUE Dental Clinic. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-cyan-600 transition-colors">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-cyan-600 transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-cyan-600 transition-colors">
+                        <i data-lucide="youtube" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Before/After Slider
+        function updateSlider(input) {
+            const slider = input.closest('.before-after-slider');
+            const beforeImage = slider.querySelector('div[style*="clip-path"]');
+            const handle = slider.querySelector('.slider-handle');
+            const value = input.value;
+            
+            beforeImage.style.clipPath = `inset(0 ${100 - value}% 0 0)`;
+            handle.style.left = `${value}%`;
+        }
+
+        // Filter Cases
+        function filterCases(category, button) {
+            const cards = document.querySelectorAll('.case-card');
+            const pills = document.querySelectorAll('.filter-pill');
+            
+            pills.forEach(pill => {
+                pill.classList.remove('active');
+                pill.classList.add('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+            });
+            
+            button.classList.add('active');
+            button.classList.remove('bg-white', 'border', 'border-slate-200', 'text-slate-600');
+            
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            document.getElementById('case-count').textContent = `${visibleCount} เคส`;
+        }
+
+        // Modal
+        function openModal(caseId) {
+            document.getElementById('case-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+
+        function closeModal() {
+            document.getElementById('case-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+
+</body></html>

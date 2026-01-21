@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tooth Box Dental Clinic</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+body { font-family: 'Prompt', sans-serif; }
+</style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style></head>
+<body class="antialiased text-slate-600 bg-white selection:bg-cyan-200 selection:text-cyan-900">
+
+    <!-- Header -->
+    <header class="sticky z-50 bg-white/80 border-slate-100 border-b top-0 backdrop-blur-md">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex gap-3 gap-x-3 gap-y-3 items-center">
+                
+                <div class="flex flex-col leading-none">
+                    
+                    <div class="flex transition-all duration-300 hover:scale-105 hover:rotate-1 hover:shadow-lg cursor-pointer group bg-white/40 border-white/40 border rounded-2xl pt-1.5 pr-4 pb-1.5 pl-1.5 shadow-md backdrop-blur-xl gap-x-3 gap-y-3 items-center">
+    <div class="relative w-10 h-10 shrink-0 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-inner overflow-hidden group-hover:rotate-12 transition-transform duration-500">
+        <div class="bg-white/20 absolute top-0 right-0 bottom-0 left-0"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drop-shadow-sm w-[20px] h-[20px]" data-icon-replaced="true" style="color: rgb(255, 255, 255); width: 20px; height: 20px;"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" class=""></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+    </div>
+    <div class="flex flex-col leading-none justify-center">
+        <span class="group-hover:text-blue-600 transition-colors text-base font-semibold text-slate-800 tracking-tight">BAOMUE</span>
+        <span class="text-[0.6rem] font-normal tracking-wide text-slate-500 uppercase">Dental Clinic</span>
+    </div>
+</div>
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-2xl rounded-full border border-white/40 shadow-sm ring-1 ring-black/5">
+    <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">หน้าแรก</a>
+    <button class="group flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200 cursor-pointer" onclick="window.location.href='/page'" role="button">
+        บริการ <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">โปรโมชั่น</a>
+    <button class="group flex items-center gap-1 px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">
+        ผลงานของเรา <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-down" class="lucide lucide-chevron-down w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity"><path d="m6 9 6 6 6-6"></path></svg>
+    </button>
+    <a href="#" class="px-4 py-2 text-[15px] font-medium text-slate-500 rounded-full hover:text-slate-900 hover:bg-white hover:shadow-sm transition-all duration-200">บทความ</a>
+</nav>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:inline-flex items-center justify-center hover:bg-slate-50 hover:border-slate-400 transition-all text-lg font-medium text-slate-900 h-11 border-slate-300 border rounded-lg pr-6 pl-6">ติดต่อเลย</a>
+                <button class="lg:hidden text-slate-600 pt-2 pr-2 pb-2 pl-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="menu" class="lucide lucide-menu w-[24px] h-[24px]" data-icon-replaced="true" style="width: 24px; height: 24px; color: rgb(71, 85, 105);"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="overflow-hidden min-h-[90vh] flex bg-gradient-to-br from-sky-400 to-sky-600 relative items-center">
+        <div class="z-10 w-full max-w-7xl mr-auto ml-auto pt-16 pr-6 pb-16 pl-6 relative min-h-screen flex items-center" style="background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 gap-x-12 gap-y-12 items-center w-full">
+        <div class="flex flex-col text-left items-start">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl mb-8" style="box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                </span>
+                <span class="text-xs font-medium text-white/90 tracking-wide">Accepting New Patients</span>
+            </div>
+            
+            <h1 class="sm:text-6xl lg:text-7xl leading-[1.05] text-5xl font-semibold text-white tracking-tight mb-6" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;">
+                Unlock your 
+                <span class="text-white/60">best smile</span> today.
+            </h1>
+            
+            <p class="text-white/70 text-lg sm:text-xl font-normal leading-relaxed max-w-lg mb-10" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">
+                ยกระดับความมั่นใจผ่านรอยยิ้มที่สวยงาม ด้วยบริการด้านทันตกรรมแบบครบวงจร โดยทีมแพทย์ผู้เชี่ยวชาญ พร้อมเทคโนโลยีที่ทันสมัย
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mb-16">
+                <button class="group h-14 px-8 rounded-2xl bg-white text-slate-900 font-medium text-lg flex items-center justify-center gap-2 hover:bg-white/90 transition-all" style="box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">
+                    <span>จองคิวออนไลน์</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </button>
+                <button class="h-14 px-8 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white font-medium text-lg flex items-center justify-center hover:bg-white/20 transition-all" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">
+                    ดูบริการของเรา
+                </button>
+            </div>
+            
+            <div class="flex items-center gap-8 pt-8 border-t border-white/10 w-full">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl flex items-center justify-center text-white shrink-0" style="box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                    </div>
+                    <div class="">
+                        <div class="text-white/50 text-xs font-medium tracking-wide mb-0.5" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">Call Center</div>
+                        <div class="text-white font-medium text-xl leading-none tracking-tight" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;">096 915 9391</div>
+                    </div>
+                </div>
+                <div class="w-px h-12 bg-white/10 hidden sm:block"></div>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-[#06c755] flex items-center justify-center text-white shrink-0" style="box-shadow: 0 4px 30px rgba(6, 199, 85, 0.3);">
+                        <span class="font-bold text-[10px]">LINE</span>
+                    </div>
+                    <div class="">
+                        <div class="text-white/50 text-xs font-medium tracking-wide mb-0.5" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">Line Official</div>
+                        <div class="leading-none text-xl font-medium text-white tracking-tight" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif">@BAOMUE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="relative hidden lg:block h-full min-h-[600px] w-full">
+            <div class="absolute inset-0 flex items-center justify-center translate-x-12">
+                <div class="relative w-[500px] h-[640px] rounded-[40px] overflow-hidden border border-white/20 shadow-2xl rotate-3" style="box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);">
+                    <img src="https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=2160&amp;q=80" alt="Professional Dental Care" class="transform hover:scale-105 transition-transform duration-700 w-full h-full object-cover -rotate-3 scale-110">
+                    
+                    <div class="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-2xl p-5 rounded-3xl flex items-center justify-between border border-white/50 -rotate-3" style="box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);">
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center justify-center w-12 h-12 bg-blue-500/10 text-blue-500 rounded-2xl shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                            </div>
+                            <div>
+                                <div class="text-slate-900 font-medium text-sm" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">Certified Clinic</div>
+                                <div class="text-slate-500 text-xs" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">International Standard</div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="flex text-amber-400 gap-0.5">
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <div class="text-slate-400 text-xs font-medium mt-1" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;">4.9/5 Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="lg:py-32 bg-white pt-24 pb-24">
+        <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div class="order-2 lg:order-1 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h2 class="md:text-7xl transform text-5xl font-black text-[#5da1f8] tracking-tighter font-bricolage mb-6 -rotate-2">
+                ABOUT US!
+            </h2>
+            <h3 class="md:text-3xl text-2xl font-bold text-slate-800 mt-2 mb-8">คลินิกทันตกรรมเบามือ</h3>
+            <div class="space-y-6 text-base md:text-lg text-slate-500 leading-relaxed max-w-xl text-justify lg:text-left font-medium">
+                <p class="">
+                    เพราะรอยยิ้ม คือ กุญแจของทุกโอกาสและเป็นพลังที่จะช่วยให้คุณก้าวสู่จุดมุ่งหมาย
+                    ที่ต้องการได้อย่างมั่นใจ Sodent จึงมี 2 ภารกิจที่สำคัญ นั่นคือ การเป็นผู้สนับสนุนหลัก
+                    อย่างเป็นทางการของทุกรอยยิ้ม และเป็นคลินิกทันตกรรมสำหรับทุกคนอย่างแท้จริง
+                </p>
+                <p class="">
+                    ที่โซเด้นท์... การรักษา... ไม่ได้เริ่มต้นที่เก้าอี้ทำฟันของคุณหมอเท่านั้น เพราะคลินิกของเรา
+                    ถูกออกแบบ เพื่อให้ทุกคนสัมผัสได้ถึงความเป็นมิตรและความผ่อนคลาย พร้อมกับ
+                    บริการที่สะดวกสบาย บุคลากรที่เป็นมืออาชีพ การนัดหมายที่เป็นระบบ รวมทั้งสภาพ
+                    แวดล้อมที่สะอาดปลอดภัย เป็นบรรยากาศที่ชวนให้อุ่นใจ หรืออยากกุมมือใครสักคนมา
+                    นั่งลุ้นก่อนผ่าฟันคุดเป็นเพื่อนกัน
+                </p>
+                <p class="">
+                    ไม่ว่าจะเป็นเรื่องเล็ก ๆ อย่างการกินของโปรดอย่างไร้กังวล หรือเป้าหมายใหญ่ ๆ อย่าง
+                    การยิ้มชนะใจ เพื่อให้ได้ทำงานในฝัน โซเด้นท์ก็พร้อมที่จะช่วยให้คุณก้าวไปคว้ามันได้แบบ
+                    ไม่ต้องต่อรองอีกต่อไป
+                </p>
+            </div>
+        </div>
+        <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <div class="relative w-full max-w-md lg:max-w-full aspect-[3.5/4.5] rounded-t-full rounded-b-[3rem] overflow-hidden shadow-2xl bg-slate-100">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Sodent Dental Clinic" class="object-center w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-24 lg:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" class="lucide lucide-sparkles w-4 h-4"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
+                    ทำไมต้องเลือกเรา
+                </div>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-6">
+                    มาตรฐานที่คุณไว้วางใจได้
+                </h2>
+                <p class="text-xl text-slate-500">สิ่งที่ทำให้ Tooth Box แตกต่างจากคลินิกทั่วไป</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                <div class="rounded-3xl overflow-hidden shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&amp;q=80" alt="Treatment Room" class="w-full h-[400px] object-cover">
+                </div>
+                <div class="space-y-8">
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 bg-[#1DAEE0] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="microscope" class="lucide lucide-microscope w-7 h-7 text-white"><path d="M6 18h8"></path><path d="M3 22h18"></path><path d="M14 22a7 7 0 1 0 0-14h-1"></path><path d="M9 14h2"></path><path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z"></path><path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3"></path></svg>
+                        </div>
+                        <div class="">
+                            <h3 class="text-xl font-semibold text-slate-900 mb-2">เทคโนโลยีทันสมัย</h3>
+                            <p class="text-slate-600">นำเข้าเครื่องมือและอุปกรณ์จากยุโรปและอเมริกา รวมถึงระบบ Digital X-Ray และ 3D Scanner</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 bg-[#1DAEE0] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="graduation-cap" class="lucide lucide-graduation-cap w-7 h-7 text-white"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg>
+                        </div>
+                        <div class="">
+                            <h3 class="text-xl font-semibold text-slate-900 mb-2">ทีมแพทย์ผู้เชี่ยวชาญ</h3>
+                            <p class="text-slate-600">ทันตแพทย์ทุกท่านจบการศึกษาจากมหาวิทยาลัยชั้นนำ พร้อมประสบการณ์เฉพาะทาง</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 bg-[#1DAEE0] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-7 h-7 text-white"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                        </div>
+                        <div class="">
+                            <h3 class="text-xl font-semibold text-slate-900 mb-2">สะดวก รวดเร็ว</h3>
+                            <p class="text-slate-600">จองคิวออนไลน์ได้ตลอด 24 ชั่วโมง เปิดให้บริการทุกวัน ไม่ต้องรอคิวนาน</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5">
+                        <div class="w-14 h-14 bg-[#1DAEE0] rounded-2xl flex items-center justify-center shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="credit-card" class="lucide lucide-credit-card w-7 h-7 text-white"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-900 mb-2">ผ่อนชำระ 0%</h3>
+                            <p class="text-slate-600">รองรับบัตรเครดิตทุกธนาคาร ผ่อนชำระได้สูงสุด 10 เดือน ไม่มีดอกเบี้ย</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dentist Team Section -->
+    <section class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-4 h-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                    ทีมทันตแพทย์
+                </div>
+                <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-6">
+                    พบกับทีมทันตแพทย์ของเรา
+                </h2>
+                <p class="text-xl text-slate-500">ทีมผู้เชี่ยวชาญที่พร้อมดูแลรอยยิ้มของคุณ</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <!-- Dentist 1 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.นภัสสร วงศ์ศิริ</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมจัดฟัน</p>
+                </div>
+
+                <!-- Dentist 2 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.ธนกร สุขสมบูรณ์</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมรากเทียม</p>
+                </div>
+
+                <!-- Dentist 3 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.พิมพ์ชนก รัตนโชติ</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมเด็ก</p>
+                </div>
+
+                <!-- Dentist 4 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.วีรภัทร จันทร์แก้ว</h3>
+                    <p class="text-sm text-[#1DAEE0]">ศัลยกรรมช่องปาก</p>
+                </div>
+
+                <!-- Dentist 5 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.สุภาวดี เจริญสุข</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมประดิษฐ์</p>
+                </div>
+
+                <!-- Dentist 6 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.กิตติพงศ์ ศรีสุข</h3>
+                    <p class="text-sm text-[#1DAEE0]">รักษารากฟัน</p>
+                </div>
+
+                <!-- Dentist 7 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.อรวรรณ ภูมิพัฒน์</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมความงาม</p>
+                </div>
+
+                <!-- Dentist 8 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.ปริญญา มงคลชัย</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมทั่วไป</p>
+                </div>
+
+                <!-- Dentist 9 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.ชนิดา วรรณวิไล</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมจัดฟัน</p>
+                </div>
+
+                <!-- Dentist 10 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.ภูริพัฒน์ ธนาวุฒิ</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมรากเทียม</p>
+                </div>
+
+                <!-- Dentist 11 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.ณัฐธิดา รุ่งเรือง</h3>
+                    <p class="text-sm text-[#1DAEE0]">ปริทันตวิทยา</p>
+                </div>
+
+                <!-- Dentist 12 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.สิทธิชัย ประสิทธิ์</h3>
+                    <p class="text-sm text-[#1DAEE0]">ศัลยกรรมช่องปาก</p>
+                </div>
+
+                <!-- Dentist 13 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.กมลวรรณ ศิริวัฒน์</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมประดิษฐ์</p>
+                </div>
+
+                <!-- Dentist 14 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพ.อนุชา สมบูรณ์ดี</h3>
+                    <p class="text-sm text-[#1DAEE0]">รักษารากฟัน</p>
+                </div>
+
+                <!-- Dentist 15 -->
+                <div class="group">
+                    <div class="relative rounded-2xl overflow-hidden mb-4 bg-slate-100">
+                        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&amp;q=80" alt="Dentist" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-300" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <div class="flex gap-2">
+                                    <a href="#" class="w-8 h-8 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin w-4 h-4"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-slate-900 text-lg">ทพญ.วราภรณ์ ทองคำ</h3>
+                    <p class="text-sm text-[#1DAEE0]">ทันตกรรมเด็ก</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-2 h-12 px-8 bg-slate-900 text-white rounded-xl font-medium hover:bg-slate-800 transition-colors">
+                    ดูทีมทันตแพทย์ทั้งหมด <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right w-5 h-5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Treatment Section -->
+    <section class="lg:py-32 bg-gradient-to-br from-[#0e2a47] to-[#1a4a6e] pt-24 pb-24">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex gap-2 text-sm font-semibold text-cyan-300 bg-white/10 rounded-full mb-6 pt-2 pr-4 pb-2 pl-4 gap-x-2 gap-y-2 items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="star" class="lucide lucide-star w-4 h-4"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                    Signature Treatment
+                </div>
+                <h2 class="md:text-5xl text-4xl font-semibold text-white tracking-tight mb-6">Promotions</h2>
+                <p class="text-xl text-white/70">เปลี่ยนรอยยิ้มของคุณอย่างแนบเนียน ไร้ลวด ไร้ความเจ็บปวด</p>
+            </div>
+
+            <div class="overflow-hidden bg-white/10 rounded-3xl pt-8 pr-8 pb-8 pl-8 shadow-xl backdrop-blur">
+    <h3 class="text-2xl font-semibold text-white mb-6 tracking-tight">โปรโมชั่นพิเศษ</h3>
+    
+    <div class="relative">
+        <!-- Carousel Container -->
+        <div class="overflow-hidden rounded-2xl">
+            <div id="promo-carousel" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+                <!-- Slide 1 -->
+                <div class="w-full flex-shrink-0">
+                    <div class="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&amp;q=80" alt="Promotion 1" class="w-full h-full object-cover">
+                        <div class="absolute top-0 right-0 bottom-0 left-0" style="background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 40%, transparent 100%); backdrop-filter: blur(0px)"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="inline-block bg-[#1DAEE0] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">ลด 30%</span>
+                            <h4 class="text-white font-semibold text-lg">จัดฟันใส Invisalign</h4>
+                            <p class="text-sm text-white/70">เริ่มต้นเพียง ฿59,000</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="w-full flex-shrink-0">
+                    <div class="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&amp;q=80" alt="Promotion 2" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="inline-block bg-[#1DAEE0] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">ฟรี!</span>
+                            <h4 class="text-white font-semibold text-lg">ตรวจฟัน + ขูดหินปูน</h4>
+                            <p class="text-white/70 text-sm">สำหรับลูกค้าใหม่</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="w-full flex-shrink-0">
+                    <div class="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&amp;q=80" alt="Promotion 3" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="inline-block bg-[#1DAEE0] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">ผ่อน 0%</span>
+                            <h4 class="text-white font-semibold text-lg">ฟอกสีฟัน Zoom</h4>
+                            <p class="text-white/70 text-sm">ผ่อนได้สูงสุด 10 เดือน</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="w-full flex-shrink-0">
+                    <div class="relative aspect-[16/9] rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=800&amp;q=80" alt="Promotion 4" class="w-full h-full object-cover" style="">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="inline-block bg-[#1DAEE0] text-white text-xs font-semibold px-3 py-1 rounded-full mb-2">พิเศษ</span>
+                            <h4 class="text-white font-semibold text-lg">รากฟันเทียม Premium</h4>
+                            <p class="text-white/70 text-sm">รับประกัน 10 ปี</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button onclick="moveCarousel(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors z-10">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+        </button>
+        <button onclick="moveCarousel(1)" class="-translate-y-1/2 flex hover:bg-white/30 transition-colors z-10 text-white bg-white/20 w-10 h-10 rounded-full absolute top-1/2 right-2 backdrop-blur items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+    </div>
+    
+    <!-- Dots Indicator -->
+    <div class="flex justify-center gap-2 mt-4">
+        <button onclick="goToSlide(0)" class="promo-dot w-2 h-2 rounded-full bg-white transition-opacity" data-index="0"></button>
+        <button onclick="goToSlide(1)" class="promo-dot w-2 h-2 rounded-full bg-white/40 transition-opacity" data-index="1"></button>
+        <button onclick="goToSlide(2)" class="promo-dot w-2 h-2 rounded-full bg-white/40 transition-opacity" data-index="2"></button>
+        <button onclick="goToSlide(3)" class="promo-dot w-2 h-2 rounded-full bg-white/40 transition-opacity" data-index="3"></button>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 4;
+        
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+        
+        function updateCarousel() {
+            const carousel = document.getElementById('promo-carousel');
+            carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            document.querySelectorAll('.promo-dot').forEach((dot, index) => {
+                dot.classList.toggle('bg-white', index === currentSlide);
+                dot.classList.toggle('bg-white/40', index !== currentSlide);
+            });
+        }
+        
+        setInterval(() => moveCarousel(1), 5000);
+    </script>
+</div>
+        </div>
+    </section>
+
+    <!-- Safety Protocols Banner -->
+    <section class="bg-gradient-to-r from-emerald-500 to-teal-500 pt-16 pb-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="flex items-center gap-6">
+                    <div class="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" class="lucide lucide-shield-check w-10 h-10 text-white"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                    </div>
+                    <div class="">
+                        <h3 class="text-2xl md:text-3xl font-semibold text-white mb-2">มาตรฐานความปลอดภัยสูงสุด</h3>
+                        <p class="text-white/80 text-lg">ผ่านการรับรองมาตรฐาน WHO และกรมอนามัย</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 lg:gap-6">
+                    <div class="flex items-center gap-3 bg-white/20 backdrop-blur rounded-full px-5 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="spray-can" class="lucide lucide-spray-can w-5 h-5 text-white"><path d="M3 3h.01"></path><path d="M7 5h.01"></path><path d="M11 7h.01"></path><path d="M3 7h.01"></path><path d="M7 9h.01"></path><path d="M3 11h.01"></path><rect width="4" height="4" x="15" y="5"></rect><path d="m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2"></path><path d="m13 14 8-2"></path><path d="m13 19 8-2"></path></svg>
+                        <span class="text-white font-medium">ฆ่าเชื้อทุกรอบ</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/20 backdrop-blur rounded-full px-5 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="wind" class="lucide lucide-wind w-5 h-5 text-white"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"></path><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"></path><path d="M9.8 4.4A2 2 0 1 1 11 8H2"></path></svg>
+                        <span class="text-white font-medium">ระบบฟอกอากาศ HEPA</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/20 backdrop-blur rounded-full px-5 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package" class="lucide lucide-package w-5 h-5 text-white"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
+                        <span class="text-white font-medium">อุปกรณ์ใช้ครั้งเดียว</span>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/20 backdrop-blur rounded-full px-5 py-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="thermometer" class="lucide lucide-thermometer w-5 h-5 text-white"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
+                        <span class="text-white font-medium">ตรวจวัดอุณหภูมิ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid Section -->
+    <section class="lg:py-32 bg-white pt-24 pb-24">
+        <div class="max-w-7xl mr-auto ml-auto pt-12 pr-6 pb-12 pl-6">
+    <div class="text-center mb-16">
+        <h2 class="md:text-7xl uppercase transform text-5xl font-black text-[#5372ee] tracking-tighter font-bricolage mb-4 -rotate-2">
+            OUR SERVICES!
+        </h2>
+        <p class="text-xl md:text-2xl font-bold text-slate-800">
+            บริการทางทันตกรรมของ Tooth Box
+        </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-12">
+        <!-- Item 1: Filling -->
+        <div class="group flex flex-col cursor-pointer gap-x-5 gap-y-5 items-center">
+  <div class="transition-transform duration-300 group-hover:scale-110">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-tool w-[48px] h-[48px]" data-icon-replaced="true" style="width: 48px; height: 48px; color: rgb(15, 23, 42);">
+      <path d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z" class=""></path>
+      <path d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18" class=""></path>
+      <path d="m2.3 2.3 7.286 7.286"></path>
+      <circle cx="11" cy="11" r="2"></circle>
+    </svg>
+  </div>
+  <h3 class="font-bold text-slate-800 text-lg">อุดฟัน</h3>
+</div>
+
+        <!-- Item 2: Scaling -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles text-slate-900"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" class=""></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2" class=""></circle></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ขูดหินปูน</h3>
+        </div>
+
+        <!-- Item 3: Orthodontics -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-move-horizontal text-slate-900"><path d="m18 8 4 4-4 4" class=""></path><path d="M2 12h20" class=""></path><path d="m6 8-4 4 4 4"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ทันตกรรมจัดฟัน</h3>
+        </div>
+
+        <!-- Item 4: Root Canal -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-branch text-slate-900"><line x1="6" x2="6" y1="3" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">รักษารากฟัน</h3>
+        </div>
+
+        <!-- Item 5: Implant -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-anchor text-slate-900"><path d="M12 22V8"></path><path d="M5 12H2a10 10 0 0 0 20 0h-3"></path><circle cx="12" cy="5" r="3"></circle></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">รากฟันเทียม</h3>
+        </div>
+
+        <!-- Item 6: Crown -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-crown text-slate-900"><path d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z"></path><path d="M5 21h14"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ครอบฟัน</h3>
+        </div>
+
+        <!-- Item 7: Bridge -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-columns-2 text-slate-900"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" class=""></rect><line x1="12" x2="12" y1="3" y2="21"></line></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">สะพานฟัน</h3>
+        </div>
+
+        <!-- Item 8: Dentures -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smile text-slate-900"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" x2="9.01" y1="9" y2="9"></line><line x1="15" x2="15.01" y1="9" y2="9"></line></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ฟันปลอม</h3>
+        </div>
+
+        <!-- Item 9: Wisdom Tooth -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-hammer text-slate-900"><path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"></path><path d="M17.64 15 22 10.64"></path><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25V2.46V2.45c0-.27-.22-.49-.49-.49H14.2c-.86 0-1.66.33-2.25.93l-1.25 1.25"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ผ่าฟันคุด</h3>
+        </div>
+
+        <!-- Item 10: Whitening -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun text-slate-900"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ฟอกสีฟัน</h3>
+        </div>
+
+        <!-- Item 11: Veneers -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers text-slate-900"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">วีเนียร์</h3>
+        </div>
+
+        <!-- Item 12: Pediatric -->
+        <div class="group flex flex-col items-center gap-5 cursor-pointer">
+            <div class="transition-transform duration-300 group-hover:scale-110">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-baby text-slate-900"><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M15 12h.01"></path><path d="M19.38 6.813A9 9 0 0 1 20.8 10.2a2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path><path d="M9 12h.01"></path></svg>
+            </div>
+            <h3 class="font-bold text-slate-800 text-lg">ทันตกรรมเด็ก</h3>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="lg:py-32 bg-slate-50 pt-24 pb-24">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left Side - Character and Title -->
+        <div class="flex flex-col lg:items-start lg:text-left text-center items-center">
+            <h2 class="md:text-7xl uppercase text-5xl font-black text-blue-500 tracking-tighter font-bricolage mb-4 -rotate-2">
+                REVIEW!
+            </h2>
+            <p class="text-2xl md:text-3xl font-bold text-slate-800 mb-8">รีวิวจากคนไข้</p>
+            
+            <!-- Character SVG -->
+            <div class="relative w-72 h-96 md:w-80 md:h-[450px] mx-auto lg:mx-0">
+                <svg viewBox="0 0 300 450" class="w-[320px] h-[450px]" stroke-width="2" data-icon-replaced="true" style="width: 320px; height: 450px; color: rgb(71, 85, 105);">
+                    <!-- Body - Egg/Oval Shape -->
+                    <ellipse cx="150" cy="250" rx="120" ry="180" fill="white" stroke="black" stroke-width="3" class=""></ellipse>
+                    
+                    <!-- Eyebrows -->
+                    <path d="M100 160 Q110 155 120 160" fill="none" stroke="black" stroke-width="2"></path>
+                    <path d="M180 160 Q190 155 200 160" fill="none" stroke="black" stroke-width="2"></path>
+                    
+                    <!-- Eyes -->
+                    <circle cx="110" cy="190" r="5" fill="black"></circle>
+                    <circle cx="190" cy="190" r="5" fill="black"></circle>
+                    
+                    <!-- Smile -->
+                    <path d="M130 230 Q150 250 170 230" fill="none" stroke="black" stroke-width="2"></path>
+                    
+                    <!-- Hands/Arms covering mouth area -->
+                    <path d="M90 320 Q70 340 90 360 Q110 380 130 360" fill="none" stroke="black" stroke-width="3"></path>
+                    <path d="M210 320 Q230 340 210 360 Q190 380 170 360" fill="none" stroke="black" stroke-width="3"></path>
+                    <path d="M130 360 Q150 370 170 360" fill="none" stroke="black" stroke-width="3"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Right Side - Review Slider -->
+        <div class="relative">
+            <!-- Review Card -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+                <!-- Header with Profile -->
+                <div class="p-4 border-b border-slate-100">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;q=80" alt="Profile" class="w-12 h-12 rounded-full object-cover">
+                            <div class="">
+                                <div class="flex items-center gap-2">
+                                    <span class="font-semibold text-slate-900">Chonnasit Manyataon</span>
+                                    <span class="text-red-500">🏷️</span>
+                                    <span class="text-slate-600 text-sm">แนะนำ Sodent</span>
+                                </div>
+                                <div class="text-slate-500 text-sm flex items-center gap-1">
+                                    <span class="">30 ธันวาคม 2021</span>
+                                    <span>·</span>
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"></circle></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="text-slate-400 hover:text-slate-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class=""><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Review Text -->
+                <div class="p-4">
+                    <p class="text-slate-700 text-base leading-relaxed">คุณหมอมือเบามาก อธิบายทุกขั้นตอน จึงทำให้ไม่ค่อยเกร็งเท่าไหร่ พนักงานหน้าเคาน์เตอร์ สุภาพ เรียบร้อยให้คำแนะนำดีมาก คลินิคมีความสะอาด น่ารัก เหมือนคาเฟ่เลยครับ</p>
+                </div>
+                
+                <!-- Image -->
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&amp;q=80" alt="Review Image" class="w-full h-80 object-cover">
+                    
+                    <!-- Navigation Arrows -->
+                    <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+                    </button>
+                    <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center shadow-lg hover:bg-white transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-[20px] h-[20px]" data-icon-replaced="true" style="color: rgb(71, 85, 105); width: 20px; height: 20px;"><path d="m9 18 6-6-6-6"></path></svg>
+                    </button>
+                </div>
+                
+                <!-- Dots Indicator -->
+                <div class="flex justify-center gap-2 py-4">
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-800"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                    <span class="w-2 h-2 rounded-full bg-slate-300"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="lg:py-32 bg-white pt-24 pb-24">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    สาขาของเรา
+                </div>
+                <h2 class="md:text-5xl text-4xl font-semibold text-slate-900 tracking-tight mb-6">
+                    พบกับเราที่สาขาสยาม
+                </h2>
+                <p class="text-xl text-slate-500">คลินิกทันตกรรมครบวงจร ใจกลางกรุงเทพฯ</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Branch Image & Info -->
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&amp;q=80" alt="Siam Branch" class="w-full h-[450px] object-cover">
+                        <div class="bg-gradient-to-t from-slate-900/80 via-transparent to-transparent rounded-3xl absolute top-0 right-0 bottom-0 left-0"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-8">
+                            <div class="inline-flex items-center gap-2 bg-[#1DAEE0] text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
+                                สาขาหลัก
+                            </div>
+                            <h3 class="text-3xl font-semibold text-white mb-2">สาขาสยาม</h3>
+                            <p class="text-white/80 text-lg">ชั้น 5 สยามพารากอน ถ.พระราม 1</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branch Details -->
+                <div class="space-y-8">
+                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-lg">
+                        <h4 class="text-xl font-semibold text-slate-900 mb-6">ข้อมูลสาขา</h4>
+                        <div class="space-y-5">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#1DAEE0]"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-900 mb-1">ที่อยู่</div>
+                                    <p class="text-slate-600">ชั้น 5 สยามพารากอน ถ.พระราม 1 แขวงปทุมวัน เขตปทุมวัน กรุงเทพฯ 10330</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#1DAEE0]"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-900 mb-1">เวลาทำการ</div>
+                                    <p class="text-slate-600">เปิดทุกวัน 10:00 - 21:00 น.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-cyan-50 rounded-xl flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-[#1DAEE0]"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-900 mb-1">โทรศัพท์</div>
+                                    <p class="text-slate-600">096 915 9391</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#" class="flex-1 h-14 bg-[#1DAEE0] text-white font-semibold rounded-xl hover:bg-[#0e9fd0] transition-colors flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            ดูเส้นทาง
+                        </a>
+                        <a href="#" class="flex-1 h-14 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="m9 16 2 2 4-4"></path></svg>
+                            นัดหมายเลย
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="py-24 lg:py-32 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                <div class="grid lg:grid-cols-5">
+                    <div class="lg:col-span-2 bg-gradient-to-br from-[#1DAEE0] to-[#0e8fc4] p-8 lg:p-10 text-white">
+                        <h3 class="text-2xl font-semibold mb-4">นัดหมายออนไลน์</h3>
+                        <p class="text-white/80 mb-8">กรอกข้อมูลเพื่อจองคิวรับบริการ ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-6 h-6"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                                </div>
+                                <div class="">
+                                    <div class="text-white/60 text-sm">โทรศัพท์</div>
+                                    <div class="font-semibold">096 915 9391</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <span class="font-black text-xs">LINE</span>
+                                </div>
+                                <div>
+                                    <div class="text-white/60 text-sm">Line Official</div>
+                                    <div class="font-semibold">@TOOTHBOX</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-6 h-6"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                                </div>
+                                <div>
+                                    <div class="text-white/60 text-sm">เวลาทำการ</div>
+                                    <div class="font-semibold">10:00 - 21:00 น.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-3 p-8 lg:p-10">
+                        <form class="space-y-6">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">ชื่อ-นามสกุล *</label>
+                                    <input type="text" class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all" placeholder="กรุณากรอกชื่อ">
+                                </div>
+                                <div class="">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">เบอร์โทรศัพท์ *</label>
+                                    <input type="tel" class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all" placeholder="08X-XXX-XXXX">
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">เลือกสาขา *</label>
+                                <select class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all bg-white">
+                                    <option value="">-- เลือกสาขา --</option>
+                                    <option value="siam">สาขาสยาม</option>
+                                    <option value="thonglor">สาขาทองหล่อ</option>
+                                    <option value="ari">สาขาอารีย์</option>
+                                    <option value="ekkamai">สาขาเอกมัย</option>
+                                    <option value="ladprao">สาขาลาดพร้าว</option>
+                                </select>
+                            </div>
+
+                            <div class="">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">บริการที่ต้องการ *</label>
+                                <select class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all bg-white">
+                                    <option value="">-- เลือกบริการ --</option>
+                                    <option value="checkup">ตรวจสุขภาพฟัน</option>
+                                    <option value="scaling">ขูดหินปูน</option>
+                                    <option value="whitening">ฟอกสีฟัน</option>
+                                    <option value="orthodontics">จัดฟัน</option>
+                                    <option value="implant">รากเทียม</option>
+                                    <option value="other">อื่นๆ</option>
+                                </select>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div class="">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">วันที่สะดวก *</label>
+                                    <input type="date" class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all">
+                                </div>
+                                <div class="">
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">เวลาที่สะดวก *</label>
+                                    <select class="w-full h-12 px-4 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all bg-white">
+                                        <option value="">-- เลือกเวลา --</option>
+                                        <option value="10:00">10:00 น.</option>
+                                        <option value="11:00">11:00 น.</option>
+                                        <option value="12:00">12:00 น.</option>
+                                        <option value="13:00">13:00 น.</option>
+                                        <option value="14:00">14:00 น.</option>
+                                        <option value="15:00">15:00 น.</option>
+                                        <option value="16:00">16:00 น.</option>
+                                        <option value="17:00">17:00 น.</option>
+                                        <option value="18:00">18:00 น.</option>
+                                        <option value="19:00">19:00 น.</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">หมายเหตุ (ถ้ามี)</label>
+                                <textarea rows="3" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-[#1DAEE0] focus:ring-2 focus:ring-[#1DAEE0]/20 outline-none transition-all resize-none" placeholder="รายละเอียดเพิ่มเติม..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full h-14 bg-[#1DAEE0] text-white font-semibold rounded-xl hover:bg-[#0e9fd0] transition-colors flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="calendar-check" class="lucide lucide-calendar-check w-5 h-5"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="m9 16 2 2 4-4"></path></svg>
+                                ยืนยันการนัดหมาย
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map & Contact Section -->
+    <section class="py-24 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map" class="lucide lucide-map w-4 h-4"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+                        ติดต่อเรา
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-6">
+                        พร้อมให้บริการคุณ
+                    </h2>
+                    <p class="text-xl text-slate-500 mb-10">ติดต่อสอบถามหรือนัดหมายได้ทุกช่องทาง</p>
+
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-7 h-7 text-[#1DAEE0]"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </div>
+                            <div class="">
+                                <h4 class="font-semibold text-slate-900 mb-1">สำนักงานใหญ่</h4>
+                                <p class="text-slate-600">ชั้น 5 สยามพารากอน ถ.พระราม 1แขวงปทุมวัน เขตปทุมวัน กรุงเทพฯ 10330</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-7 h-7 text-[#1DAEE0]"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                            </div>
+                            <div class="">
+                                <h4 class="font-semibold text-slate-900 mb-1">โทรศัพท์</h4>
+                                <p class="text-slate-600">096 915 9391 (Call Center)02-XXX-XXXX (สำนักงานใหญ่)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock w-7 h-7 text-[#1DAEE0]"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                            </div>
+                            <div class="">
+                                <h4 class="font-semibold text-slate-900 mb-1">เวลาทำการ</h4>
+                                <p class="text-slate-600">เปิดทุกวัน 10:00 - 21:00 น.(เฉพาะสาขาในห้าง)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5">
+                            <div class="w-14 h-14 bg-slate-100 rounded-2xl flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail w-7 h-7 text-[#1DAEE0]"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                            </div>
+                            <div class="">
+                                <h4 class="font-semibold text-slate-900 mb-1">อีเมล</h4>
+                                <p class="text-slate-600">contact@toothbox.combooking@toothbox.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl overflow-hidden shadow-xl border border-slate-200 h-[500px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.5461478889387!2d100.5299699!3d13.746287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29ecde3aee521%3A0x9f43939a2caf2963!2sSiam%20Paragon!5e0!3m2!1sen!2sth!4v1234567890123!5m2!1sen!2sth" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class=""></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-20">
+        <div class="max-w-7xl mr-auto ml-auto pr-6 pl-6">
+            <div class="grid lg:grid-cols-5 gap-12 mb-16">
+                <!-- Brand -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s5-3 5-9-2-10-5-10-5 4-5 10 5 9 5 9z"></path></svg>
+                        <span class="text-2xl font-bold text-white tracking-tight">TOOTH BOX</span>
+                    </div>
+                    <p class="text-lg leading-relaxed mb-6">สร้างรอยยิ้มที่มั่นใจ ด้วยบริการที่ใส่ใจทุกรายละเอียด โดยทีมทันตแพทย์ผู้เชี่ยวชาญ</p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex gap-4 mb-8">
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="facebook" class="lucide lucide-facebook w-5 h-5"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="instagram" class="lucide lucide-instagram w-5 h-5"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] hover:text-white transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="youtube" class="lucide lucide-youtube w-5 h-5"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path><path d="m10 15 5-3-5-3z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center hover:bg-[#1DAEE0] hover:text-white transition-colors">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg>
+                        </a>
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="bg-slate-900 rounded-2xl p-6 inline-block">
+                        <div class="flex items-center gap-4">
+                            <div class="w-20 h-20 bg-white rounded-xl flex items-center justify-center">
+                                <svg class="w-16 h-16" viewBox="0 0 100 100">
+                                    <rect fill="#000" x="10" y="10" width="20" height="20"></rect>
+                                    <rect fill="#000" x="70" y="10" width="20" height="20"></rect>
+                                    <rect fill="#000" x="10" y="70" width="20" height="20"></rect>
+                                    <rect fill="#000" x="40" y="40" width="20" height="20"></rect>
+                                    <rect fill="#000" x="35" y="10" width="10" height="10"></rect>
+                                    <rect fill="#000" x="55" y="10" width="10" height="10"></rect>
+                                    <rect fill="#000" x="10" y="35" width="10" height="10"></rect>
+                                    <rect fill="#000" x="10" y="55" width="10" height="10"></rect>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-white font-semibold mb-1">Add LINE</div>
+                                <div class="text-slate-500 text-sm">@TOOTHBOX</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="">
+                    <h4 class="text-white font-semibold text-lg mb-6">บริการ</h4>
+                    <ul class="space-y-4">
+                        <li class=""><a href="#" class="hover:text-[#1DAEE0] transition-colors">ทันตกรรมทั่วไป</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">จัดฟัน</a></li>
+                        <li class=""><a href="#" class="hover:text-[#1DAEE0] transition-colors">รากเทียม</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">ฟอกสีฟัน</a></li>
+                        <li class=""><a href="#" class="hover:text-[#1DAEE0] transition-colors">วีเนียร์</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links -->
+                <div class="">
+                    <h4 class="text-white font-semibold text-lg mb-6">ข้อมูล</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">เกี่ยวกับเรา</a></li>
+                        <li class=""><a href="#" class="hover:text-[#1DAEE0] transition-colors">ทีมทันตแพทย์</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">สาขา</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">บทความ</a></li>
+                        <li><a href="#" class="hover:text-[#1DAEE0] transition-colors">โปรโมชั่น</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold text-lg mb-6">ติดต่อ</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-5 h-5 text-[#1DAEE0]"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                            <span>096 915 9391</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail w-5 h-5 text-[#1DAEE0]"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                            <span>contact@toothbox.com</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-5 h-5 bg-[#06c755] rounded flex items-center justify-center text-white text-[8px] font-black">LINE</span>
+                            <span>@TOOTHBOX</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-4 border-slate-900 border-t pt-8 gap-x-4 gap-y-4 items-center justify-between">
+                <p class="">© 2024 Tooth Box Dental Clinic. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+
+</body></html>
