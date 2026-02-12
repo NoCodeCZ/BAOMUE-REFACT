@@ -91,38 +91,31 @@ export async function getBlockContent(collection: string, itemId: string) {
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
     } else if (collection === 'block_team') {
-      // Fetch block_team basic data first
-      const blockResult = await directus.request(
-        readItemsTyped('block_team', {
-          filter: { id: { _eq: parseInt(itemId) } },
-          fields: ['id', 'title', 'subtitle', 'note'],
-          limit: 1,
-        })
-      );
-      const block = blockResult?.[0] || null;
-      if (!block) return null;
+      // Use direct REST API call to reliably fetch all dentists
+      // The SDK's deep parameter and junction table queries can silently cap results
+      const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL?.replace(/\/$/, '');
+      const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
 
-      // Fetch ALL junction records separately to avoid nested relation limit
-      const junctionRecords = await directus.request(
-        readItemsTyped('block_team_dentists', {
-          filter: { block_team_id: { _eq: parseInt(itemId) } },
-          fields: [
-            'id',
-            'sort',
-            'dentist_id.id',
-            'dentist_id.name',
-            'dentist_id.nickname',
-            'dentist_id.specialty',
-            'dentist_id.photo',
-            'dentist_id.photo_url',
-            'dentist_id.linkedin_url',
-            'dentist_id.status',
-          ],
-          limit: -1,
-        })
-      );
+      if (!directusUrl || !directusToken) return null;
 
-      return { ...block, dentists: junctionRecords || [] };
+      const fields = [
+        'id', 'title', 'subtitle', 'note',
+        'dentists.dentist_id.id', 'dentists.dentist_id.name',
+        'dentists.dentist_id.nickname', 'dentists.dentist_id.specialty',
+        'dentists.dentist_id.photo', 'dentists.dentist_id.photo_url',
+        'dentists.dentist_id.linkedin_url', 'dentists.dentist_id.status',
+        'dentists.sort',
+      ].join(',');
+
+      const url = `${directusUrl}/items/block_team/${itemId}?fields=${fields}&deep[dentists][_limit]=-1`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${directusToken}` },
+        next: { revalidate: 60 },
+      });
+
+      if (!res.ok) return null;
+      const json = await res.json();
+      return json?.data || null;
     }
 
     const result = await directus.request(
@@ -438,38 +431,30 @@ export async function getWhyChooseUsBlock(blockId: number): Promise<BlockWhyChoo
 
 export async function getTeamBlock(blockId: number): Promise<BlockTeam | null> {
   try {
-    // Fetch block basic data
-    const blocks = await directus.request(
-      readItemsTyped('block_team', {
-        filter: { id: { _eq: blockId } },
-        fields: ['id', 'title', 'subtitle', 'note'],
-        limit: 1,
-      })
-    );
-    const block = blocks?.[0] || null;
-    if (!block) return null;
+    // Use direct REST API call to reliably fetch all dentists
+    const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL?.replace(/\/$/, '');
+    const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
 
-    // Fetch ALL junction records separately to avoid nested relation limit
-    const junctionRecords = await directus.request(
-      readItemsTyped('block_team_dentists', {
-        filter: { block_team_id: { _eq: blockId } },
-        fields: [
-          'id',
-          'sort',
-          'dentist_id.id',
-          'dentist_id.name',
-          'dentist_id.nickname',
-          'dentist_id.specialty',
-          'dentist_id.photo',
-          'dentist_id.photo_url',
-          'dentist_id.linkedin_url',
-          'dentist_id.status',
-        ],
-        limit: -1,
-      })
-    );
+    if (!directusUrl || !directusToken) return null;
 
-    return { ...block, dentists: junctionRecords || [] } as BlockTeam;
+    const fields = [
+      'id', 'title', 'subtitle', 'note',
+      'dentists.dentist_id.id', 'dentists.dentist_id.name',
+      'dentists.dentist_id.nickname', 'dentists.dentist_id.specialty',
+      'dentists.dentist_id.photo', 'dentists.dentist_id.photo_url',
+      'dentists.dentist_id.linkedin_url', 'dentists.dentist_id.status',
+      'dentists.sort',
+    ].join(',');
+
+    const url = `${directusUrl}/items/block_team/${blockId}?fields=${fields}&deep[dentists][_limit]=-1`;
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${directusToken}` },
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) return null;
+    const json = await res.json();
+    return (json?.data as BlockTeam) || null;
   } catch (error) {
     logDirectusError('getTeamBlock', error);
     return null;
