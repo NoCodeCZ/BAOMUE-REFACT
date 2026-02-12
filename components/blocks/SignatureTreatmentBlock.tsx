@@ -1,15 +1,45 @@
 import type { BlockSignatureTreatment } from "@/lib/types";
+import { getPromotions } from "@/lib/data";
+import { getFileUrl } from "@/lib/directus";
 import PromotionsCarousel from "@/components/PromotionsCarousel";
+
+const BADGE_GRADIENTS = [
+  'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+  'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+  'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
+  'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
+];
 
 interface SignatureTreatmentBlockProps {
   data?: BlockSignatureTreatment | null;
 }
 
-export default function SignatureTreatmentBlock({ data }: SignatureTreatmentBlockProps) {
+export default async function SignatureTreatmentBlock({ data }: SignatureTreatmentBlockProps) {
   if (!data) return null;
 
   const title = data.title ?? "Promotions";
   const subtitle = data.subtitle ?? "เปลี่ยนรอยยิ้มของคุณอย่างแนบเนียน ไร้ลวด ไร้ความเจ็บปวด";
+
+  const directusPromotions = await getPromotions({ limit: 10 });
+
+  const promotions = directusPromotions.map((promo, idx) => {
+    let badge = 'พิเศษ';
+    if (promo.discount_percentage) {
+      badge = `ลด ${promo.discount_percentage}%`;
+    } else if (promo.discount_amount) {
+      badge = promo.discount_amount;
+    } else if (promo.cta_text) {
+      badge = promo.cta_text;
+    }
+
+    return {
+      image: getFileUrl(promo.featured_image ?? null),
+      badge,
+      badgeGradient: BADGE_GRADIENTS[idx % BADGE_GRADIENTS.length],
+      title: promo.title,
+      description: promo.short_description ?? '',
+    };
+  });
 
   return (
     <section 
@@ -46,7 +76,7 @@ export default function SignatureTreatmentBlock({ data }: SignatureTreatmentBloc
           >
             <div className="pt-6 pr-8 pb-6 pl-8">
               <h3 className="text-2xl font-semibold text-white mb-6 tracking-tight">โปรโมชั่นพิเศษ</h3>
-              <PromotionsCarousel />
+              <PromotionsCarousel promotions={promotions} />
             </div>
           </div>
         </div>

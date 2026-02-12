@@ -26,7 +26,7 @@ export default async function PromotionsBlock({ data }: PromotionsBlockProps) {
   // Transform promotions to include resolved image URLs
   const promotionsWithImageUrls = promotions.map((promo) => ({
     ...promo,
-    imageUrl: getFileUrl(promo.featured_image as any) || null,
+    imageUrl: getFileUrl(promo.featured_image ?? null),
   }));
 
   return (

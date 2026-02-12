@@ -110,12 +110,19 @@ export async function getBlockContent(collection: string, itemId: string) {
       ];
     }
 
+    const queryOptions: any = {
+      filter: { id: { _eq: parseInt(itemId) } },
+      fields,
+      limit: 1,
+    };
+
+    // Override default nested relation limit for block_team dentists
+    if (collection === 'block_team') {
+      queryOptions.deep = { dentists: { _limit: -1 } };
+    }
+
     const result = await directus.request(
-      readItemsTyped(collection as string, {
-        filter: { id: { _eq: parseInt(itemId) } },
-        fields,
-        limit: 1,
-      })
+      readItemsTyped(collection as string, queryOptions)
     );
 
     return result?.[0] || null;
@@ -442,6 +449,7 @@ export async function getTeamBlock(blockId: number): Promise<BlockTeam | null> {
           'dentists.sort',
         ],
         limit: 1,
+        deep: { dentists: { _limit: -1 } },
       })
     );
     return blocks?.[0] as BlockTeam || null;
@@ -944,7 +952,7 @@ export async function getPromotions(options?: {
     const promotions = await directus.request(
       readItemsTyped('promotions', {
         filter,
-        fields: ['*', 'category.*', 'featured_image.*'],
+        fields: ['*', 'category.*'],
         sort: ['sort'],
         limit: options?.limit || 100,
       })
