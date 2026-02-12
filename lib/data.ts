@@ -91,38 +91,46 @@ export async function getBlockContent(collection: string, itemId: string) {
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
     } else if (collection === 'block_team') {
-      // Include M2M dentists relation with all fields
-      // M2M returns junction records, need to expand dentist_id to get actual dentist data
-      fields = [
-        'id',
-        'title',
-        'subtitle',
-        'note',
-        'dentists.dentist_id.id',
-        'dentists.dentist_id.name',
-        'dentists.dentist_id.nickname',
-        'dentists.dentist_id.specialty',
-        'dentists.dentist_id.photo',
-        'dentists.dentist_id.photo_url',
-        'dentists.dentist_id.linkedin_url',
-        'dentists.dentist_id.status',
-        'dentists.sort',
-      ];
-    }
+      // Fetch block_team basic data first
+      const blockResult = await directus.request(
+        readItemsTyped('block_team', {
+          filter: { id: { _eq: parseInt(itemId) } },
+          fields: ['id', 'title', 'subtitle', 'note'],
+          limit: 1,
+        })
+      );
+      const block = blockResult?.[0] || null;
+      if (!block) return null;
 
-    const queryOptions: any = {
-      filter: { id: { _eq: parseInt(itemId) } },
-      fields,
-      limit: 1,
-    };
+      // Fetch ALL junction records separately to avoid nested relation limit
+      const junctionRecords = await directus.request(
+        readItemsTyped('block_team_dentists', {
+          filter: { block_team_id: { _eq: parseInt(itemId) } },
+          fields: [
+            'id',
+            'sort',
+            'dentist_id.id',
+            'dentist_id.name',
+            'dentist_id.nickname',
+            'dentist_id.specialty',
+            'dentist_id.photo',
+            'dentist_id.photo_url',
+            'dentist_id.linkedin_url',
+            'dentist_id.status',
+          ],
+          limit: -1,
+        })
+      );
 
-    // Override default nested relation limit for block_team dentists
-    if (collection === 'block_team') {
-      queryOptions.deep = { dentists: { _limit: -1 } };
+      return { ...block, dentists: junctionRecords || [] };
     }
 
     const result = await directus.request(
-      readItemsTyped(collection as string, queryOptions)
+      readItemsTyped(collection as string, {
+        filter: { id: { _eq: parseInt(itemId) } },
+        fields,
+        limit: 1,
+      })
     );
 
     return result?.[0] || null;
@@ -430,29 +438,38 @@ export async function getWhyChooseUsBlock(blockId: number): Promise<BlockWhyChoo
 
 export async function getTeamBlock(blockId: number): Promise<BlockTeam | null> {
   try {
+    // Fetch block basic data
     const blocks = await directus.request(
       readItemsTyped('block_team', {
         filter: { id: { _eq: blockId } },
-        fields: [
-          'id',
-          'title',
-          'subtitle',
-          'note',
-          'dentists.dentist_id.id',
-          'dentists.dentist_id.name',
-          'dentists.dentist_id.nickname',
-          'dentists.dentist_id.specialty',
-          'dentists.dentist_id.photo',
-          'dentists.dentist_id.photo_url',
-          'dentists.dentist_id.linkedin_url',
-          'dentists.dentist_id.status',
-          'dentists.sort',
-        ],
+        fields: ['id', 'title', 'subtitle', 'note'],
         limit: 1,
-        deep: { dentists: { _limit: -1 } },
       })
     );
-    return blocks?.[0] as BlockTeam || null;
+    const block = blocks?.[0] || null;
+    if (!block) return null;
+
+    // Fetch ALL junction records separately to avoid nested relation limit
+    const junctionRecords = await directus.request(
+      readItemsTyped('block_team_dentists', {
+        filter: { block_team_id: { _eq: blockId } },
+        fields: [
+          'id',
+          'sort',
+          'dentist_id.id',
+          'dentist_id.name',
+          'dentist_id.nickname',
+          'dentist_id.specialty',
+          'dentist_id.photo',
+          'dentist_id.photo_url',
+          'dentist_id.linkedin_url',
+          'dentist_id.status',
+        ],
+        limit: -1,
+      })
+    );
+
+    return { ...block, dentists: junctionRecords || [] } as BlockTeam;
   } catch (error) {
     logDirectusError('getTeamBlock', error);
     return null;
