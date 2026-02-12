@@ -233,12 +233,12 @@ export default function PromotionsBlockClient({
               }`}
             >
               {/* Image Section */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
+              <div className="relative overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200">
                 {promo.imageUrl ? (
                   <img
                     src={promo.imageUrl}
                     alt={promo.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">

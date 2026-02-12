@@ -2,11 +2,24 @@
 
 import { useEffect, useState } from 'react';
 
-export default function PromotionsCarousel() {
+interface CarouselPromotion {
+  image: string | null;
+  badge: string;
+  badgeGradient: string;
+  title: string;
+  description: string;
+}
+
+interface PromotionsCarouselProps {
+  promotions: CarouselPromotion[];
+}
+
+export default function PromotionsCarousel({ promotions }: PromotionsCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 4;
+  const totalSlides = promotions.length;
 
   useEffect(() => {
+    if (totalSlides <= 1) return;
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % totalSlides);
     }, 5000);
@@ -21,36 +34,7 @@ export default function PromotionsCarousel() {
     setCurrentSlide(index);
   };
 
-  const promotions = [
-    {
-      image: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80',
-      badge: 'ฟรี!',
-      badgeGradient: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-      title: 'ตรวจฟัน + ขูดหินปูน',
-      description: 'สำหรับลูกค้าใหม่',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1629909615184-74f495363b67?w=800&q=80',
-      badge: 'ลด 30%',
-      badgeGradient: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
-      title: 'จัดฟันใส Invisalign',
-      description: 'เริ่มต้นเพียง ฿59,000',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80',
-      badge: 'ผ่อน 0%',
-      badgeGradient: 'linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)',
-      title: 'ฟอกสีฟัน Zoom',
-      description: 'ผ่อนได้สูงสุด 10 เดือน',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=800&q=80',
-      badge: 'พิเศษ',
-      badgeGradient: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)',
-      title: 'รากฟันเทียม Premium',
-      description: 'รับประกัน 10 ปี',
-    },
-  ];
+  if (promotions.length === 0) return null;
 
   return (
     <div className="relative">
@@ -62,12 +46,16 @@ export default function PromotionsCarousel() {
         >
           {promotions.map((promo, idx) => (
             <div key={idx} className="w-full flex-shrink-0">
-              <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
-                <img
-                  src={promo.image}
-                  alt={promo.title}
-                  className="w-full h-full object-cover"
-                />
+              <div className="relative rounded-2xl overflow-hidden">
+                {promo.image ? (
+                  <img
+                    src={promo.image}
+                    alt={promo.title}
+                    className="w-full h-auto object-contain"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-300" />
+                )}
                 <div
                   className="absolute inset-0"
                   style={{

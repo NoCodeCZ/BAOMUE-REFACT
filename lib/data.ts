@@ -91,23 +91,31 @@ export async function getBlockContent(collection: string, itemId: string) {
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
     } else if (collection === 'block_team') {
-      // Include M2M dentists relation with all fields
-      // M2M returns junction records, need to expand dentist_id to get actual dentist data
-      fields = [
-        'id',
-        'title',
-        'subtitle',
-        'note',
-        'dentists.dentist_id.id',
-        'dentists.dentist_id.name',
-        'dentists.dentist_id.nickname',
-        'dentists.dentist_id.specialty',
-        'dentists.dentist_id.photo',
-        'dentists.dentist_id.photo_url',
-        'dentists.dentist_id.linkedin_url',
-        'dentists.dentist_id.status',
+      // Use direct REST API call to reliably fetch all dentists
+      // The SDK's deep parameter and junction table queries can silently cap results
+      const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL?.replace(/\/$/, '');
+      const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
+
+      if (!directusUrl || !directusToken) return null;
+
+      const fields = [
+        'id', 'title', 'subtitle', 'note',
+        'dentists.dentist_id.id', 'dentists.dentist_id.name',
+        'dentists.dentist_id.nickname', 'dentists.dentist_id.specialty',
+        'dentists.dentist_id.photo', 'dentists.dentist_id.photo_url',
+        'dentists.dentist_id.linkedin_url', 'dentists.dentist_id.status',
         'dentists.sort',
-      ];
+      ].join(',');
+
+      const url = `${directusUrl}/items/block_team/${itemId}?fields=${fields}&deep[dentists][_limit]=-1`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${directusToken}` },
+        next: { revalidate: 60 },
+      });
+
+      if (!res.ok) return null;
+      const json = await res.json();
+      return json?.data || null;
     }
 
     const result = await directus.request(
@@ -423,28 +431,30 @@ export async function getWhyChooseUsBlock(blockId: number): Promise<BlockWhyChoo
 
 export async function getTeamBlock(blockId: number): Promise<BlockTeam | null> {
   try {
-    const blocks = await directus.request(
-      readItemsTyped('block_team', {
-        filter: { id: { _eq: blockId } },
-        fields: [
-          'id',
-          'title',
-          'subtitle',
-          'note',
-          'dentists.dentist_id.id',
-          'dentists.dentist_id.name',
-          'dentists.dentist_id.nickname',
-          'dentists.dentist_id.specialty',
-          'dentists.dentist_id.photo',
-          'dentists.dentist_id.photo_url',
-          'dentists.dentist_id.linkedin_url',
-          'dentists.dentist_id.status',
-          'dentists.sort',
-        ],
-        limit: 1,
-      })
-    );
-    return blocks?.[0] as BlockTeam || null;
+    // Use direct REST API call to reliably fetch all dentists
+    const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL?.replace(/\/$/, '');
+    const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
+
+    if (!directusUrl || !directusToken) return null;
+
+    const fields = [
+      'id', 'title', 'subtitle', 'note',
+      'dentists.dentist_id.id', 'dentists.dentist_id.name',
+      'dentists.dentist_id.nickname', 'dentists.dentist_id.specialty',
+      'dentists.dentist_id.photo', 'dentists.dentist_id.photo_url',
+      'dentists.dentist_id.linkedin_url', 'dentists.dentist_id.status',
+      'dentists.sort',
+    ].join(',');
+
+    const url = `${directusUrl}/items/block_team/${blockId}?fields=${fields}&deep[dentists][_limit]=-1`;
+    const res = await fetch(url, {
+      headers: { Authorization: `Bearer ${directusToken}` },
+      next: { revalidate: 60 },
+    });
+
+    if (!res.ok) return null;
+    const json = await res.json();
+    return (json?.data as BlockTeam) || null;
   } catch (error) {
     logDirectusError('getTeamBlock', error);
     return null;
@@ -944,7 +954,7 @@ export async function getPromotions(options?: {
     const promotions = await directus.request(
       readItemsTyped('promotions', {
         filter,
-        fields: ['*', 'category.*', 'featured_image.*'],
+        fields: ['*', 'category.*'],
         sort: ['sort'],
         limit: options?.limit || 100,
       })
