@@ -180,7 +180,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   )}
 
                   {/* Article Content */}
-                  <article className="prose prose-slate max-w-none">
+                  <article>
                     {post.excerpt && (
                       <p className="text-lg text-slate-600 leading-relaxed mb-6">
                         {post.excerpt}
@@ -188,7 +188,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     )}
                     {post.content && (
                       <div
-                        className="text-slate-600 leading-relaxed"
+                        className="prose prose-slate max-w-none"
                         dangerouslySetInnerHTML={{ __html: post.content }}
                       />
                     )}
