@@ -72,22 +72,32 @@ export default function TestimonialsBlock({ data }: TestimonialsBlockProps) {
   };
 
   return (
-    <section className="lg:py-32 bg-slate-50 pt-24 pb-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="lg:py-32 pt-24 pb-24 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #003888 0%, #0047BC 30%, #1a5cc8 60%, #1DAEE0 100%)' }}>
+      {/* Decorative Background Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-400/10 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-blue-300/5 rounded-full blur-2xl"></div>
+        {/* Subtle dot pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Side - Character and Title */}
           <div className="flex flex-col text-center items-center">
             <h2 
-              className="md:text-7xl uppercase text-5xl font-black text-[#0047BC] tracking-tighter mb-4 -rotate-2"
+              className="md:text-7xl uppercase text-5xl font-black text-white tracking-tighter mb-4 -rotate-2 drop-shadow-lg"
               style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}
             >
               {title}
             </h2>
-            <p className="md:text-3xl text-2xl font-bold text-[#003888] mb-8">{subtitle}</p>
+            <p className="md:text-3xl text-2xl font-bold text-white/80 mb-8">{subtitle}</p>
 
             {/* Character Image */}
             <div className="md:w-80 md:h-[450px] flex w-80 h-96 relative items-center justify-center">
-              <div className="md:w-72 md:h-96 flex overflow-hidden bg-center w-60 rounded-2xl items-center justify-center">
+              <div className="absolute inset-0 bg-white/10 rounded-full blur-3xl scale-75"></div>
+              <div className="md:w-72 md:h-96 flex overflow-hidden bg-center w-60 rounded-2xl items-center justify-center relative drop-shadow-2xl">
                 <img
                   src={MASCOT_IMAGE_URL}
                   alt="Tooth Mascot"
@@ -100,7 +110,7 @@ export default function TestimonialsBlock({ data }: TestimonialsBlockProps) {
           {/* Right Side - Review Slider */}
           <div className="relative">
             {/* Review Card */}
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-white/20" style={{ boxShadow: '0 25px 60px rgba(0, 0, 0, 0.3)' }}>
               {/* Header with Profile */}
               <div className="p-4 border-b border-slate-100">
                 <div className="flex items-center justify-between">

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingBlock from "@/components/blocks/BookingBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
 import RelatedServices from "@/components/services/RelatedServices";
@@ -168,6 +169,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <ServiceDetailBlock data={blockData} />
       </div>
 
+      <BookingBlock />
       <Footer />
     </main>
   );

@@ -1,7 +1,8 @@
 import directus from './directus';
-import { createItems, updateItems, deleteItems } from '@directus/sdk';
+import { createItem, createItems, updateItems, deleteItems } from '@directus/sdk';
 import { logDirectusError } from './errors';
 
+const createItemTyped = createItem as any;
 const createItemsTyped = createItems as any;
 const updateItemsTyped = updateItems as any;
 const deleteItemsTyped = deleteItems as any;
@@ -10,22 +11,31 @@ const deleteItemsTyped = deleteItems as any;
  * Create form submission
  */
 export async function createFormSubmission(
-  formId: number,
+  formId: number | null,
   data: Record<string, any>
 ): Promise<{ id: number } | null> {
   try {
+    const payload: Record<string, any> = {
+      form: formId,
+      data: data,
+      status: 'new',
+    };
+
+    // Write booking data to dedicated fields for admin readability
+    if (data.form_type === 'booking') {
+      if (data.name) payload.customer_name = data.name;
+      if (data.phone) payload.phone = data.phone;
+      if (data.branch) payload.branch = data.branch;
+      if (data.service) payload.service = data.service;
+      if (data.preferred_date) payload.preferred_date = data.preferred_date;
+      if (data.preferred_time) payload.preferred_time = data.preferred_time;
+      if (data.note) payload.note = data.note;
+    }
+
     const result = await directus.request(
-      createItemsTyped('form_submissions', {
-        items: [
-          {
-            form: formId,
-            data: data,
-            status: 'pending',
-          },
-        ],
-      })
+      createItemTyped('form_submissions', payload)
     );
-    return result?.[0] || null;
+    return result || null;
   } catch (error) {
     logDirectusError('createFormSubmission', error);
     return null;

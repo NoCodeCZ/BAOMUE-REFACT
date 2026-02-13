@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingBlock from "@/components/blocks/BookingBlock";
 import PromotionsBlock from "@/components/blocks/PromotionsBlock";
 import { getPageBySlug, getPageBlocks, getBlockContent } from "@/lib/data";
 import type { Metadata } from "next";
@@ -44,6 +45,7 @@ export default async function PromotionsPage() {
                 <p className="text-slate-500">No promotions available.</p>
               </div>
             )}
+            <BookingBlock />
             <Footer />
           </main>
         );

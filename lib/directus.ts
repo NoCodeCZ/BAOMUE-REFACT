@@ -124,4 +124,3 @@ export function getPlaceholderUrl(
 
 // Re-export health check functions
 export { checkDirectusConnection, getDirectusHealthStatus } from './directus-health';
-

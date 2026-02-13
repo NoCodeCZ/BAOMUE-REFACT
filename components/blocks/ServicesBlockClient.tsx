@@ -8,11 +8,13 @@ import { getFileUrl } from "@/lib/directus";
 interface ServicesBlockClientProps {
   categories: ServiceCategory[];
   servicesByCategory: Record<string, Service[]>;
+  showViewAllButton?: boolean;
 }
 
 export default function ServicesBlockClient({
   categories,
-  servicesByCategory
+  servicesByCategory,
+  showViewAllButton = true
 }: ServicesBlockClientProps) {
   // Start with 'all' tab to show all services by default
   const [activeTab, setActiveTab] = useState<string>("all");
@@ -96,15 +98,17 @@ export default function ServicesBlockClient({
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-10">
-          <Link href="/services" className="inline-flex items-center gap-2 hover:bg-slate-800 transition-colors font-medium text-white bg-[#003888] h-12 rounded-xl pr-8 pl-8">
-            ดูบริการทั้งหมด
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </Link>
-        </div>
+        {showViewAllButton && (
+          <div className="text-center mt-10">
+            <Link href="/services" className="inline-flex items-center gap-2 hover:bg-slate-800 transition-colors font-medium text-white bg-[#003888] h-12 rounded-xl pr-8 pl-8">
+              ดูบริการทั้งหมด
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

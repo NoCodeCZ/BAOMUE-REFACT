@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BookingBlock from "@/components/blocks/BookingBlock";
 import { getBlogPostBySlug, getBlogPosts, getServices } from "@/lib/data";
 import { getFileUrl } from "@/lib/directus";
 import type { Metadata } from "next";
@@ -346,6 +347,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
         </div>
       </section>
 
+      <BookingBlock />
       <Footer />
     </main>
   );

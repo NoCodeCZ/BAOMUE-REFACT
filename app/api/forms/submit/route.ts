@@ -17,6 +17,9 @@ export async function POST(request: NextRequest) {
       );
     } else if (type === 'form' && formId) {
       result = await createFormSubmission(formId, data);
+    } else if (type === 'form' && !formId && data?.form_type) {
+      // Booking or other standalone form submissions without a linked form
+      result = await createFormSubmission(null as any, data);
     } else {
       return NextResponse.json(
         { error: 'Invalid submission type' },

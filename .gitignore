@@ -36,4 +36,9 @@ yarn-error.log*
 next-env.d.ts
 
 /refactor/
+/.windsurf/
 
+# temp scripts (one-off Directus utilities)
+scripts/cleanup-directus.js
+scripts/create-booking-form.js
+scripts/improve-form-submissions.js

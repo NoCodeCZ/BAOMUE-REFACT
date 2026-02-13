@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactBlock from "@/components/blocks/ContactBlock";
+import BookingBlock from "@/components/blocks/BookingBlock";
 import {
   getPageWithBlocks,
   getPageWithBlocksBatched,
@@ -22,15 +23,20 @@ export default async function ContactPage() {
     result = await getPageWithBlocksBatched("contact");
   }
   
-  // Get contact block data from CMS if available
+  // Get block data from CMS if available
   let contactBlockData = null;
+  let bookingBlockData = null;
 
   if (result) {
     const { blocks } = result;
     const contactBlock = blocks.find(b => b.collection === 'block_contact');
+    const bookingBlock = blocks.find(b => b.collection === 'block_booking');
     
     if (contactBlock) {
       contactBlockData = contactBlock.content;
+    }
+    if (bookingBlock) {
+      bookingBlockData = bookingBlock.content;
     }
   }
 
@@ -40,6 +46,7 @@ export default async function ContactPage() {
       
       {/* Contact Block - Standalone section with its own layout */}
       <ContactBlock data={contactBlockData} />
+      <BookingBlock data={bookingBlockData} />
 
       <Footer />
     </main>

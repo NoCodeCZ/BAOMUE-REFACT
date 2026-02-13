@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "apply-configs": "node scripts/apply-collection-configs.js",
-    "organize-collections": "node scripts/organize-directus-collections.js"
+    "organize-collections": "node scripts/organize-directus-collections.js",
+    "cleanup-directus": "node scripts/cleanup-directus.js"
   },
   "dependencies": {
     "@directus/sdk": "^16.0.0",

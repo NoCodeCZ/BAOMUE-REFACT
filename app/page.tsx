@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import PageBuilder from "@/components/PageBuilder";
 import Link from "next/link";
 import {
@@ -48,7 +47,7 @@ function FallbackHomePage() {
               
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  href="/contact"
+                  href="#booking"
                   className="group h-14 px-8 rounded-2xl bg-blue-600 text-white font-semibold text-lg flex items-center justify-center gap-2 hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl"
                 >
                   <span>จองคิวออนไลน์</span>
@@ -58,7 +57,7 @@ function FallbackHomePage() {
                   </svg>
                 </Link>
                 <Link
-                  href="/services"
+                  href="#services"
                   className="h-14 px-8 rounded-2xl bg-white border-2 border-slate-200 text-slate-700 font-semibold text-lg flex items-center justify-center hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm"
                 >
                   ดูบริการของเรา
@@ -74,7 +73,7 @@ function FallbackHomePage() {
                   </div>
                   <div>
                     <div className="text-slate-500 text-xs font-medium mb-1">Call Center</div>
-                    <div className="text-slate-900 font-semibold text-lg">096 915 9391</div>
+                    <div className="text-slate-900 font-semibold text-lg">065 291 6466</div>
                   </div>
                 </div>
                 <div className="w-px h-12 bg-slate-200"></div>
@@ -84,8 +83,20 @@ function FallbackHomePage() {
                   </div>
                   <div>
                     <div className="text-slate-500 text-xs font-medium mb-1">Line Official</div>
-                    <div className="text-slate-900 font-semibold text-lg">@BAOMUE</div>
+                    <div className="text-slate-900 font-semibold text-lg">@baomuedentalclinic</div>
                   </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 mt-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 6v6l4 2"></path>
+                    <circle cx="12" cy="12" r="10"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-slate-500 text-xs font-medium mb-1">เวลาทำการ</div>
+                  <div className="text-slate-900 font-semibold text-lg">เปิดให้บริการทุกวัน 10.30 - 19.30 น.</div>
                 </div>
               </div>
             </div>
@@ -149,7 +160,6 @@ function FallbackHomePage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }
@@ -196,7 +206,6 @@ export default async function HomePage() {
           formDataMap
         }}
       />
-      <Footer />
     </main>
   );
 }

@@ -37,7 +37,7 @@ export default async function ServicesBlock({ data }: ServicesBlockProps) {
 
 
   return (
-    <section className="lg:py-32 bg-slate-50 pt-24 pb-24">
+    <section id="services" className="lg:py-32 bg-slate-50 pt-24 pb-24">
       <div className="max-w-7xl mr-auto ml-auto pr-6 pl-6">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

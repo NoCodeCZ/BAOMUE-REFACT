@@ -14,8 +14,8 @@ export default function HeroBlock({ data }: HeroBlockProps) {
   const heroDescription = data.description ?? "บอกลาเสียงกรอที่น่ากังวลและความเจ็บปวด ด้วยเทคโนโลยี Silent Technology และเทคนิคการรักษาที่นุ่มนวลเป็นพิเศษ ให้คุณหลับสบายตลอดการรักษา";
   const heroPrimaryCta = data.primary_cta_text ?? "จองคิวออนไลน์";
   const heroSecondaryCta = data.secondary_cta_text ?? "ดูบริการของเรา";
-  const heroPrimaryCtaLink = data.primary_cta_link ?? "#";
-  const heroSecondaryCtaLink = data.secondary_cta_link ?? "/services";
+  const heroPrimaryCtaLink = data.primary_cta_link ?? "#booking";
+  const heroSecondaryCtaLink = data.secondary_cta_link ?? "#services";
   const heroImage = data.background_image 
     ? (getFileUrl(data.background_image as any) ?? "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ec7f76a9-b773-48f2-ad44-c1ef877851dc_1600w.png")
     : "https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ec7f76a9-b773-48f2-ad44-c1ef877851dc_1600w.png";
@@ -82,7 +82,7 @@ export default function HeroBlock({ data }: HeroBlockProps) {
                 </div>
                 <div>
                   <div className="text-white/50 text-xs font-medium tracking-wide mb-0.5" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>Call Center</div>
-                  <div className="text-white font-medium text-xl leading-none tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>096 915 9391</div>
+                  <div className="text-white font-medium text-xl leading-none tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>065 291 6466</div>
                 </div>
               </div>
               <div className="w-px h-12 bg-white/10 hidden sm:block"></div>
@@ -92,8 +92,20 @@ export default function HeroBlock({ data }: HeroBlockProps) {
                 </div>
                 <div>
                   <div className="text-white/50 text-xs font-medium tracking-wide mb-0.5" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>Line Official</div>
-                  <div className="leading-none text-xl font-medium text-white tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>@BAOMUE</div>
+                  <div className="leading-none text-xl font-medium text-white tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>@baomuedentalclinic</div>
                 </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 pt-6">
+              <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-xl flex items-center justify-center text-white shrink-0" style={{ boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+                  <path d="M12 6v6l4 2"></path>
+                  <circle cx="12" cy="12" r="10"></circle>
+                </svg>
+              </div>
+              <div>
+                <div className="text-white/50 text-xs font-medium tracking-wide mb-0.5" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif" }}>เวลาทำการ</div>
+                <div className="text-white font-medium text-xl leading-none tracking-tight" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif" }}>เปิดทุกวัน 10.30 - 19.30 น.</div>
               </div>
             </div>
           </div>
