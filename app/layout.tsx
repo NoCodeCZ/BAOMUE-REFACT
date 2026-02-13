@@ -10,10 +10,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const settings = await getGlobalSettings();
 
   return {
-    title: settings?.site_name || "Tooth Box Dental Clinic",
+    title: settings?.site_name || "BAOMUE Dental Clinic | คลินิกทันตกรรมเบามือ",
     description:
       settings?.site_description ||
-      "คลินิกทันตกรรม Tooth Box Dental Clinic – บริการทันตกรรมครบวงจร ใจกลางกรุงเทพฯ",
+      "คลินิกทันตกรรมเบามือ (Baomue Dental Clinic) – บริการทันตกรรมครบวงจร จัดฟัน วีเนียร์ รากเทียม ฟอกสีฟัน",
   };
 }
 
@@ -27,10 +27,10 @@ export default async function RootLayout({
   const schema = {
     "@context": "https://schema.org",
     "@type": "Dentist",
-    "name": settings?.site_name || "Tooth Box Dental Clinic",
+    "name": settings?.site_name || "BAOMUE Dental Clinic",
     "description": settings?.site_description,
     "url": process.env.NEXT_PUBLIC_SITE_URL,
-    "telephone": "+66-96-915-9391",
+    "telephone": "+66-65-291-6466",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Bangkok",

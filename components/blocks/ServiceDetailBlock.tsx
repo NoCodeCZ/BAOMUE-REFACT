@@ -676,7 +676,7 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
               <h3 className="font-medium text-blue-900 mb-6">หรือติดต่อช่องทางอื่น</h3>
               <div className="space-y-3">
                 <a
-                  href="tel:0969159391"
+                  href="tel:0652916466"
                   className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all group"
                 >
                   <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-600">
@@ -684,7 +684,7 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
                   </div>
                   <div className="flex-1">
                     <div className="text-xs text-slate-500 mb-0.5">โทรหาเรา</div>
-                    <div className="font-semibold text-slate-900 leading-none">096-915-9391</div>
+                    <div className="font-semibold text-slate-900 leading-none">065-291-6466</div>
                   </div>
                 </a>
 

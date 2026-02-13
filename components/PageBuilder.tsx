@@ -68,7 +68,7 @@ export default function PageBuilder({ blocks, additionalProps = {} }: PageBuilde
       // Exclude the welcome TextBlock that was removed in browser preview
       if (block.collection === 'block_text' && block.content) {
         const textContent = block.content as any;
-        if (textContent.title === "ยินดีต้อนรับสู่ Tooth Box Dental") {
+        if (textContent.title?.includes("ยินดีต้อนรับสู่")) {
           return false;
         }
       }
