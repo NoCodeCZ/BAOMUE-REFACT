@@ -1,4 +1,5 @@
 import type { BlockFooter } from '@/lib/types';
+import { getFooterBlock } from '@/lib/data';
 
 interface FooterProps {
   block?: BlockFooter;
@@ -42,9 +43,13 @@ const socialStyles: Record<string, string> = {
   tiktok: 'bg-white/15 hover:bg-white text-white/80 hover:text-black',
 };
 
-export default function Footer({ block, data }: FooterProps) {
-  // Support both: new separate fields (d.description) and legacy nested content JSON (d.content.description)
-  const d = block || data || {};
+export default async function Footer({ block, data }: FooterProps) {
+  // If no data provided, fetch block_footer from Directus directly
+  let footerData = block || data || null;
+  if (!footerData) {
+    footerData = await getFooterBlock(1);
+  }
+  const d = footerData || {};
   const legacy = d?.content;
 
   // CMS data with fallbacks — prefer new fields, fallback to legacy content JSON
