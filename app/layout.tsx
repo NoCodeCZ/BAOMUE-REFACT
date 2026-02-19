@@ -43,14 +43,14 @@ export default async function RootLayout({
     <html lang="th" className="scroll-smooth">
       <head>
         <GTMScript />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
       </head>
       <body className="antialiased text-slate-600 bg-white selection:bg-cyan-200 selection:text-cyan-900 overflow-x-hidden">
         <GTMNoScript />
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       </body>
     </html>
   );

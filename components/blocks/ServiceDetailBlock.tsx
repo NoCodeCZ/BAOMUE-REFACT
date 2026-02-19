@@ -1,6 +1,7 @@
-import type { BlockServiceDetail, Service, ServiceFeature, ServiceProcessStep, ServiceResult, ServiceCareItem, ServiceSuitability, ServicePricingPlan, ServiceFAQ, ServicePortfolioCase } from "@/lib/types";
+import type { BlockServiceDetail, Service, ServiceFeature, ServiceProcessStep, ServiceResult, ServiceCareItem, ServiceSuitability, ServicePricingPlan, ServiceFAQ, ServicePortfolioCase, PortfolioCase } from "@/lib/types";
 import { getFileUrl } from "@/lib/directus";
 import Link from "next/link";
+import PromotionGallery from "./PromotionGallery";
 import {
   EyeOff,
   Smile,
@@ -12,18 +13,21 @@ import {
   CalendarCheck,
   Star,
   ChevronDown,
-  Phone,
-  MessageCircle,
-  Send,
-  ShieldCheck,
-  Lock,
-  Percent,
-  Check,
   ArrowRight
 } from "lucide-react";
 
+interface PromotionImage {
+  id: number;
+  title: string;
+  slug: string;
+  imageUrl: string;
+  cta_link?: string;
+}
+
 interface ServiceDetailBlockProps {
   data?: BlockServiceDetail | null;
+  promotions?: PromotionImage[];
+  portfolioCases?: PortfolioCase[];
 }
 
 // Icon mapping helper
@@ -66,7 +70,7 @@ const getProcessGridClass = (stepCount: number) => {
   return gridClasses[count] || "lg:grid-cols-3";
 };
 
-export default async function ServiceDetailBlock({ data }: ServiceDetailBlockProps) {
+export default async function ServiceDetailBlock({ data, promotions = [], portfolioCases = [] }: ServiceDetailBlockProps) {
   if (!data) return null;
 
   const showHero = data.show_hero ?? true;
@@ -76,8 +80,6 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
   const showPricing = data.show_pricing ?? true;
   const showFaq = data.show_faq ?? true;
   const showPortfolio = data.show_portfolio ?? false;
-  const showBooking = data.show_booking ?? true;
-
   // Get service data
   const service = data.service && typeof data.service === "object"
     ? data.service
@@ -131,12 +133,6 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
       ? JSON.parse(service.faqs || "[]")
       : [];
 
-  const portfolioCases: ServicePortfolioCase[] = Array.isArray(service.portfolio_cases)
-    ? service.portfolio_cases
-    : typeof service.portfolio_cases === "string"
-      ? JSON.parse(service.portfolio_cases || "[]")
-      : [];
-
   // Use price_starting_from if available, otherwise fall back to price_from
   const priceDisplay = service.price_starting_from || service.price_from;
 
@@ -144,79 +140,12 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
     <div className="space-y-6">
       {/* Hero Section */}
       {showHero && (
-        <section className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            {/* Left Content */}
-            <div className="p-8 lg:p-12 flex flex-col justify-center">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-blue-200 text-[11px] font-semibold text-blue-800 mb-6 w-fit shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                </span>
-                ปรึกษาฟรี! ไม่มีค่าใช้จ่าย
-              </div>
-
-              <h1 className="text-4xl sm:text-5xl font-semibold text-blue-900 tracking-tight mb-4 leading-[1.1]">
-                {service.name}
-                <br />
-                <span className="text-blue-500">เบามือ คลินิก</span>
-              </h1>
-
-              {service.short_description && (
-                <p className="text-lg text-slate-500 font-normal mb-8 leading-relaxed max-w-md">
-                  {service.short_description}
-                </p>
-              )}
-
-              {/* Price Badge */}
-              {priceDisplay && (
-                <div className="bg-blue-50/80 rounded-2xl p-6 mb-8 border border-blue-100">
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="text-sm font-medium text-slate-500">ราคาเริ่มต้น</span>
-                    <span className="text-3xl font-semibold text-blue-600 tracking-tight">
-                      {priceDisplay}
-                    </span>
-                  </div>
-                  {service.price_installment && (
-                    <div className="flex flex-wrap gap-4 text-sm font-medium">
-                      <span className="inline-flex items-center gap-1.5 text-green-600">
-                        <CheckCircle2 className="w-4 h-4 stroke-[1.5]" />
-                        ผ่อน 0% นาน {service.price_installment_months || 10} เดือน
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 text-green-600">
-                        <CheckCircle2 className="w-4 h-4 stroke-[1.5]" />
-                        สแกนฟันฟรี
-                      </span>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                {service.cta_booking_link && (
-                  <Link
-                    href={service.cta_booking_link}
-                    className="flex-1 h-12 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:-translate-y-0.5"
-                  >
-                    <CalendarCheck className="w-5 h-5 stroke-[1.5]" />
-                    {service.cta_booking_text || "นัดปรึกษาฟรี"}
-                  </Link>
-                )}
-                {service.cta_line_link && (
-                  <a
-                    href={service.cta_line_link}
-                    className="flex-1 h-12 bg-[#06c755] hover:bg-[#05b64d] text-white font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-500/20 hover:shadow-green-500/30 hover:-translate-y-0.5"
-                  >
-                    <span className="font-bold text-sm">LINE</span>
-                    {service.cta_line_text || "แชทเลย"}
-                  </a>
-                )}
-              </div>
-            </div>
-
-            {/* Right Image */}
-            <div className="relative min-h-[400px] lg:h-auto bg-slate-50">
+        <section className="bg-white rounded-[24px] sm:rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
+          {/* Mobile: Image on top, Content below */}
+          {/* Desktop: Side by side grid */}
+          <div className="flex flex-col lg:grid lg:grid-cols-2">
+            {/* Image — shows first on mobile */}
+            <div className="relative h-48 sm:h-64 lg:h-auto lg:min-h-[420px] bg-slate-100 order-1 lg:order-2">
               {(() => {
                 const imageUrl = getFileUrl(service.hero_image as any);
                 const fallbackUrl = "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80";
@@ -228,35 +157,104 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
                       alt={service.name}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-white/40 lg:via-transparent lg:to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-white/30 lg:via-transparent lg:to-transparent"></div>
                   </>
                 );
               })()}
 
               {/* Floating Stats */}
               {(service.stats_cases || service.stats_rating) && (
-                <div className="absolute bottom-6 left-6 right-6 flex gap-4">
+                <div className="absolute bottom-3 left-3 right-3 sm:bottom-5 sm:left-5 sm:right-5 flex gap-2 sm:gap-4">
                   {service.stats_cases && (
-                    <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-4 border border-slate-200 shadow-xl shadow-slate-200/50">
-                      <div className="text-2xl font-semibold text-slate-900 tracking-tight">
+                    <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-slate-200 shadow-lg">
+                      <div className="text-lg sm:text-2xl font-semibold text-slate-900 tracking-tight">
                         {service.stats_cases}
                       </div>
-                      <div className="text-xs font-medium text-slate-500">เคสสำเร็จ</div>
+                      <div className="text-[10px] sm:text-xs font-medium text-slate-500">เคสสำเร็จ</div>
                     </div>
                   )}
                   {service.stats_rating && (
-                    <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-4 border border-slate-200 shadow-xl shadow-slate-200/50">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-2xl font-semibold text-slate-900 tracking-tight">
+                    <div className="flex-1 bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-4 border border-slate-200 shadow-lg">
+                      <div className="flex items-center gap-1">
+                        <span className="text-lg sm:text-2xl font-semibold text-slate-900 tracking-tight">
                           {service.stats_rating}
                         </span>
-                        <Star className="w-5 h-5 stroke-[1.5] text-amber-400 fill-amber-400" />
+                        <Star className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5] text-amber-400 fill-amber-400" />
                       </div>
-                      <div className="text-xs font-medium text-slate-500">คะแนนรีวิว</div>
+                      <div className="text-[10px] sm:text-xs font-medium text-slate-500">คะแนนรีวิว</div>
                     </div>
                   )}
                 </div>
               )}
+            </div>
+
+            {/* Content */}
+            <div className="p-5 sm:p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white border border-blue-200 text-[10px] sm:text-[11px] font-semibold text-blue-800 mb-4 sm:mb-6 w-fit shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                ปรึกษาฟรี! ไม่มีค่าใช้จ่าย
+              </div>
+
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-semibold text-blue-900 tracking-tight mb-2 sm:mb-4 leading-[1.15]">
+                {service.name}
+                <br />
+                <span className="text-blue-500">เบามือ คลินิก</span>
+              </h1>
+
+              {service.short_description && (
+                <p className="text-sm sm:text-lg text-slate-500 font-normal mb-5 sm:mb-8 leading-relaxed max-w-md">
+                  {service.short_description}
+                </p>
+              )}
+
+              {/* Price Badge */}
+              {priceDisplay && (
+                <div className="bg-blue-50/80 rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-5 sm:mb-8 border border-blue-100">
+                  <div className="flex items-baseline gap-2 sm:gap-3 mb-1.5 sm:mb-2">
+                    <span className="text-xs sm:text-sm font-medium text-slate-500">ราคาเริ่มต้น</span>
+                    <span className="text-2xl sm:text-3xl font-semibold text-blue-600 tracking-tight">
+                      {priceDisplay}
+                    </span>
+                  </div>
+                  {service.price_installment && (
+                    <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm font-medium">
+                      <span className="inline-flex items-center gap-1 text-green-600">
+                        <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.5]" />
+                        ผ่อน 0% นาน {service.price_installment_months || 10} เดือน
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-green-600">
+                        <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[1.5]" />
+                        สแกนฟันฟรี
+                      </span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* CTA Buttons */}
+              <div className="flex gap-2.5 sm:gap-3">
+                {service.cta_booking_link && (
+                  <Link
+                    href={service.cta_booking_link}
+                    className="flex-1 h-11 sm:h-12 bg-blue-500 hover:bg-blue-600 text-white text-sm sm:text-base font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 hover:-translate-y-0.5"
+                  >
+                    <CalendarCheck className="w-4 h-4 sm:w-5 sm:h-5 stroke-[1.5]" />
+                    {service.cta_booking_text || "นัดปรึกษาฟรี"}
+                  </Link>
+                )}
+                {service.cta_line_link && (
+                  <a
+                    href={service.cta_line_link}
+                    className="flex-1 h-11 sm:h-12 bg-[#06c755] hover:bg-[#05b64d] text-white text-sm sm:text-base font-semibold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-500/20 hover:shadow-green-500/30 hover:-translate-y-0.5"
+                  >
+                    <span className="font-bold text-xs sm:text-sm">LINE</span>
+                    {service.cta_line_text || "แชทเลย"}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </section>
@@ -470,33 +468,70 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
       {showPortfolio && portfolioCases.length > 0 && (
         <section className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-8 lg:p-12">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-semibold text-blue-900 tracking-tight mb-3">ผลงานจัดฟันใส</h2>
+            <h2 className="text-3xl font-semibold text-blue-900 tracking-tight mb-3">
+              ผลงาน{service.name}
+            </h2>
             <p className="text-slate-500 font-normal">ตัวอย่างเคสจริงจากคนไข้ของเรา</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {portfolioCases.map((caseItem, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-lg transition-all duration-300">
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={caseItem.image}
-                    alt={caseItem.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3 flex gap-2">
-                    <span className="px-2 py-0.5 bg-slate-900/60 backdrop-blur-sm text-white text-[10px] font-medium rounded">Before</span>
-                    <span className="px-2 py-0.5 bg-green-500/90 text-white text-[10px] font-medium rounded">After</span>
+            {portfolioCases.map((caseItem) => {
+              const beforeUrl = getFileUrl(caseItem.image_before as any);
+              const afterUrl = getFileUrl(caseItem.image_after as any);
+              const categoryName = caseItem.category && typeof caseItem.category === 'object'
+                ? caseItem.category.name
+                : undefined;
+
+              return (
+                <div key={caseItem.id} className="bg-white rounded-2xl border border-slate-100 overflow-hidden group hover:shadow-lg transition-all duration-300">
+                  <div className="relative h-48 overflow-hidden">
+                    {/* Before/After side-by-side */}
+                    <div className="flex w-full h-full">
+                      <div className="w-1/2 h-full relative">
+                        {beforeUrl ? (
+                          <img src={beforeUrl} alt={`${caseItem.title} Before`} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400 text-xs">Before</div>
+                        )}
+                      </div>
+                      <div className="w-1/2 h-full relative">
+                        {afterUrl ? (
+                          <img src={afterUrl} alt={`${caseItem.title} After`} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400 text-xs">After</div>
+                        )}
+                      </div>
+                    </div>
+                    {/* Divider line */}
+                    <div className="absolute inset-y-0 left-1/2 w-0.5 bg-white/80"></div>
+                    {/* Labels */}
+                    <div className="absolute top-3 left-3">
+                      <span className="px-2 py-0.5 bg-slate-900/60 backdrop-blur-sm text-white text-[10px] font-medium rounded">Before</span>
+                    </div>
+                    <div className="absolute top-3 right-3">
+                      <span className="px-2 py-0.5 bg-green-500/90 text-white text-[10px] font-medium rounded">After</span>
+                    </div>
+                    {/* Category badge */}
+                    {categoryName && (
+                      <div className="absolute bottom-3 left-3">
+                        <span className="px-2 py-0.5 bg-blue-500/90 text-white text-[10px] font-medium rounded">{categoryName}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-5">
+                    <div className="flex justify-between items-center mb-2">
+                      <h3 className="font-medium text-blue-900 line-clamp-1">{caseItem.title}</h3>
+                      {caseItem.duration && (
+                        <span className="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-500 shrink-0 ml-2">{caseItem.duration}</span>
+                      )}
+                    </div>
+                    {caseItem.description && (
+                      <p className="text-xs text-slate-500 font-light line-clamp-2">{caseItem.description}</p>
+                    )}
                   </div>
                 </div>
-                <div className="p-5">
-                  <div className="flex justify-between items-center mb-2">
-                    <h3 className="font-medium text-blue-900">{caseItem.title}</h3>
-                    <span className="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-500">{caseItem.duration}</span>
-                  </div>
-                  <p className="text-xs text-slate-500 font-light">{caseItem.description}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="text-center mt-8">
@@ -510,69 +545,9 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
         </section>
       )}
 
-      {/* Pricing Section */}
-      {showPricing && pricingPlans.length > 0 && (
-        <section className="rounded-[32px] overflow-hidden bg-gradient-to-br from-blue-500 to-sky-500 p-8 lg:p-12 text-white relative shadow-lg shadow-blue-500/20">
-          {/* Background Decor */}
-          <div className="absolute top-[-20%] right-[-10%] w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-[-20%] left-[-10%] w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-
-          <div className="relative z-10 text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/20 text-xs font-medium mb-4 text-amber-100">
-              <Percent className="w-3 h-3 stroke-[2]" />
-              โปรโมชั่นพิเศษ เดือนนี้เท่านั้น!
-            </div>
-            <h2 className="text-3xl font-bold tracking-tight">ราคา{service.name}</h2>
-          </div>
-
-          <div className="relative z-10 grid md:grid-cols-3 gap-6 items-center">
-            {pricingPlans.map((plan, index) => (
-              <div
-                key={index}
-                className={
-                  plan.is_popular
-                    ? "bg-white rounded-2xl p-6 text-slate-900 shadow-xl scale-105 relative border border-white/50"
-                    : "bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
-                }
-              >
-                {plan.is_popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-400 text-amber-900 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-                    ยอดนิยม
-                  </div>
-                )}
-                <h3 className={`text-sm font-medium mb-2 ${plan.is_popular ? "text-blue-500" : "text-blue-100"}`}>
-                  {plan.tier}
-                </h3>
-                <div className={`text-3xl font-bold mb-1 ${plan.is_popular ? "text-4xl tracking-tight" : ""}`}>
-                  {plan.price}
-                </div>
-                <p className={`text-xs mb-6 ${plan.is_popular ? "text-slate-400" : "text-blue-200"}`}>
-                  {plan.description}
-                </p>
-                <ul className={`space-y-3 text-sm ${plan.is_popular ? "" : "font-light"}`}>
-                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
-                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
-                    {plan.aligner_count} Aligner
-                  </li>
-                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
-                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
-                    {plan.duration}
-                  </li>
-                  <li className={`flex items-center gap-2 ${plan.is_popular ? "text-slate-600" : "text-white/90"}`}>
-                    <Check className={`w-4 h-4 stroke-[2] ${plan.is_popular ? "text-green-500" : ""}`} />
-                    รีเทนเนอร์ {plan.retainer_count}
-                  </li>
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 text-center relative z-10">
-            <p className="text-xs text-blue-100 opacity-80">
-              * ราคารวมค่าสแกนฟัน 3D, วางแผนการรักษา, นัดติดตามผล และรีเทนเนอร์แล้ว
-            </p>
-          </div>
-        </section>
+      {/* Promotions Gallery Section */}
+      {showPricing && promotions.length > 0 && (
+        <PromotionGallery promotions={promotions} />
       )}
 
       {/* FAQ Section */}
@@ -604,131 +579,6 @@ export default async function ServiceDetailBlock({ data }: ServiceDetailBlockPro
         </section>
       )}
 
-      {/* Booking Section */}
-      {showBooking && (
-        <section id="booking" className="bg-white rounded-[32px] border border-slate-200 shadow-sm overflow-hidden">
-          <div className="grid lg:grid-cols-2">
-            {/* Form */}
-            <div className="p-8 lg:p-12">
-              <h2 className="text-2xl font-semibold text-blue-900 tracking-tight mb-2">
-                นัดปรึกษาฟรี
-              </h2>
-              <p className="text-slate-500 text-sm font-light mb-8">
-                กรอกข้อมูลเพื่อนัดหมาย ทีมงานจะติดต่อกลับภายใน 30 นาที
-              </p>
-
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
-                    ชื่อ-นามสกุล <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="กรุณากรอกชื่อ"
-                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
-                    เบอร์โทรศัพท์ <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="08X-XXX-XXXX"
-                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
-                    ปัญหาที่ต้องการแก้ไข
-                  </label>
-                  <select className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800">
-                    <option value="">-- เลือก --</option>
-                    <option value="crowding">ฟันซ้อนเก</option>
-                    <option value="spacing">ฟันห่าง</option>
-                    <option value="protrusion">ฟันยื่น</option>
-                    <option value="other">อื่นๆ</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-slate-700 mb-1.5">
-                    วัน-เวลาที่สะดวก
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="เช่น เสาร์-อาทิตย์ 10.00-12.00"
-                    className="w-full h-11 px-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none text-sm transition-all text-slate-800 placeholder:text-slate-400"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full h-12 mt-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition-all"
-                >
-                  <Send className="w-4 h-4 stroke-[2]" />
-                  ส่งข้อมูลนัดหมาย
-                </button>
-              </form>
-            </div>
-
-            {/* Contact Info */}
-            <div className="bg-slate-50 p-8 lg:p-12 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-slate-100">
-              <h3 className="font-medium text-blue-900 mb-6">หรือติดต่อช่องทางอื่น</h3>
-              <div className="space-y-3">
-                <a
-                  href="tel:0652916466"
-                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-600">
-                    <Phone className="w-5 h-5 stroke-[1.5]" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-slate-500 mb-0.5">โทรหาเรา</div>
-                    <div className="font-semibold text-slate-900 leading-none">065-291-6466</div>
-                  </div>
-                </a>
-
-                <a
-                  href="https://line.me/ti/p/@baomue"
-                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-green-300 hover:shadow-md transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[#06c755]/10 flex items-center justify-center shrink-0">
-                    <span className="text-[#06c755] font-bold text-xs">LINE</span>
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-slate-500 mb-0.5">แชท LINE</div>
-                    <div className="font-semibold text-slate-900 leading-none">@BAOMUE</div>
-                  </div>
-                </a>
-
-                <a
-                  href="#"
-                  className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-500">
-                    <MessageCircle className="w-5 h-5 stroke-[1.5]" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-slate-500 mb-0.5">Facebook Messenger</div>
-                    <div className="font-semibold text-slate-900 leading-none">Baomue Dental</div>
-                  </div>
-                </a>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-slate-200 flex gap-6">
-                <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                  <ShieldCheck className="w-4 h-4 text-green-500 stroke-[1.5]" />
-                  ปลอดภัย 100%
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                  <Lock className="w-4 h-4 text-green-500 stroke-[1.5]" />
-                  ข้อมูลเป็นความลับ
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
     </div>
   );
 }

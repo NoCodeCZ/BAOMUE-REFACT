@@ -90,6 +90,10 @@ export async function getBlockContent(collection: string, itemId: string) {
 
     if (collection === 'block_service_detail') {
       fields = ['*', 'service.*', 'service.hero_image.*'];
+    } else if (collection === 'block_about_us') {
+      fields = ['*', 'image.*'];
+    } else if (collection === 'block_testimonials') {
+      fields = ['*', 'review_images.directus_files_id.id', 'review_images.directus_files_id.filename_download'];
     } else if (collection === 'block_team') {
       // Use direct REST API call to reliably fetch all dentists
       // The SDK's deep parameter and junction table queries can silently cap results
@@ -292,7 +296,7 @@ export async function getTestimonialsBlock(blockId: number): Promise<BlockTestim
     const blocks = await directus.request(
       readItemsTyped('block_testimonials', {
         filter: { id: { _eq: blockId } },
-        fields: ['*'],
+        fields: ['*', 'review_images.directus_files_id.id', 'review_images.directus_files_id.filename_download'],
         limit: 1,
       })
     );
@@ -402,7 +406,7 @@ export async function getAboutUsBlock(blockId: number): Promise<BlockAboutUs | n
     const blocks = await directus.request(
       readItemsTyped('block_about_us', {
         filter: { id: { _eq: blockId } },
-        fields: ['*', 'image_url.*'],
+        fields: ['*', 'image.*'],
         limit: 1,
       })
     );
@@ -641,7 +645,7 @@ export async function getNavigationItems(): Promise<NavigationItem[]> {
       if (duplicates.length > 0) {
         const uniqueDuplicates = Array.from(new Set(duplicates));
         console.warn(
-          '⚠️ Navigation: Duplicate sort values detected:',
+          '[WARN] Navigation: Duplicate sort values detected:',
           uniqueDuplicates,
           '. This may cause unpredictable ordering. Please ensure unique sort values in Directus.'
         );
@@ -1017,7 +1021,7 @@ export async function getPortfolioCases(options?: {
     const cases = await directus.request(
       readItemsTyped('portfolio_cases', {
         filter,
-        fields: ['*', 'category.*', 'image_before.*', 'image_after.*'],
+        fields: ['*', 'category.*', 'image_before.*', 'image_after.*', 'dentist.id', 'dentist.name', 'dentist.nickname', 'dentist.specialty'],
         sort: ['sort'],
         limit: options?.limit || 100,
       })

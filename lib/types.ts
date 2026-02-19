@@ -149,6 +149,7 @@ export interface BlockTestimonials {
   title?: string;
   subtitle?: string;
   testimonials?: any[];
+  review_images?: any[];
 }
 
 export interface BlockPricing {
@@ -281,6 +282,16 @@ export interface BlockAboutUs {
   paragraph_2?: string;
   paragraph_3?: string;
   image_url?: string;
+  image_position?: string;
+  image?: string | {
+    id: string;
+    width?: number;
+    height?: number;
+    focal_point_x?: number | null;
+    focal_point_y?: number | null;
+    title?: string;
+    filename_download?: string;
+  } | null;
 }
 
 export interface BlockWhyChooseUs {
@@ -579,7 +590,6 @@ export interface BlockServiceDetail {
   show_pricing?: boolean;
   show_faq?: boolean;
   show_portfolio?: boolean;
-  show_booking?: boolean;
 }
 
 // Blog listing block interface
@@ -621,6 +631,12 @@ export interface PortfolioCase {
   is_featured?: boolean;
   sort?: number;
   date_created?: string;
+  dentist?: {
+    id: string;
+    name: string;
+    nickname?: string;
+    specialty?: string;
+  } | string | null;
 }
 
 export interface BlockPortfolio {

@@ -899,6 +899,250 @@
           "schema": {}
         }
       ]
+    },
+    "portfolio_cases": {
+      "collection": "portfolio_cases",
+      "meta": {
+        "collection": "portfolio_cases",
+        "icon": "compare",
+        "note": "ผลงานการรักษา Before/After — แต่ละเคสแสดงรูปก่อน-หลังพร้อมรายละเอียดการรักษา",
+        "display_template": "{{title}} — {{category.name}} ({{status}})",
+        "singleton": false,
+        "archive_app_filter": true,
+        "archive_field": "status",
+        "archive_value": "archived",
+        "unarchive_value": "published"
+      },
+      "fields": [
+        {
+          "field": "title",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "full",
+            "sort": 2,
+            "note": "ชื่อเคส เช่น \"จัดฟันใส — คอนเสิร์ทเคส\"",
+            "translations": [
+              { "language": "en-US", "translation": "Case Title" }
+            ]
+          }
+        },
+        {
+          "field": "slug",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "required": true,
+            "width": "half",
+            "sort": 3,
+            "note": "URL ของเคส ใช้ตัวพิมพ์เล็ก ตัวเลข และขีด เช่น \"clear-aligner-case-1\"",
+            "translations": [
+              { "language": "en-US", "translation": "URL Slug" }
+            ]
+          }
+        },
+        {
+          "field": "status",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "sort": 4,
+            "note": "สถานะ: Draft = ร่าง | Published = แสดงบนเว็บ",
+            "options": {
+              "choices": [
+                { "text": "Draft", "value": "draft" },
+                { "text": "Published", "value": "published" },
+                { "text": "Archived", "value": "archived" }
+              ]
+            },
+            "translations": [
+              { "language": "en-US", "translation": "Status" }
+            ]
+          }
+        },
+        {
+          "field": "category",
+          "type": "integer",
+          "meta": {
+            "interface": "select-dropdown-m2o",
+            "width": "half",
+            "sort": 5,
+            "note": "เลือกหมวดหมู่ผลงาน เช่น จัดฟันปูน, จัดฟันเหล็ก, วีเนียร์",
+            "options": {
+              "template": "{{name}}"
+            },
+            "special": ["m2o"],
+            "translations": [
+              { "language": "en-US", "translation": "Category" }
+            ]
+          }
+        },
+        {
+          "field": "rating",
+          "type": "float",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 6,
+            "note": "คะแนนรีวิวจากคนไข้ (1.0 - 5.0)",
+            "options": {
+              "min": 1,
+              "max": 5,
+              "step": 0.1
+            },
+            "translations": [
+              { "language": "en-US", "translation": "Rating" }
+            ]
+          }
+        },
+        {
+          "field": "image_before",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half",
+            "sort": 7,
+            "note": "รูปก่อนรักษา -- แนะนำขนาด 800x600px ขึ้นไป อัตราส่วน 4:3",
+            "translations": [
+              { "language": "en-US", "translation": "Image Before" }
+            ]
+          }
+        },
+        {
+          "field": "image_after",
+          "type": "uuid",
+          "meta": {
+            "interface": "file-image",
+            "special": ["file"],
+            "width": "half",
+            "sort": 8,
+            "note": "รูปหลังรักษา -- แนะนำขนาด 800x600px ขึ้นไป อัตราส่วน 4:3",
+            "translations": [
+              { "language": "en-US", "translation": "Image After" }
+            ]
+          }
+        },
+        {
+          "field": "description",
+          "type": "text",
+          "meta": {
+            "interface": "input-multiline",
+            "width": "full",
+            "sort": 9,
+            "note": "อธิบายปัญหาเริ่มต้นของคนไข้ เช่น \"ฟันหน้าเสมอ มีช่องว่าง ต้องการจัดฟันยิ้มสวย\"",
+            "translations": [
+              { "language": "en-US", "translation": "Description" }
+            ]
+          }
+        },
+        {
+          "field": "treatment_type",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 10,
+            "note": "ประเภทการรักษา เช่น \"จัดฟันใส Invisalign\", \"ครอบฟันเซรามิค\"",
+            "translations": [
+              { "language": "en-US", "translation": "Treatment Type" }
+            ]
+          }
+        },
+        {
+          "field": "duration",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 11,
+            "note": "ระยะเวลาการรักษา เช่น \"6 เดือน\", \"1 ปี\", \"2 สัปดาห์\"",
+            "translations": [
+              { "language": "en-US", "translation": "Duration" }
+            ]
+          }
+        },
+        {
+          "field": "client_gender",
+          "type": "string",
+          "meta": {
+            "interface": "select-dropdown",
+            "width": "half",
+            "sort": 12,
+            "note": "เพศของคนไข้",
+            "options": {
+              "choices": [
+                { "text": "ชาย", "value": "male" },
+                { "text": "หญิง", "value": "female" },
+                { "text": "อื่นๆ", "value": "other" }
+              ]
+            },
+            "translations": [
+              { "language": "en-US", "translation": "Patient Gender" }
+            ]
+          }
+        },
+        {
+          "field": "client_age",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 13,
+            "note": "อายุคนไข้ (ปี)",
+            "options": {
+              "min": 1,
+              "max": 120
+            },
+            "translations": [
+              { "language": "en-US", "translation": "Patient Age" }
+            ]
+          }
+        },
+        {
+          "field": "client_name",
+          "type": "string",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 14,
+            "note": "ชื่อคนไข้ (ไม่จำเป็น — ใช้สำหรับอ้างอิงภายในเท่านั้น ไม่แสดงบนเว็บ)",
+            "translations": [
+              { "language": "en-US", "translation": "Patient Name (Internal)" }
+            ]
+          }
+        },
+        {
+          "field": "is_featured",
+          "type": "boolean",
+          "meta": {
+            "interface": "boolean",
+            "width": "half",
+            "sort": 15,
+            "note": "เปิดเพื่อแสดงเคสนี้ในหน้าแรก",
+            "special": ["cast-boolean"],
+            "translations": [
+              { "language": "en-US", "translation": "Featured Case" }
+            ]
+          }
+        },
+        {
+          "field": "sort",
+          "type": "integer",
+          "meta": {
+            "interface": "input",
+            "width": "half",
+            "sort": 16,
+            "note": "ลำดับการแสดงผล (ตัวเลขน้อย = แสดงก่อน)",
+            "hidden": true,
+            "translations": [
+              { "language": "en-US", "translation": "Sort Order" }
+            ]
+          }
+        }
+      ]
     }
   }
 }

@@ -42,3 +42,22 @@ next-env.d.ts
 scripts/cleanup-directus.js
 scripts/create-booking-form.js
 scripts/improve-form-submissions.js
+
+# temp/one-off scripts at project root (prefixed with _)
+_*.js
+_*.json
+_*.ts
+
+# additional env files (security)
+.env.production
+.env.staging
+.env.development
+
+# additional private key formats
+*.key
+*.p12
+*.pfx
+*.secret
+
+# general logs
+*.log

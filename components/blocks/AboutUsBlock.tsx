@@ -14,9 +14,27 @@ export default function AboutUsBlock({ data }: AboutUsBlockProps) {
   const paragraph2 = data.paragraph_2 ?? "ที่โซเดนท์ เราให้ความสำคัญกับ \"คุณภาพ\" และ \"มาตรฐาน\" เป็นอันดับหนึ่ง เครื่องมือและอุปกรณ์ทุกชิ้นผ่านการคัดสรรอย่างดี ระบบปลอดเชื้อที่ได้มาตรฐานสากล เพื่อความปลอดภัยสูงสุดของคนไข้ ไม่ว่าจะเป็นงานทันตกรรมทั่วไป หรือการรักษาที่ซับซ้อน เราพร้อมดูแลด้วยความเชี่ยวชาญ";
   const paragraph3 = data.paragraph_3 ?? "ไม่ว่าจะเป็นการจัดฟัน วีเนียร์ รากเทียม หรือการทำฟันเด็ก เรามีทีมแพทย์เฉพาะทางคอยดูแลอย่างใกล้ชิด เพื่อให้คุณมั่นใจว่าจะได้รับรอยยิ้มที่สวยงามและสุขภาพช่องปากที่ดีกลับไป";
   
-  const imageUrl = data.image_url 
-    ? (getFileUrl(data.image_url as any) ?? "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop")
-    : "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop";
+  // Image: prefer file relation (with focal point), fallback to legacy image_url string
+  const fallbackImage = "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2068&auto=format&fit=crop";
+  let imageUrl = fallbackImage;
+  let imagePosition = "center center";
+
+  if (data.image && typeof data.image === 'object' && data.image.id) {
+    // File relation — use getFileUrl + focal point for position
+    imageUrl = getFileUrl(data.image) ?? fallbackImage;
+    const fpx = data.image.focal_point_x;
+    const fpy = data.image.focal_point_y;
+    if (fpx != null && fpy != null && data.image.width && data.image.height) {
+      // Convert focal point (pixel coordinates) to percentage
+      const xPercent = Math.round((fpx / data.image.width) * 100);
+      const yPercent = Math.round((fpy / data.image.height) * 100);
+      imagePosition = `${xPercent}% ${yPercent}%`;
+    }
+  } else if (data.image_url) {
+    // Legacy: plain URL string
+    imageUrl = getFileUrl(data.image_url as any) ?? data.image_url ?? fallbackImage;
+    imagePosition = data.image_position ?? "center center";
+  }
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
@@ -52,6 +70,7 @@ export default function AboutUsBlock({ data }: AboutUsBlockProps) {
                 src={imageUrl}
                 alt="Clinic Atmosphere" 
                 className="w-full h-full object-cover"
+                style={{ objectPosition: imagePosition }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#003888]/30 to-transparent"></div>
             </div>

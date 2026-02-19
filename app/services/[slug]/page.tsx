@@ -6,7 +6,7 @@ import BookingBlock from "@/components/blocks/BookingBlock";
 import Breadcrumb from "@/components/Breadcrumb";
 import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
 import RelatedServices from "@/components/services/RelatedServices";
-import { getServiceBySlug, getServices } from "@/lib/data";
+import { getServiceBySlug, getServices, getPromotions, getPortfolioCases } from "@/lib/data";
 import { getFileUrl } from "@/lib/directus";
 
 export const revalidate = 60;
@@ -50,9 +50,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const [service, allServices] = await Promise.all([
+  const [service, allServices, rawPromotions, latestCases] = await Promise.all([
     getServiceBySlug(slug),
-    getServices()
+    getServices(),
+    getPromotions(),
+    getPortfolioCases({ limit: 3 }),
   ]);
 
   if (!service) {
@@ -131,6 +133,18 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       : seedData?.portfolio_cases,
   };
 
+  // Map promotions to gallery format (only those with images)
+  const promotionImages = rawPromotions
+    .filter((p) => p.featured_image)
+    .map((p) => ({
+      id: p.id,
+      title: p.title,
+      slug: p.slug,
+      imageUrl: getFileUrl(p.featured_image as any) || "",
+      cta_link: p.cta_link || undefined,
+    }))
+    .filter((p) => p.imageUrl);
+
   // Create block data structure for ServiceDetailBlock
   const blockData = {
     id: 1,
@@ -142,7 +156,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     show_pricing: true,
     show_faq: true,
     show_portfolio: true,
-    show_booking: true,
   };
 
   return (
@@ -166,7 +179,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </div>
 
       <div className="max-w-[1120px] mx-auto px-4 pb-12">
-        <ServiceDetailBlock data={blockData} />
+        <ServiceDetailBlock data={blockData} promotions={promotionImages} portfolioCases={latestCases} />
       </div>
 
       <BookingBlock />

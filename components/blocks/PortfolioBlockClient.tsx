@@ -236,10 +236,15 @@ function CaseDetailModal({ caseItem, isOpen, onClose }: CaseDetailModalProps) {
             {/* Right: Details */}
             <div className="space-y-6">
               {/* Dentist Info */}
-              <div>
-                <h3 className="text-sm font-semibold text-slate-700 mb-2">ทันตแพทย์</h3>
-                <p className="text-slate-600">ทพญ.นภัสสร</p>
-              </div>
+              {caseItem.dentist && typeof caseItem.dentist === 'object' && (
+                <div>
+                  <h3 className="text-sm font-semibold text-slate-700 mb-2">ทันตแพทย์</h3>
+                  <p className="text-slate-600">{caseItem.dentist.name}</p>
+                  {caseItem.dentist.specialty && (
+                    <p className="text-slate-400 text-xs mt-1">{caseItem.dentist.specialty}</p>
+                  )}
+                </div>
+              )}
 
               {/* Patient Info */}
               {(caseItem.client_age || caseItem.client_gender) && (
@@ -417,7 +422,7 @@ export default function PortfolioBlockClient({
           return (
             <div
               key={caseItem.id}
-              className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-3xl border border-slate-200 shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col"
             >
               {/* Before/After Slider */}
               <div className="relative">
@@ -430,10 +435,10 @@ export default function PortfolioBlockClient({
               </div>
 
               {/* Case Details */}
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 {/* Title with Rating */}
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-bold text-slate-900 flex-1">
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-lg font-bold text-slate-900 flex-1 line-clamp-1">
                     {caseItem.title}
                   </h3>
                   {caseItem.rating && (
@@ -447,14 +452,12 @@ export default function PortfolioBlockClient({
                 </div>
 
                 {/* Description */}
-                {caseItem.description && (
-                  <p className="text-slate-600 text-sm mb-4 line-clamp-2">
-                    {caseItem.description}
-                  </p>
-                )}
+                <p className="text-slate-600 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
+                  {caseItem.description || "\u00A0"}
+                </p>
 
                 {/* Duration and Patient Info */}
-                <div className="space-y-2 mb-4">
+                <div className="space-y-2 mb-4 min-h-[3rem]">
                   {caseItem.duration && (
                     <div className="flex items-center gap-2 text-sm text-slate-500">
                       <svg
@@ -497,6 +500,9 @@ export default function PortfolioBlockClient({
                     </div>
                   )}
                 </div>
+
+                {/* Spacer to push button to bottom */}
+                <div className="flex-1"></div>
 
                 {/* View Details Button */}
                 <button
