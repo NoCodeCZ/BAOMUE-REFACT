@@ -89,10 +89,29 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     }),
   };
 
-  // Load seed data for testing (provides fallback when Directus fields are empty)
-  // NOTE: Using clear-aligner seed data as default template for ALL services
-  // until proper data is added to Directus for each service
-  const seedData = await import("@/data/services/clear-aligners-seed.json").then(m => m.default).catch(() => null);
+  // Load seed data per service slug (provides fallback when Directus fields are empty)
+  const seedModules: Record<string, () => Promise<any>> = {
+    'clear-aligner': () => import('@/data/services/clear-aligners-seed.json'),
+    'apicoectomy': () => import('@/data/services/apicoectomy-seed.json'),
+    'bone-grafting': () => import('@/data/services/bone-grafting-seed.json'),
+    'ceramic-braces': () => import('@/data/services/ceramic-braces-seed.json'),
+    'dental-bridge': () => import('@/data/services/dental-bridge-seed.json'),
+    'dental-checkup': () => import('@/data/services/dental-checkup-seed.json'),
+    'dental-crown': () => import('@/data/services/dental-crown-seed.json'),
+    'dental-implant': () => import('@/data/services/dental-implant-seed.json'),
+    'laser-whitening': () => import('@/data/services/laser-whitening-seed.json'),
+    'metal-braces': () => import('@/data/services/metal-braces-seed.json'),
+    'periodontal-treatment': () => import('@/data/services/periodontal-treatment-seed.json'),
+    'porcelain-veneers': () => import('@/data/services/porcelain-veneers-seed.json'),
+    'removable-dentures': () => import('@/data/services/removable-dentures-seed.json'),
+    'root-canal-treatment': () => import('@/data/services/root-canal-treatment-seed.json'),
+    'soft-tissue-surgery': () => import('@/data/services/soft-tissue-surgery-seed.json'),
+    'teeth': () => import('@/data/services/teeth-seed.json'),
+    'teeth-whitening': () => import('@/data/services/teeth-whitening-seed.json'),
+    'wisdom-tooth-extraction': () => import('@/data/services/wisdom-tooth-extraction-seed.json'),
+  };
+  const seedLoader = seedModules[slug];
+  const seedData = seedLoader ? await seedLoader().then(m => m.default).catch(() => null) : null;
 
   // Merge service with seed data for fields that are missing
   const enrichedService = {
