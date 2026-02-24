@@ -265,10 +265,10 @@ export default async function ServiceDetailBlock({ data, promotions = [], portfo
         <section className="bg-white rounded-[32px] border border-slate-200 shadow-sm p-8 lg:p-12">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-semibold text-blue-900 tracking-tight mb-3">
-              ทางเลือกของการจัดฟันแบบไม่เจ็บ
+              {service.features_title || `ทำไมต้องเลือก${service.name}`}
             </h2>
             <p className="text-slate-500 font-normal max-w-2xl mx-auto">
-              เทคโนโลยีจัดฟันใสที่ออกแบบเฉพาะบุคคล ให้ผลลัพธ์ที่รวดเร็ว และสบายปาก
+              {service.features_subtitle || `บริการ${service.name}โดยทีมทันตแพทย์ผู้เชี่ยวชาญ`}
             </p>
           </div>
 

@@ -272,6 +272,8 @@ export interface Service {
   pricing_plans?: ServicePricingPlan[] | any; // JSON field for pricing tiers
   faqs?: ServiceFAQ[] | any; // JSON field for FAQs
   portfolio_cases?: ServicePortfolioCase[] | any; // JSON field for portfolio cases
+  features_title?: string; // Section heading for features
+  features_subtitle?: string; // Section subtitle for features
 }
 
 export interface BlockAboutUs {

@@ -150,6 +150,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     portfolio_cases: service.portfolio_cases && (Array.isArray(service.portfolio_cases) ? service.portfolio_cases.length > 0 : true)
       ? service.portfolio_cases
       : seedData?.portfolio_cases,
+    features_title: service.features_title || seedData?.features_title,
+    features_subtitle: service.features_subtitle || seedData?.features_subtitle,
   };
 
   // Map promotions to gallery format (only those with images)

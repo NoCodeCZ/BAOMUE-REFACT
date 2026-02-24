@@ -12,6 +12,8 @@
     "cta_booking_link": "#booking",
     "cta_line_text": "แชทเลย",
     "cta_line_link": "https://line.me/ti/p/@baomue",
+    "features_title": "ทางเลือกของการจัดฟันแบบไม่เจ็บ",
+    "features_subtitle": "เทคโนโลยีจัดฟันใสที่ออกแบบเฉพาะบุคคล ให้ผลลัพธ์ที่รวดเร็ว และสบายปาก",
     "features": [
         {
             "icon": "eye-off",

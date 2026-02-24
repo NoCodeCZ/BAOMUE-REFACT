@@ -1,4 +1,6 @@
 {
+    "features_title": "รักษารากฟันเพื่อเก็บฟันธรรมชาติ",
+    "features_subtitle": "กำจัดการติดเชื้อในคลองรากฟันอย่างปลอดภัย ด้วยเทคนิคทันสมัย",
     "features": [
         { "icon": "check-circle-2", "icon_color": "blue", "title": "รักษาฟันธรรมชาติ", "description": "ไม่ต้องถอนฟัน เก็บฟันเดิมไว้ใช้งานต่อได้" },
         { "icon": "sparkles", "icon_color": "green", "title": "เทคนิคทันสมัย", "description": "ใช้เครื่องมือหมุนพิเศษ (Rotary Endodontics) แม่นยำ รวดเร็ว" },
