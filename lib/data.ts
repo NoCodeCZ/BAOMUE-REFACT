@@ -1023,7 +1023,7 @@ export async function getPortfolioCases(options?: {
         filter,
         fields: ['*', 'category.*', 'image_before.*', 'image_after.*', 'dentist.id', 'dentist.name', 'dentist.nickname', 'dentist.specialty'],
         sort: ['sort'],
-        limit: options?.limit || 100,
+        limit: options?.limit ?? -1,
       })
     );
     return (cases || []) as PortfolioCase[];

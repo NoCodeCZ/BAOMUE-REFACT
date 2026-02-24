@@ -10,7 +10,7 @@ export default async function PortfolioBlock({ data }: PortfolioBlockProps) {
   if (!data) return null;
 
   const showCategoryFilter = data.show_category_filter ?? true;
-  const casesPerPage = data.cases_per_page ?? 12;
+  const casesPerPage = data.cases_per_page ?? -1;
 
   // Fetch portfolio cases and categories
   const [cases, categories] = await Promise.all([

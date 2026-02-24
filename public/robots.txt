@@ -7,7 +7,7 @@ User-agent: *
 Disallow: /api/
 
 # Host
-Host: https://example.com
+Host: https://baomue.com
 
 # Sitemaps
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://baomue.com/sitemap.xml
