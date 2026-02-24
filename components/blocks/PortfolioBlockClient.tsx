@@ -9,6 +9,7 @@ interface PortfolioBlockClientProps {
   cases: PortfolioCase[];
   categories: PortfolioCategory[];
   showCategoryFilter?: boolean;
+  initialDisplayCount?: number;
 }
 
 interface BeforeAfterSliderProps {
@@ -48,7 +49,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, caseId, categoryName }: Be
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging.current || !containerRef.current) return;
-    
+
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
@@ -100,7 +101,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, caseId, categoryName }: Be
         alt="After"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      
+
       {/* Before Image (clipped) */}
       <div
         className="absolute inset-0 overflow-hidden"
@@ -310,22 +311,24 @@ export default function PortfolioBlockClient({
   cases = [],
   categories = [],
   showCategoryFilter = true,
+  initialDisplayCount = 12,
 }: PortfolioBlockClientProps) {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [selectedCase, setSelectedCase] = useState<PortfolioCase | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [displayCount, setDisplayCount] = useState(initialDisplayCount);
 
   // Filter cases by category
   const filteredCases =
     activeCategory === "all"
       ? cases
       : cases.filter(
-          (c) =>
-            c.category &&
-            (typeof c.category === "object"
-              ? c.category.slug === activeCategory
-              : false)
-        );
+        (c) =>
+          c.category &&
+          (typeof c.category === "object"
+            ? c.category.slug === activeCategory
+            : false)
+      );
 
   const handleViewDetails = (caseItem: PortfolioCase) => {
     setSelectedCase(caseItem);
@@ -373,24 +376,22 @@ export default function PortfolioBlockClient({
               </div>
               <div className="flex flex-wrap gap-2 flex-1">
                 <button
-                  onClick={() => setActiveCategory("all")}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                    activeCategory === "all"
+                  onClick={() => { setActiveCategory("all"); setDisplayCount(initialDisplayCount); }}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === "all"
                       ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg"
                       : "bg-white text-slate-600 hover:border-cyan-300 hover:text-cyan-600 border border-slate-200"
-                  }`}
+                    }`}
                 >
                   ทั้งหมด
                 </button>
                 {categories.map((category) => (
                   <button
                     key={category.slug}
-                    onClick={() => setActiveCategory(category.slug)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                      activeCategory === category.slug
+                    onClick={() => { setActiveCategory(category.slug); setDisplayCount(initialDisplayCount); }}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === category.slug
                         ? "bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg"
                         : "bg-white text-slate-600 hover:border-cyan-300 hover:text-cyan-600 border border-slate-200"
-                    }`}
+                      }`}
                   >
                     {category.name}
                   </button>
@@ -409,7 +410,7 @@ export default function PortfolioBlockClient({
 
       {/* Cases Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCases.map((caseItem) => {
+        {filteredCases.slice(0, displayCount).map((caseItem) => {
           const categoryName =
             caseItem.category && typeof caseItem.category === "object"
               ? caseItem.category.name
@@ -517,6 +518,21 @@ export default function PortfolioBlockClient({
           );
         })}
       </div>
+
+      {/* Load More Button */}
+      {filteredCases.length > displayCount && (
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={() => setDisplayCount((prev) => prev + initialDisplayCount)}
+            className="group px-8 py-4 bg-white border-2 border-blue-500 text-blue-600 rounded-2xl font-semibold text-base hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 hover:text-white hover:border-transparent transition-all duration-300 shadow-md hover:shadow-xl flex items-center gap-3"
+          >
+            <span>ดูผลงานเพิ่มเติม</span>
+            <span className="px-3 py-1 bg-blue-50 group-hover:bg-white/20 rounded-full text-sm font-medium transition-colors duration-300">
+              เหลืออีก {filteredCases.length - displayCount} เคส
+            </span>
+          </button>
+        </div>
+      )}
 
       {filteredCases.length === 0 && (
         <div className="text-center py-12 text-slate-500">
