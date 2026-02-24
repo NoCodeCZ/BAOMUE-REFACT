@@ -52,7 +52,9 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error('[Directus Asset Proxy] Error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('[Directus Asset Proxy] Error:', error);
+    }
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

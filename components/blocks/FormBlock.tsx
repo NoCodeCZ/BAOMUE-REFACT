@@ -54,7 +54,20 @@ export default function FormBlock({ data, formData, compact = false }: FormBlock
       setFormState({});
 
       if (formData.redirect_url) {
-        window.location.href = formData.redirect_url;
+        // Security: Only allow relative paths or same-origin redirects to prevent open redirect attacks
+        try {
+          const redirectUrl = new URL(formData.redirect_url, window.location.origin);
+          if (redirectUrl.origin === window.location.origin) {
+            window.location.href = redirectUrl.href;
+          } else {
+            console.warn('[FormBlock] Blocked external redirect:', formData.redirect_url);
+          }
+        } catch {
+          // If URL parsing fails, only allow paths starting with / (not //)
+          if (formData.redirect_url.startsWith('/') && !formData.redirect_url.startsWith('//')) {
+            window.location.href = formData.redirect_url;
+          }
+        }
       }
     } catch (err) {
       setError("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");

@@ -1,4 +1,5 @@
 import type { BlockText } from "@/lib/types";
+import { sanitizeHtml } from "@/lib/sanitize";
 
 interface TextBlockProps {
   data?: BlockText | null;
@@ -42,7 +43,7 @@ export default function TextBlock({ data }: TextBlockProps) {
             className={`prose prose-slate max-w-none ${
               alignment === "center" ? "text-center" : alignment === "right" ? "text-right" : "text-left"
             }`}
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(content) }}
           />
         )}
       </div>

@@ -6,7 +6,7 @@ const directusToken = process.env.DIRECTUS_STATIC_TOKEN;
 
 // Instead of throwing when config is missing, we create a safe fallback client
 // so the app can still run without Directus configured.
-if (!directusUrl) {
+if (!directusUrl && process.env.NODE_ENV === 'development') {
   console.warn(
     '[Directus] NEXT_PUBLIC_DIRECTUS_URL is not defined. Directus data will not be loaded.'
   );

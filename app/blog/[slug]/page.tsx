@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import BookingBlock from "@/components/blocks/BookingBlock";
 import { getBlogPostBySlug, getBlogPosts, getServices } from "@/lib/data";
 import { getFileUrl } from "@/lib/directus";
+import { sanitizeHtml } from "@/lib/sanitize";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -189,7 +190,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     {post.content && (
                       <div
                         className="prose prose-slate max-w-none"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
                       />
                     )}
                   </article>
