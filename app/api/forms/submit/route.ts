@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
           { status: 400 }
         );
       }
-      result = await createFormSubmission(formId, data);
+      result = await createFormSubmission(Number(formId), data);
     } else if (type === 'form' && !formId && data?.form_type) {
       // Booking or other standalone form submissions without a linked form
       result = await createFormSubmission(null as any, data);
