@@ -22,7 +22,7 @@ export default function PromotionGallery({ promotions }: PromotionGalleryProps) 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const total = promotions.length;
-  if (total === 0) return null;
+  const totalPages = Math.ceil(total / itemsPerView) || 1;
 
   // Responsive: 3 on desktop (>=1024), 2 on tablet (>=640), 1 on mobile
   useEffect(() => {
@@ -35,8 +35,6 @@ export default function PromotionGallery({ promotions }: PromotionGalleryProps) 
     window.addEventListener("resize", updateItemsPerView);
     return () => window.removeEventListener("resize", updateItemsPerView);
   }, []);
-
-  const totalPages = Math.ceil(total / itemsPerView);
 
   // Reset page if out of bounds after resize
   useEffect(() => {
@@ -88,6 +86,9 @@ export default function PromotionGallery({ promotions }: PromotionGalleryProps) 
       diff > 0 ? nextSlide() : prevSlide();
     }
   };
+
+  // Early return AFTER all hooks
+  if (total === 0) return null;
 
   // Each item width as percentage of container
   const itemWidthPercent = 100 / itemsPerView;
@@ -181,11 +182,10 @@ export default function PromotionGallery({ promotions }: PromotionGalleryProps) 
               <button
                 key={i}
                 onClick={() => setCurrentPage(i)}
-                className={`rounded-full transition-all duration-300 ${
-                  i === currentPage
+                className={`rounded-full transition-all duration-300 ${i === currentPage
                     ? "w-6 h-2 bg-white"
                     : "w-2 h-2 bg-white/40 hover:bg-white/60"
-                }`}
+                  }`}
                 aria-label={`ไปที่หน้าที่ ${i + 1}`}
               />
             ))}
