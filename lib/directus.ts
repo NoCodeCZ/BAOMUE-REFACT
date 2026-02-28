@@ -22,10 +22,24 @@ if (!directusToken) {
 // Remove trailing slash from URL when defined
 const cleanUrl = directusUrl ? directusUrl.replace(/\/$/, '') : null;
 
+// Custom fetch wrapper to fix "Response.clone: Body has already been consumed" error
+// This occurs in Node.js (Coolify/production) because the Directus SDK's rest() transport
+// calls Response.clone() internally, which fails if the body stream was already consumed.
+// The wrapper buffers the response so clone() always works.
+async function bufferedFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+  const response = await fetch(input, init);
+  const buffer = await response.arrayBuffer();
+  return new Response(buffer, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: response.headers,
+  });
+}
+
 // Create base Directus client with static token authentication
 // Static token is better for production/public apps than email/password
 const directus = (cleanUrl && directusToken
-  ? createDirectus<Schema>(cleanUrl)
+  ? createDirectus<Schema>(cleanUrl, { globals: { fetch: bufferedFetch } })
     .with(rest())
     .with(staticToken(directusToken))
   : null) as any;
