@@ -14,6 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       settings?.site_description ||
       "คลินิกทันตกรรมเบามือ (Baomue Dental Clinic) – บริการทันตกรรมครบวงจร จัดฟัน วีเนียร์ รากเทียม ฟอกสีฟัน",
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    },
   };
 }
 
