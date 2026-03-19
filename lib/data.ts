@@ -736,7 +736,10 @@ export async function getBlogPosts(options?: {
   search?: string;
 }): Promise<BlogPost[]> {
   try {
-    const filter: any = { status: { _eq: 'published' } };
+    const filter: any = {
+      status: { _eq: 'published' },
+      published_date: { _lte: '$NOW' },
+    };
 
     if (options?.category) {
       filter.category = { slug: { _eq: options.category } };
@@ -781,7 +784,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 
     const posts = await directus.request(
       readItemsTyped('blog_posts', {
-        filter: { slug: { _eq: decodedSlug }, status: { _eq: 'published' } },
+        filter: { slug: { _eq: decodedSlug }, status: { _eq: 'published' }, published_date: { _lte: '$NOW' } },
         fields: [
           'id', 'title', 'slug', 'status', 'excerpt', 'content',
           'author_name', 'author_role', 'author_avatar',
@@ -805,7 +808,8 @@ export async function getFeaturedBlogPost(): Promise<BlogPost | null> {
       readItemsTyped('blog_posts', {
         filter: {
           is_featured: { _eq: true },
-          status: { _eq: 'published' }
+          status: { _eq: 'published' },
+          published_date: { _lte: '$NOW' },
         },
         fields: [
           'id', 'title', 'slug', 'status', 'excerpt', 'content',
