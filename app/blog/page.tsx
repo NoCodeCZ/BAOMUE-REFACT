@@ -8,8 +8,17 @@ import type { Metadata } from "next";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "บทความ - BAOMUE Dental Clinic",
-  description: "เรียนรู้วิธีดูแลสุขภาพฟันและเหงือกอย่างถูกวิธี พร้อมเคล็ดลับจากทันตแพทย์ผู้เชี่ยวชาญ",
+  title: "บทความสุขภาพช่องปาก - เคล็ดลับดูแลฟันจากทันตแพทย์",
+  description: "เรียนรู้วิธีดูแลสุขภาพฟันและเหงือกอย่างถูกวิธี พร้อมเคล็ดลับจากทันตแพทย์ผู้เชี่ยวชาญ ขูดหินปูน ฟอกสีฟัน ฟันคุด ประกันสังคมทำฟัน",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "บทความสุขภาพช่องปาก | BAOMUE Dental Clinic",
+    description: "เรียนรู้วิธีดูแลสุขภาพฟันและเหงือกอย่างถูกวิธี พร้อมเคล็ดลับจากทันตแพทย์ผู้เชี่ยวชาญ",
+    type: "website",
+    url: "/blog",
+  },
 };
 
 export default async function BlogPage() {

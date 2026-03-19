@@ -16,12 +16,16 @@ export const revalidate = 60;
 
 // SEO metadata
 export const metadata: Metadata = {
-  title: "ผลงานของเรา | BAOMUE Dental Clinic",
-  description: "ดูผลลัพธ์การรักษาจริงจากผู้ที่ไว้วางใจให้เราดูแลรอยยิ้ม พร้อมรายละเอียดขั้นตอนและระยะเวลาการรักษา",
+  title: "ผลงานของเรา - เคสจัดฟัน วีเนียร์ ฟอกสีฟัน",
+  description: "ดูผลลัพธ์การรักษาจริงจากผู้ที่ไว้วางใจให้เราดูแลรอยยิ้ม พร้อมรายละเอียดขั้นตอนและระยะเวลาการรักษา Before & After จัดฟัน วีเนียร์ ฟอกสีฟัน",
+  alternates: {
+    canonical: "/our-work",
+  },
   openGraph: {
     title: "ผลงานของเรา | BAOMUE Dental Clinic",
     description: "ดูผลลัพธ์การรักษาจริงจากผู้ที่ไว้วางใจให้เราดูแลรอยยิ้ม",
     type: "website",
+    url: "/our-work",
   },
 };
 

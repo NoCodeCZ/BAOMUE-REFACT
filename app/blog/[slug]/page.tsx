@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingBlock from "@/components/blocks/BookingBlock";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import ArticleJsonLd from "@/components/seo/ArticleJsonLd";
 import { getBlogPostBySlug, getBlogPosts, getServices } from "@/lib/data";
 import { getFileUrl } from "@/lib/directus";
 import { sanitizeHtml } from "@/lib/sanitize";
@@ -43,18 +45,27 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   const category = typeof post.category === 'object' ? post.category : null;
 
   return {
-    title: post.seo_title || `${post.title} - BAOMUE Dental Clinic`,
+    title: post.seo_title || `${post.title}`,
     description: post.seo_description || post.excerpt || post.title,
+    alternates: {
+      canonical: `/blog/${params.slug}`,
+    },
     openGraph: {
       title: post.seo_title || post.title,
       description: post.seo_description || post.excerpt || post.title,
       type: "article",
+      url: `/blog/${params.slug}`,
       images: post.featured_image
         ? [{ url: getFileUrl(post.featured_image) || "" }]
         : [],
       publishedTime: post.published_date || undefined,
       authors: post.author_name ? [post.author_name] : undefined,
       tags: post.tags || [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.seo_title || post.title,
+      description: post.seo_description || post.excerpt || post.title,
     },
   };
 }
@@ -78,6 +89,23 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   return (
     <main className="antialiased bg-slate-50 text-slate-600">
       <Header />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "หน้าแรก", url: "/" },
+          { name: "บทความ", url: "/blog" },
+          ...(category ? [{ name: category.name, url: `/blog?category=${category.slug}` }] : []),
+          { name: post.title, url: `/blog/${post.slug}` },
+        ]}
+      />
+      <ArticleJsonLd
+        title={post.title}
+        description={post.seo_description || post.excerpt}
+        url={`/blog/${post.slug}`}
+        imageUrl={post.featured_image ? getFileUrl(post.featured_image) : null}
+        publishedDate={post.published_date}
+        authorName={post.author_name}
+        tags={post.tags}
+      />
 
       {/* Article Detail Section */}
       <section className="py-16 bg-white">

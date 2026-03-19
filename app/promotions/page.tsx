@@ -9,12 +9,16 @@ import { notFound } from "next/navigation";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Promotions | Baomue Dental Clinic",
-  description: "รวมโปรโมชั่นทำฟัน จัดฟัน รากเทียม วีเนียร์ ประจำเดือน",
+  title: "โปรโมชั่นทำฟัน - จัดฟัน ฟอกสีฟัน วีเนียร์ ราคาพิเศษ",
+  description: "รวมโปรโมชั่นทำฟันประจำเดือน จัดฟัน Invisalign, Damon รากเทียม วีเนียร์ ฟอกสีฟัน Zoom ราคาพิเศษ ผ่อน 0% นัดปรึกษาฟรี",
+  alternates: {
+    canonical: "/promotions",
+  },
   openGraph: {
-    title: "Promotions | Baomue Dental Clinic",
-    description: "รวมโปรโมชั่นทำฟัน จัดฟัน รากเทียม วีเนียร์ ประจำเดือน",
+    title: "โปรโมชั่นทำฟัน | BAOMUE Dental Clinic",
+    description: "รวมโปรโมชั่นทำฟัน จัดฟัน รากเทียม วีเนียร์ ประจำเดือน ราคาพิเศษ",
     type: "website",
+    url: "/promotions",
   },
 };
 

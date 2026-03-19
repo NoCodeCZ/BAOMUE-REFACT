@@ -9,12 +9,16 @@ import type { Service } from "@/lib/types";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "บริการทันตกรรม | Baomue Dental",
-  description: "บริการทันตกรรมครบวงจรของ Baomue ทั้งจัดฟัน ความงาม ฟันปลอม รักษาราก และทันตกรรมทั่วไป",
+  title: "บริการทันตกรรม - จัดฟัน วีเนียร์ รากเทียม ฟอกสีฟัน",
+  description: "บริการทันตกรรมครบวงจรของ Baomue ทั้งจัดฟัน Invisalign, Damon, AOSC วีเนียร์เซรามิก ฟอกสีฟัน Zoom รากฟันเทียม ขูดหินปูน ครอบฟัน สะพานฟัน ดูแลโดยทันตแพทย์เฉพาะทาง",
+  alternates: {
+    canonical: "/services",
+  },
   openGraph: {
-    title: "บริการทันตกรรม | Baomue Dental",
+    title: "บริการทันตกรรม | BAOMUE Dental Clinic",
     description: "ครบทุกบริการด้านทันตกรรม ด้วยมาตรฐานระดับสากล",
     type: "website",
+    url: "/services",
   },
 };
 

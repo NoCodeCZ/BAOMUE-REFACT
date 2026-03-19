@@ -17,8 +17,11 @@ import type { PageBlockWithContent, BlockType, BlockLocations, Form } from "@/li
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "เกี่ยวกับเรา | Baomue Dental Clinic",
-  description: "รู้จักคลินิกทันตกรรมเบามือ คลินิกที่ใส่ใจทุกรอยยิ้ม ด้วยเทคนิค Gentle Touch และทีมแพทย์เฉพาะทาง",
+  title: "เกี่ยวกับเรา - ทีมทันตแพทย์เฉพาะทาง",
+  description: "รู้จักคลินิกทันตกรรมเบามือ คลินิกที่ใส่ใจทุกรอยยิ้ม ด้วยเทคนิค Gentle Touch และทีมทันตแพทย์เฉพาะทาง ดูแลด้วยเทคโนโลยี Silent Technology",
+  alternates: {
+    canonical: "/about-us",
+  },
 };
 
 export default async function AboutUsPage() {

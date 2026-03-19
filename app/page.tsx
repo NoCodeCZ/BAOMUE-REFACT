@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import PageBuilder from "@/components/PageBuilder";
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
   getPageWithBlocks,
   getPageWithBlocksBatched,
@@ -13,6 +14,20 @@ import type { PageBlockWithContent, BlockType, BlockLocations, Form } from "@/li
 
 // Revalidate every 60 seconds to ensure fresh content from Directus
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "คลินิกทันตกรรมเบามือ | BAOMUE Dental Clinic - จัดฟัน วีเนียร์ รากเทียม",
+  description:
+    "คลินิกทันตกรรมเบามือ บริการจัดฟัน Invisalign, Damon, AOSC วีเนียร์เซรามิก ฟอกสีฟัน Zoom รากฟันเทียม ขูดหินปูน ดูแลโดยทันตแพทย์เฉพาะทาง นัดปรึกษาฟรี",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "คลินิกทันตกรรมเบามือ | BAOMUE Dental Clinic",
+    description: "บริการทันตกรรมครบวงจร จัดฟัน วีเนียร์ รากเทียม ฟอกสีฟัน ดูแลโดยทันตแพทย์เฉพาะทาง เปิดทุกวัน 10.30-19.30",
+    url: "/",
+  },
+};
 
 // Beautiful fallback homepage when Directus data is not available
 function FallbackHomePage() {

@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BookingBlock from "@/components/blocks/BookingBlock";
 import Breadcrumb from "@/components/Breadcrumb";
+import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
+import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
 import RelatedServices from "@/components/services/RelatedServices";
 import { getServiceBySlug, getServices, getPromotions, getPortfolioCases } from "@/lib/data";
@@ -37,13 +39,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : undefined;
 
   return {
-    title: `${service.name} | Baomue`,
-    description: service.short_description || service.seo_description,
+    title: service.seo_title || `${service.name} | คลินิกทันตกรรมเบามือ`,
+    description: service.seo_description || service.short_description,
+    alternates: {
+      canonical: `/services/${slug}`,
+    },
     openGraph: {
-      title: service.name,
-      description: service.short_description || service.seo_description,
+      title: service.seo_title || service.name,
+      description: service.seo_description || service.short_description,
       type: "article",
+      url: `/services/${slug}`,
       images: imageUrl ? [{ url: imageUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.seo_title || service.name,
+      description: service.seo_description || service.short_description,
     },
   };
 }
@@ -194,6 +205,16 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "หน้าแรก", url: "/" },
+          { name: "บริการ", url: "/services" },
+          { name: service.name, url: `/services/${slug}` },
+        ]}
+      />
+      {enrichedService.faqs && Array.isArray(enrichedService.faqs) && enrichedService.faqs.length > 0 && (
+        <FAQJsonLd faqs={enrichedService.faqs} />
+      )}
 
       <div className="max-w-[1120px] mx-auto px-4 sm:px-6 py-2">
         <Breadcrumb items={breadcrumbItems} />

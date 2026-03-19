@@ -11,8 +11,11 @@ import type { Metadata } from "next";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "ติดต่อ & นัดหมาย | BAOMUE Dental Clinic",
-  description: "ติดต่อเราได้หลากหลายช่องทาง หรือนัดหมายออนไลน์ได้ตลอด 24 ชั่วโมง",
+  title: "ติดต่อเรา & นัดหมายออนไลน์",
+  description: "ติดต่อคลินิกทันตกรรมเบามือ โทร 065-291-6466 หรือ Line @baomuedentalclinic นัดหมายออนไลน์ได้ตลอด 24 ชั่วโมง เปิดทุกวัน 10.30-19.30 น.",
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default async function ContactPage() {
