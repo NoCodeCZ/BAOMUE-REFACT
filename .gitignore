@@ -42,6 +42,10 @@ next-env.d.ts
 scripts/cleanup-directus.js
 scripts/create-booking-form.js
 scripts/improve-form-submissions.js
+scripts/migrate-directus.js
+scripts/test-directus-connection.js
+scripts/verify-migration.js
+.env.migration.example
 
 # temp/one-off scripts at project root (prefixed with _)
 _*.js
@@ -52,6 +56,7 @@ _*.ts
 .env.production
 .env.staging
 .env.development
+.env.migration
 
 # additional private key formats
 *.key
@@ -61,3 +66,7 @@ _*.ts
 
 # general logs
 *.log
+
+# Directus migration artifacts (auto-generated, may contain sensitive data)
+scripts/migration-uuid-map.json
+scripts/migration-progress.json
