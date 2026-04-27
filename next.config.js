@@ -14,6 +14,7 @@ function getDirectusHostname() {
 const directusHostname = getDirectusHostname();
 
 const nextConfig = {
+  output: 'standalone',
   images: {
     remotePatterns: [
       // Only allow images from the configured Directus instance (not all HTTPS domains)

@@ -1,0 +1,24 @@
+.git
+.gitignore
+.next
+node_modules
+npm-debug.log*
+
+# Environment files (set via Coolify env vars, not baked in)
+.env
+.env.*
+!.env.example
+
+# Dev/debug artifacts
+.debug
+.windsurf
+coverage
+refactor
+
+# Scripts (not needed at runtime)
+scripts
+
+# Docs
+docs
+*.md
+!README.md
