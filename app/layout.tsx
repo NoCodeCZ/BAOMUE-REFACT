@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { getGlobalSettings } from "@/lib/data";
 import { GTMScript, GTMNoScript } from "@/lib/analytics/gtm";
+import { MetaPixelScript } from "@/lib/analytics/meta-pixel";
+import MetaPixelEvents from "@/components/analytics/MetaPixelEvents";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://baomuedentalclinic.com";
 
@@ -116,9 +118,11 @@ export default async function RootLayout({
     <html lang="th" className="scroll-smooth">
       <head>
         <GTMScript />
+        <MetaPixelScript />
       </head>
       <body className="antialiased text-slate-600 bg-white selection:bg-cyan-200 selection:text-cyan-900 overflow-x-hidden">
         <GTMNoScript />
+        <MetaPixelEvents />
         {children}
         <script
           type="application/ld+json"

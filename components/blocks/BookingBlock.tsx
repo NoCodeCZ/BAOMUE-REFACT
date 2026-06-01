@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { BlockBooking } from "@/lib/types";
+import { trackMeta } from "@/lib/analytics/meta-client";
 
 interface BookingBlockProps {
   data?: BlockBooking | null;
@@ -90,6 +91,17 @@ export default function BookingBlock({ data }: BookingBlockProps) {
       if (!response.ok) {
         throw new Error("Failed to submit");
       }
+
+      // Meta conversion: Lead (Pixel + CAPI, deduplicated by event_id).
+      // Name/phone are used for advanced matching (hashed server-side).
+      trackMeta("Lead", {
+        userData: { firstName: formState.name, phone: formState.phone },
+        customData: {
+          content_name: "Booking Form",
+          content_category: formState.service || "booking",
+          branch: formState.branch,
+        },
+      });
 
       setIsSuccess(true);
       setFormState({ name: "", phone: "", branch: "", service: "", date: "", time: "", note: "" });

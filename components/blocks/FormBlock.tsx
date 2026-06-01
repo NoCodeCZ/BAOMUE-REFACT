@@ -2,6 +2,22 @@
 
 import { useState } from "react";
 import type { BlockForm, Form, FormField } from "@/lib/types";
+import { trackMeta } from "@/lib/analytics/meta-client";
+
+/** Best-effort extraction of email/phone/name from dynamic form fields for Meta advanced matching. */
+function extractLeadIdentity(state: Record<string, any>) {
+  let email: string | undefined;
+  let phone: string | undefined;
+  let firstName: string | undefined;
+  for (const [label, value] of Object.entries(state)) {
+    if (typeof value !== "string" || !value.trim()) continue;
+    const key = label.toLowerCase();
+    if (!email && (key.includes("email") || key.includes("อีเมล") || /@/.test(value))) email = value;
+    else if (!phone && (key.includes("phone") || key.includes("tel") || key.includes("เบอร์") || key.includes("โทร"))) phone = value;
+    else if (!firstName && (key.includes("name") || key.includes("ชื่อ"))) firstName = value;
+  }
+  return { email, phone, firstName };
+}
 
 interface FormBlockProps {
   data?: BlockForm | null;
@@ -49,6 +65,12 @@ export default function FormBlock({ data, formData, compact = false }: FormBlock
       if (!response.ok) {
         throw new Error("Failed to submit form");
       }
+
+      // Meta conversion: Lead (Pixel + CAPI, deduplicated by event_id).
+      trackMeta("Lead", {
+        userData: extractLeadIdentity(formState),
+        customData: { content_name: title || "Form Submission" },
+      });
 
       setIsSuccess(true);
       setFormState({});

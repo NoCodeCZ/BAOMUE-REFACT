@@ -8,6 +8,7 @@ import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import FAQJsonLd from "@/components/seo/FAQJsonLd";
 import ServiceDetailBlock from "@/components/blocks/ServiceDetailBlock";
 import RelatedServices from "@/components/services/RelatedServices";
+import ViewContentTracker from "@/components/analytics/ViewContentTracker";
 import { getServiceBySlug, getServices, getPromotions, getPortfolioCases } from "@/lib/data";
 import { getFileUrl } from "@/lib/directus";
 
@@ -200,6 +201,17 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       backgroundAttachment: 'fixed'
     }}>
       <Header />
+
+      {/* Meta ViewContent: builds a retargeting audience of this treatment's viewers */}
+      <ViewContentTracker
+        contentName={service.name}
+        contentCategory={
+          service.category && typeof service.category === "object"
+            ? (service.category as { name?: string }).name
+            : undefined
+        }
+        contentIds={[slug]}
+      />
 
       <script
         type="application/ld+json"
