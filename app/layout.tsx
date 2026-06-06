@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { getGlobalSettings } from "@/lib/data";
 import { GTMScript, GTMNoScript } from "@/lib/analytics/gtm";
+import { GoogleAdsScript } from "@/lib/analytics/google-ads";
 import { MetaPixelScript } from "@/lib/analytics/meta-pixel";
 import MetaPixelEvents from "@/components/analytics/MetaPixelEvents";
 
@@ -118,6 +119,7 @@ export default async function RootLayout({
     <html lang="th" className="scroll-smooth">
       <head>
         <GTMScript />
+        <GoogleAdsScript />
         <MetaPixelScript />
       </head>
       <body className="antialiased text-slate-600 bg-white selection:bg-cyan-200 selection:text-cyan-900 overflow-x-hidden">
