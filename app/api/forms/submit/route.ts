@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createFormSubmission, createContactSubmission } from '@/lib/mutations';
 import { logDirectusError } from '@/lib/errors';
+import { notifyLine } from '@/lib/line';
 
 // Maximum payload size (50KB) to prevent abuse
 const MAX_PAYLOAD_SIZE = 50 * 1024;
@@ -105,6 +106,19 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Fire-and-forget LINE group notification. Never blocks or fails the request.
+    const leadType =
+      type === 'contact'
+        ? 'contact'
+        : (data as Record<string, unknown>).form_type === 'booking'
+          ? 'booking'
+          : 'form';
+    void notifyLine({
+      type: leadType,
+      id: result.id,
+      data: data as Record<string, unknown>,
+    });
 
     return NextResponse.json({ success: true, id: result.id });
   } catch (error) {
