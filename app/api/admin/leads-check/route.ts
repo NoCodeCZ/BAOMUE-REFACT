@@ -18,12 +18,12 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const items: any[] = await directus.request(
-      readItems('form_submissions' as any, {
+    const items: any[] = await (directus as any).request(
+      (readItems as any)('form_submissions', {
         fields: ['id', 'status', 'form', 'date_created', 'customer_name', 'phone', 'service', 'branch', 'data'],
         sort: ['id'],
         limit: -1,
-      } as any)
+      })
     );
 
     const rows = (items || []).map((it) => {
