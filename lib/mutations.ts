@@ -53,22 +53,18 @@ export async function createContactSubmission(
 ): Promise<{ id: number } | null> {
   try {
     const result = await directus.request(
-      createItemsTyped('form_submissions', {
-        items: [
-          {
-            form: null, // Or link to contact form if exists
-            data: {
-              name,
-              email,
-              phone,
-              message,
-            },
-            status: 'pending',
-          },
-        ],
+      createItemTyped('form_submissions', {
+        form: null, // Or link to contact form if exists
+        data: {
+          name,
+          email,
+          phone,
+          message,
+        },
+        status: 'new',
       })
     );
-    return result?.[0] || null;
+    return result || null;
   } catch (error) {
     logDirectusError('createContactSubmission', error);
     return null;
